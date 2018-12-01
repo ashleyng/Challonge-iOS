@@ -29,6 +29,8 @@ class TournamentsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UINib(nibName: "TournamentTableViewCell", bundle: nil), forCellReuseIdentifier: "TournamentCell")
+        
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -63,8 +65,10 @@ extension TournamentsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = tournaments[indexPath.row].name
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TournamentCell", for: indexPath) as? TournamentTableViewCell {
+            cell.configureWith(tournaments[indexPath.row])
+            return cell
+        }
+        return TournamentTableViewCell()
     }
 }
