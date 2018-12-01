@@ -34,12 +34,15 @@ class LoginViewController: UIViewController {
         }
 
         let networking = ChallongeNetworking(username: username, apiKey: apiKey)
-        networking.checkCredentials() { statusCode in
-            guard let statusCode = statusCode, statusCode >= 200 else {
+        networking.checkCredentials() { [weak self] statusCode in
+            guard let `self` = self, let statusCode = statusCode, statusCode >= 200 else {
                 print("FAILED")
                 return
             }
             print("SUCCESS")
+            DispatchQueue.main.async {
+                self.present(TournamentsViewController(challongeNetworking: networking), animated: true, completion: nil)
+            }
         }
         
     }

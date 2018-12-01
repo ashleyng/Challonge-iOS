@@ -13,6 +13,8 @@
 		D8A0ADA421B2FB0100CF8B35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADA221B2FB0100CF8B35 /* LaunchScreen.storyboard */; };
 		D8A0ADAD21B2FB2400CF8B35 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0ADAB21B2FB2400CF8B35 /* LoginViewController.swift */; };
 		D8A0ADAE21B2FB2400CF8B35 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADAC21B2FB2400CF8B35 /* LoginViewController.xib */; };
+		D8A0ADB521B30F7D00CF8B35 /* TournamentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0ADB321B30F7D00CF8B35 /* TournamentsViewController.swift */; };
+		D8A0ADB621B30F7D00CF8B35 /* TournamentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADB421B30F7D00CF8B35 /* TournamentsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		D8A0ADA521B2FB0100CF8B35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8A0ADAB21B2FB2400CF8B35 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D8A0ADAC21B2FB2400CF8B35 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		D8A0ADB321B30F7D00CF8B35 /* TournamentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsViewController.swift; sourceTree = "<group>"; };
+		D8A0ADB421B30F7D00CF8B35 /* TournamentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 				D8A0ADA021B2FB0100CF8B35 /* Assets.xcassets */,
 				D8A0ADA221B2FB0100CF8B35 /* LaunchScreen.storyboard */,
 				D8A0ADA521B2FB0100CF8B35 /* Info.plist */,
+				D8A0ADB321B30F7D00CF8B35 /* TournamentsViewController.swift */,
+				D8A0ADB421B30F7D00CF8B35 /* TournamentsViewController.xib */,
 			);
 			path = Challonge;
 			sourceTree = "<group>";
@@ -149,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8A0ADA421B2FB0100CF8B35 /* LaunchScreen.storyboard in Resources */,
+				D8A0ADB621B30F7D00CF8B35 /* TournamentsViewController.xib in Resources */,
 				D8A0ADA121B2FB0100CF8B35 /* Assets.xcassets in Resources */,
 				D8A0ADAE21B2FB2400CF8B35 /* LoginViewController.xib in Resources */,
 			);
@@ -210,6 +217,7 @@
 			files = (
 				D8A0ADAD21B2FB2400CF8B35 /* LoginViewController.swift in Sources */,
 				D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */,
+				D8A0ADB521B30F7D00CF8B35 /* TournamentsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

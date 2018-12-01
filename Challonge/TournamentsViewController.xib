@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TournamentsViewController" customModule="Challonge" customModuleProvider="target">
+            <connections>
+                <outlet property="loadingIndicator" destination="hCr-x6-tdV" id="o2G-FU-tmX"/>
+                <outlet property="tableView" destination="Can-0v-ahr" id="qk4-ME-wQ3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Can-0v-ahr">
+                    <rect key="frame" x="0.0" y="68" width="375" height="599"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWG-Hw-r1d">
+                    <rect key="frame" x="0.0" y="20" width="375" height="48"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Tournaments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YJ-9y-ucx">
+                            <rect key="frame" x="123.5" y="13.5" width="128" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="8YJ-9y-ucx" firstAttribute="centerX" secondItem="MWG-Hw-r1d" secondAttribute="centerX" id="5Kd-ag-ldH"/>
+                        <constraint firstItem="8YJ-9y-ucx" firstAttribute="centerY" secondItem="MWG-Hw-r1d" secondAttribute="centerY" id="hFc-AP-pau"/>
+                        <constraint firstAttribute="height" constant="48" id="zEu-UX-t5U"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="3pr-PR-2Si"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LdL-8c-6e8">
+                    <rect key="frame" x="0.0" y="68" width="375" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="bQo-QS-LPa"/>
+                </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hCr-x6-tdV">
+                    <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Can-0v-ahr" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="A20-3b-HO7"/>
+                <constraint firstItem="hCr-x6-tdV" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="O5b-DY-G4c"/>
+                <constraint firstItem="hCr-x6-tdV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qbo-kJ-LhK"/>
+                <constraint firstItem="MWG-Hw-r1d" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="TBk-2a-2tv"/>
+                <constraint firstItem="Can-0v-ahr" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="U2b-hY-2ha"/>
+                <constraint firstItem="MWG-Hw-r1d" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="k7v-FU-Ysa"/>
+                <constraint firstItem="Can-0v-ahr" firstAttribute="top" secondItem="MWG-Hw-r1d" secondAttribute="bottom" id="pCh-B4-0nD"/>
+                <constraint firstItem="MWG-Hw-r1d" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="t2X-Gr-fcd"/>
+                <constraint firstItem="Can-0v-ahr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="y0J-vv-Ayx"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
+        </view>
+    </objects>
+</document>
