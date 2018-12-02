@@ -9,6 +9,31 @@
 import UIKit
 import ChallongeNetworking
 
+fileprivate enum State {
+    case loading
+    case populated([Match], [Int: Participant])
+    case empty
+    case error(Error)
+
+    var currentMatches: [Match] {
+        switch self {
+        case .loading, .empty, .error:
+            return []
+        case .populated(let matches, _):
+            return matches
+        }
+    }
+
+    var currentParticipants: [Int: Participant] {
+        switch self {
+        case .loading, .empty, .error:
+            return [:]
+        case .populated(_, let participants):
+            return participants
+        }
+    }
+}
+
 class MatchesViewController: UIViewController {
 
     @IBOutlet private var tableView: UITableView!
@@ -18,20 +43,9 @@ class MatchesViewController: UIViewController {
     private let networking: ChallongeNetworking
     private let tournamentName: String
     private let tournamentId: Int
-    private var matches: [Match] = []
-    private var participants: [Int: Participant] = [:]
-    private var matchFetchComplete: Bool = false {
+    private var state = State.loading {
         didSet {
-            if !oldValue && matchFetchComplete && participantFetchComplete {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    private var participantFetchComplete: Bool = false {
-        didSet {
-            if !oldValue && participantFetchComplete && matchFetchComplete {
-                self.tableView.reloadData()
-            }
+            updateUI()
         }
     }
     
@@ -52,36 +66,45 @@ class MatchesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.isHidden = true
-        loadingIndicator.isHidden = false
-        loadingIndicator.startAnimating()
-        
         tournamentNameLabel.text = tournamentName
+        updateUI()
         fetchTournament()
     }
     
     private func fetchTournament() {
         networking.getMatchesForTournament(tournamentId, completion: { matches in
-            self.matches = matches
-            self.fetchParticipants()
+            self.fetchParticipants() { participants in
+                self.state = .populated(matches, participants.toDictionary { $0.id })
+            }
 
         }, onError: { error in
             print("errored matches")
             print(error.localizedDescription)
         })
     }
-    
-    private func fetchParticipants() {
+
+    private func fetchParticipants(completion: @escaping ([Participant]) -> Void) {
         networking.getParticipantsForTournament(tournamentId, completion: { (participants: [Participant]) in
-            self.participants = participants.toDictionary { $0.id }
-            DispatchQueue.main.async {
+            completion(participants)
+        }, onError: { _ in })
+    }
+    
+    private func updateUI() {
+        DispatchQueue.main.async {
+            switch self.state {
+            case .empty, .populated:
                 self.tableView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 self.loadingIndicator.stopAnimating()
-                self.tableView.reloadData()
+            case .error(let error):
+                print("Error: \(error.localizedDescription)")
+            case .loading:
+                self.tableView.isHidden = true
+                self.loadingIndicator.isHidden = false
+                self.loadingIndicator.startAnimating()
             }
-            
-        }, onError: { _ in })
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -92,12 +115,14 @@ class MatchesViewController: UIViewController {
 
 extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return matches.count
+        return state.currentMatches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        let matches = state.currentMatches
         let match = matches[indexPath.row]
+        let participants = state.currentParticipants
         var player1 = ""
         var player2 = ""
         
@@ -112,8 +137,6 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = "\(player1) vs. \(player2)"
         return cell
     }
-    
-    
 }
 
 
