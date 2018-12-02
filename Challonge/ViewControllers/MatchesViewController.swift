@@ -39,6 +39,7 @@ class MatchesViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet private var tournamentNameLabel: UILabel!
+    private let refreshControl = UIRefreshControl()
     
     private let networking: ChallongeNetworking
     private let tournamentName: String
@@ -68,11 +69,23 @@ class MatchesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshMatches(_:)), for: .valueChanged)
+
         tournamentNameLabel.text = tournamentName
         updateUI()
         fetchTournament()
     }
     
+    @objc
+    private func refreshMatches(_ sender: Any) {
+        fetchTournament()
+    }
+
     private func fetchTournament() {
         networking.getMatchesForTournament(tournamentId, completion: { matches in
             self.fetchParticipants() { participants in
@@ -80,8 +93,7 @@ class MatchesViewController: UIViewController {
             }
 
         }, onError: { error in
-            print("errored matches")
-            print(error.localizedDescription)
+            self.state = .error(error)
         })
     }
 
@@ -97,6 +109,7 @@ class MatchesViewController: UIViewController {
             case .empty, .populated:
                 self.tableView.isHidden = false
                 self.loadingIndicator.isHidden = true
+                self.refreshControl.endRefreshing()
                 self.loadingIndicator.stopAnimating()
             case .error(let error):
                 print("Error: \(error.localizedDescription)")
