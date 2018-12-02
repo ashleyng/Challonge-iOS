@@ -71,4 +71,9 @@ extension TournamentsViewController: UITableViewDelegate, UITableViewDataSource 
         }
         return TournamentTableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tournament = tournaments[indexPath.row]
+        present(MatchesViewController(challongeNetworking: networking, tournament: tournament), animated: true, completion: nil)
+    }
 }
