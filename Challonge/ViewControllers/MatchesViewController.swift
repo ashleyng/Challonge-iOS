@@ -63,6 +63,8 @@ class MatchesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.register(UINib(nibName: "MatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MatchCell")
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -119,23 +121,25 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
         let matches = state.currentMatches
         let match = matches[indexPath.row]
-        let participants = state.currentParticipants
-        var player1 = ""
-        var player2 = ""
         
-        guard let player1Id = match.player1Id, let player2Id = match.player2Id else {
-            cell.textLabel?.text = "Match \(match.suggestedPlayOrder)"
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as? MatchTableViewCell {
+            cell.configureWith(match, label: matchCellLabel(player1Id: match.player1Id, player2Id: match.player2Id, suggestedPlayOrder: match.suggestedPlayOrder))
             return cell
         }
-        
-        player1 = participants[player1Id]?.name ?? "Unknown Player 1"
-        player2 = participants[player2Id]?.name ?? "Unknown Player 2"
+        return MatchTableViewCell()
+    }
 
-        cell.textLabel?.text = "\(player1) vs. \(player2)"
-        return cell
+    private func matchCellLabel(player1Id: Int?, player2Id: Int?, suggestedPlayOrder: Int) -> String{
+        guard let player1Id = player1Id, let player2Id = player2Id else {
+            return "Match \(suggestedPlayOrder)"
+        }
+        let participants = state.currentParticipants
+        let player1 = participants[player1Id]?.name ?? "Unknown Player 1"
+        let player2 = participants[player2Id]?.name ?? "Unknown Player 2"
+
+        return "\(player1) vs. \(player2)"
     }
 }
 
