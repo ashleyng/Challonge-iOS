@@ -144,6 +144,11 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         return MatchTableViewCell()
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let match = state.currentMatches[indexPath.row]
+        present(SingleMatchViewController(match: match, networking: networking), animated: true, completion: nil)
+    }
+
     private func matchCellLabel(player1Id: Int?, player2Id: Int?, suggestedPlayOrder: Int) -> String{
         guard let player1Id = player1Id, let player2Id = player2Id else {
             return "Match \(suggestedPlayOrder)"

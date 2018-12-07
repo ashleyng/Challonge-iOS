@@ -22,6 +22,10 @@
 		D8F7B27721B3594500FB7F5C /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27621B3594500FB7F5C /* Array+Extension.swift */; };
 		D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */; };
 		D8F7B27B21B3688A00FB7F5C /* MatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B27921B3688A00FB7F5C /* MatchTableViewCell.xib */; };
+		D8F7B27E21B382A900FB7F5C /* SingleMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27C21B382A900FB7F5C /* SingleMatchViewController.swift */; };
+		D8F7B27F21B382A900FB7F5C /* SingleMatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B27D21B382A900FB7F5C /* SingleMatchViewController.xib */; };
+		D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */; };
+		D8F7B28321B3840700FB7F5C /* PlayingMatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +48,10 @@
 		D8F7B27621B3594500FB7F5C /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTableViewCell.swift; sourceTree = "<group>"; };
 		D8F7B27921B3688A00FB7F5C /* MatchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchTableViewCell.xib; sourceTree = "<group>"; };
+		D8F7B27C21B382A900FB7F5C /* SingleMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMatchViewController.swift; sourceTree = "<group>"; };
+		D8F7B27D21B382A900FB7F5C /* SingleMatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleMatchViewController.xib; sourceTree = "<group>"; };
+		D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingMatchViewController.swift; sourceTree = "<group>"; };
+		D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayingMatchViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +114,8 @@
 				D8F7B26E21B319B700FB7F5C /* TournamentTableViewCell.xib */,
 				D8A0ADB421B30F7D00CF8B35 /* TournamentsViewController.xib */,
 				D8F7B27921B3688A00FB7F5C /* MatchTableViewCell.xib */,
+				D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */,
+				D8F7B27D21B382A900FB7F5C /* SingleMatchViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +128,8 @@
 				D8F7B26D21B319B700FB7F5C /* TournamentTableViewCell.swift */,
 				D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */,
 				D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */,
+				D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */,
+				D8F7B27C21B382A900FB7F5C /* SingleMatchViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -199,10 +211,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F7B28321B3840700FB7F5C /* PlayingMatchViewController.xib in Resources */,
 				D8F7B27421B352CE00FB7F5C /* MatchesViewController.xib in Resources */,
 				D8A0ADA421B2FB0100CF8B35 /* LaunchScreen.storyboard in Resources */,
 				D8F7B27B21B3688A00FB7F5C /* MatchTableViewCell.xib in Resources */,
 				D8A0ADB621B30F7D00CF8B35 /* TournamentsViewController.xib in Resources */,
+				D8F7B27F21B382A900FB7F5C /* SingleMatchViewController.xib in Resources */,
 				D8F7B27021B319B700FB7F5C /* TournamentTableViewCell.xib in Resources */,
 				D8A0ADA121B2FB0100CF8B35 /* Assets.xcassets in Resources */,
 				D8A0ADAE21B2FB2400CF8B35 /* LoginViewController.xib in Resources */,
@@ -263,6 +277,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F7B27E21B382A900FB7F5C /* SingleMatchViewController.swift in Sources */,
+				D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */,
 				D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */,
 				D8F7B26F21B319B700FB7F5C /* TournamentTableViewCell.swift in Sources */,
 				D8A0ADAD21B2FB2400CF8B35 /* LoginViewController.swift in Sources */,
@@ -411,6 +427,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TCYT7HZQSV;
 				INFOPLIST_FILE = Challonge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -430,6 +447,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TCYT7HZQSV;
 				INFOPLIST_FILE = Challonge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
