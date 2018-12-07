@@ -9,7 +9,7 @@
 import UIKit
 import ChallongeNetworking
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet private var usernameTextField: UITextField!
     @IBOutlet private var apiKeyTextField: UITextField!
@@ -18,6 +18,12 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadingIndicator.isHidden = true
+        apiKeyTextField.delegate = self
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @IBAction func loginPressed(_ sender: UIButton) {
