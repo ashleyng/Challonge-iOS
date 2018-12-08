@@ -48,10 +48,10 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdN-Vk-Ze7">
-                    <rect key="frame" x="16" y="607" width="343" height="40"/>
+                    <rect key="frame" x="16" y="599" width="343" height="48"/>
                     <color key="backgroundColor" red="0.22981417309999999" green="0.65102336189999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="qcw-9t-ThG"/>
+                        <constraint firstAttribute="height" constant="48" id="qcw-9t-ThG"/>
                     </constraints>
                     <state key="normal" title="Log In">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
