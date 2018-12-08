@@ -80,7 +80,12 @@ class MatchesViewController: UIViewController {
         updateUI()
         fetchTournament()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchTournament()
+    }
+
     @objc
     private func refreshMatches(_ sender: Any) {
         fetchTournament()

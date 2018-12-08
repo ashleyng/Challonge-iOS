@@ -11,11 +11,14 @@ import ChallongeNetworking
 
 class SingleMatchViewController: UIViewController {
 
+    @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
+
     private let match: Match
     private let networking: ChallongeNetworking
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingIndicator.isHidden = true
     }
 
     init(match: Match, networking: ChallongeNetworking) {
@@ -51,11 +54,26 @@ class SingleMatchViewController: UIViewController {
                 let player2Id = self.match.player2Id else {
                     return
             }
+            self.loadingIndicator.isHidden = false
+            self.loadingIndicator.startAnimating()
+            self.view.isUserInteractionEnabled = false
+            self.loadingIndicator.backgroundColor = UIColor.white.withAlphaComponent(0.6)
 
-            self.networking.setWinnerForMatch(self.match.tournamentId, matchId: self.match.id, winnderId: player1Id, score: "\(player1Score)-\(player2Score)", completion: { match in
+            let winnerId = player1Score > player2Score ? player1Id : player2Id
+            self.networking.setWinnerForMatch(self.match.tournamentId, matchId: self.match.id, winnderId: winnerId, score: "\(player1Score)-\(player2Score)", completion: { match in
                 print("SCORE SUBMITTED for: \(match.id) \(match.player1Id) \(match.winnerId) \(match.scoresCsv)")
+                DispatchQueue.main.async {
+                    self.loadingIndicator.isHidden = true
+                    self.loadingIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
+                }
             }, onError: { error in
                 print("EEEEERRRROROOORRR: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self.loadingIndicator.isHidden = true
+                    self.loadingIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
+                }
             })
         }))
         present(alert, animated: true, completion: nil)

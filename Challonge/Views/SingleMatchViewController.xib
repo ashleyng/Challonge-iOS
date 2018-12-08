@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SingleMatchViewController" customModule="Challonge" customModuleProvider="target">
             <connections>
+                <outlet property="loadingIndicator" destination="S6U-bg-ieV" id="mdf-yA-TL7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,8 +22,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5z-b7-P8M">
-                    <rect key="frame" x="16" y="617" width="343" height="30"/>
+                    <rect key="frame" x="16" y="599" width="343" height="48"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="NZj-Tl-kfE"/>
+                    </constraints>
                     <state key="normal" title="Input Score">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -31,8 +35,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0va-Gn-GtA">
-                    <rect key="frame" x="16" y="579" width="343" height="30"/>
+                    <rect key="frame" x="16" y="543" width="343" height="48"/>
                     <color key="backgroundColor" red="0.22981417309999999" green="0.65102336189999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="mrn-LS-iQX"/>
+                    </constraints>
                     <state key="normal" title="Start Match">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -74,19 +81,28 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="0dc-4T-xLG"/>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="S6U-bg-ieV">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="8i9-UV-b3J" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2OQ-v5-BR7"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S6U-bg-ieV" secondAttribute="trailing" id="5Mf-fC-cZX"/>
                 <constraint firstItem="S6h-uQ-oam" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8Nw-XK-aHo"/>
                 <constraint firstItem="T5z-b7-P8M" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="8cF-Fm-CoI"/>
                 <constraint firstItem="S6h-uQ-oam" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="AjS-OR-qkK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0va-Gn-GtA" secondAttribute="trailing" constant="16" id="Ajg-eE-MjE"/>
+                <constraint firstItem="S6U-bg-ieV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="CHK-Js-uCR"/>
                 <constraint firstItem="8i9-UV-b3J" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D2l-CH-o0c"/>
+                <constraint firstAttribute="bottom" secondItem="S6U-bg-ieV" secondAttribute="bottom" id="Dlc-qg-BWd"/>
+                <constraint firstItem="S6U-bg-ieV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NTh-tO-Pxg"/>
+                <constraint firstItem="S6U-bg-ieV" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Oky-7o-DFC"/>
                 <constraint firstItem="8i9-UV-b3J" firstAttribute="top" secondItem="S6h-uQ-oam" secondAttribute="bottom" id="Oqe-J2-ymd"/>
                 <constraint firstItem="T5z-b7-P8M" firstAttribute="top" secondItem="0va-Gn-GtA" secondAttribute="bottom" constant="8" id="RlZ-WA-R7S"/>
                 <constraint firstItem="0va-Gn-GtA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="S3T-aJ-hzS"/>
                 <constraint firstItem="S6h-uQ-oam" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Tjl-Fv-1Sa"/>
+                <constraint firstItem="S6U-bg-ieV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TtE-nf-4cU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T5z-b7-P8M" secondAttribute="trailing" constant="16" id="d5N-fa-fHo"/>
                 <constraint firstItem="8i9-UV-b3J" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="qKW-7c-wlY"/>
                 <constraint firstItem="S6h-uQ-oam" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qtt-Cj-MwD"/>
