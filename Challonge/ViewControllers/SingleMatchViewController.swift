@@ -8,6 +8,7 @@
 
 import UIKit
 import ChallongeNetworking
+import Crashlytics
 
 class SingleMatchViewController: UIViewController {
 
@@ -61,14 +62,16 @@ class SingleMatchViewController: UIViewController {
 
             let winnerId = player1Score > player2Score ? player1Id : player2Id
             self.networking.setWinnerForMatch(self.match.tournamentId, matchId: self.match.id, winnderId: winnerId, score: "\(player1Score)-\(player2Score)", completion: { match in
-                print("SCORE SUBMITTED for: \(match.id) \(match.player1Id) \(match.winnerId) \(match.scoresCsv)")
+//                print("SCORE SUBMITTED for: \(match.id) \(match.player1Id) \(match.winnerId) \(match.scoresCsv)")
                 DispatchQueue.main.async {
                     self.loadingIndicator.isHidden = true
                     self.loadingIndicator.stopAnimating()
                     self.view.isUserInteractionEnabled = true
                 }
             }, onError: { error in
-                print("EEEEERRRROROOORRR: \(error.localizedDescription)")
+                Answers.logCustomEvent(withName: "ErrorSubmittingScore", customAttributes: [
+                    "Error": error.localizedDescription
+                ])
                 DispatchQueue.main.async {
                     self.loadingIndicator.isHidden = true
                     self.loadingIndicator.stopAnimating()

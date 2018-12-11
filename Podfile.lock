@@ -1,8 +1,18 @@
 PODS:
   - ChallongeNetworking (0.1.0)
+  - Crashlytics (3.11.1):
+    - Fabric (~> 1.8.1)
+  - Fabric (1.8.2)
 
 DEPENDENCIES:
   - ChallongeNetworking (from `../ChallongeNetworking`)
+  - Crashlytics
+  - Fabric
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Crashlytics
+    - Fabric
 
 EXTERNAL SOURCES:
   ChallongeNetworking:
@@ -10,7 +20,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ChallongeNetworking: 20e2252db1107be6d624b84be9e4f8ee2a75de4c
+  Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
+  Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
 
-PODFILE CHECKSUM: dc0991de9bd6ca5642b83f934ad1be75c127aefe
+PODFILE CHECKSUM: d6d7182c438d479f1d701a8239749437bac4bb7b
 
 COCOAPODS: 1.5.3

@@ -8,12 +8,15 @@
 
 import UIKit
 import ChallongeNetworking
+import Fabric
+import Crashlytics
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet private var usernameTextField: UITextField!
     @IBOutlet private var apiKeyTextField: UITextField!
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loginButtonBottomConstraint: NSLayoutConstraint!
 
     private let CHALLONGE_USERNAME_KEY = "Challonge_Username_Key"
     private let CHALLONGE_API_KEY = "Challonge_API_Key"
@@ -27,11 +30,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             print("Found saved credentials")
             testCredentialsAndLogin(username: savedUsername, apiKey: savedApiKey)
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+
+    @objc
+    func keyboardWillShow(notification: NSNotification) {
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+
+        loginButtonBottomConstraint.constant = keyboardFrame.size.height + 20
+    }
+
+    @objc
+    func keyboardWillHide(notification: NSNotification) {
+        loginButtonBottomConstraint.constant = 218
     }
 
     @IBAction func loginPressed(_ sender: UIButton) {
@@ -43,8 +69,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loadingIndicator.startAnimating()
 
         testCredentialsAndLogin(username: username, apiKey: apiKey) {
-            self.loadingIndicator.isHidden = true
-            self.loadingIndicator.stopAnimating()
+            DispatchQueue.main.async {
+                self.loadingIndicator.isHidden = true
+                self.loadingIndicator.stopAnimating()
+            }
         }
     }
 
@@ -58,7 +86,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if statusCode >= 200 {
                 UserDefaults.standard.set(username, forKey: self.CHALLONGE_USERNAME_KEY)
                 UserDefaults.standard.set(apiKey, forKey: self.CHALLONGE_USERNAME_KEY)
-                print("saved credentials")
                 DispatchQueue.main.async {
                     self.present(TournamentsViewController(challongeNetworking: networking), animated: true, completion: nil)
                 }
@@ -68,6 +95,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.present(alert, animated: true, completion: nil)
                 }
             } else {
+                Answers.logCustomEvent(withName: "LoginFailed", customAttributes: [
+                    "StatusCode": statusCode
+                ])
                 let alert = self.createAlert(title: "An Error Occured", message: nil)
                 DispatchQueue.main.async {
                     self.present(alert, animated: true, completion: nil)

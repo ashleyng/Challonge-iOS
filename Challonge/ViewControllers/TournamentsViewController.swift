@@ -8,6 +8,7 @@
 
 import UIKit
 import ChallongeNetworking
+import Crashlytics
 
 fileprivate enum State {
     case loading
@@ -88,6 +89,9 @@ class TournamentsViewController: UIViewController {
                 self.tableView.reloadData()
             case .error(let error):
                 print("Error: \(error.localizedDescription)")
+                Answers.logCustomEvent(withName: "ErrorFetchingTournaments", customAttributes: [
+                    "Error": error.localizedDescription
+                ])
             case .loading:
                 self.loadingIndicator.isHidden = false
                 self.tableView.isHidden = true

@@ -8,6 +8,7 @@
 
 import UIKit
 import ChallongeNetworking
+import Crashlytics
 
 fileprivate enum State {
     case loading
@@ -118,6 +119,9 @@ class MatchesViewController: UIViewController {
                 self.loadingIndicator.stopAnimating()
             case .error(let error):
                 print("Error: \(error.localizedDescription)")
+                Answers.logCustomEvent(withName: "ErrorFetchingMatches", customAttributes: [
+                    "Error": error.localizedDescription
+                ])
             case .loading:
                 self.tableView.isHidden = true
                 self.loadingIndicator.isHidden = false

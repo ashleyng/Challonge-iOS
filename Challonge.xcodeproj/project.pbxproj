@@ -163,6 +163,7 @@
 				D8A0AD9321B2FAFF00CF8B35 /* Frameworks */,
 				D8A0AD9421B2FAFF00CF8B35 /* Resources */,
 				BC56F6A1640EE0CB06AC280F /* [CP] Embed Pods Frameworks */,
+				D8A5786121BC4A41006A25E6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -269,6 +270,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Challonge/Pods-Challonge-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D8A5786121BC4A41006A25E6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 5a90672cbf85cccc28cef7c2c1a320aec946c385 4160f25e0b5e7d2b4f96f75e3ec5aa452178a6b30d4e8983b9d3faf05887fdff\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

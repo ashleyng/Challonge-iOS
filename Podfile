@@ -6,5 +6,7 @@ target 'Challonge' do
   use_frameworks!
 
   # Pods for Challonge
-  pod  'ChallongeNetworking', :path => '../ChallongeNetworking'
+  pod 'ChallongeNetworking', :path => '../ChallongeNetworking'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end

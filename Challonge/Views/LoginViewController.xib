@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="apiKeyTextField" destination="z2m-Kp-O6W" id="Qbr-gN-qzd"/>
                 <outlet property="loadingIndicator" destination="lSG-Iv-LOD" id="d5s-vA-yAs"/>
+                <outlet property="loginButtonBottomConstraint" destination="IrF-jK-2ot" id="O9s-DU-kZ0"/>
                 <outlet property="usernameTextField" destination="H3X-pe-RRy" id="I2t-1v-Fbe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,31 +25,31 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAG-1L-ije">
-                    <rect key="frame" x="16" y="225" width="343" height="21"/>
+                    <rect key="frame" x="16" y="200" width="343" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3X-pe-RRy">
-                    <rect key="frame" x="16" y="254" width="343" height="30"/>
+                    <rect key="frame" x="16" y="229" width="343" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="API Key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eL1-gZ-B2t">
-                    <rect key="frame" x="16" y="315" width="343" height="21"/>
+                    <rect key="frame" x="16" y="290" width="343" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2m-Kp-O6W">
-                    <rect key="frame" x="16" y="344" width="343" height="30"/>
+                    <rect key="frame" x="16" y="319" width="343" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdN-Vk-Ze7">
-                    <rect key="frame" x="16" y="599" width="343" height="48"/>
+                    <rect key="frame" x="16" y="401" width="343" height="48"/>
                     <color key="backgroundColor" red="0.22981417309999999" green="0.65102336189999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="qcw-9t-ThG"/>
@@ -61,7 +62,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oga-nj-hlv">
-                    <rect key="frame" x="112.5" y="382" width="150" height="28"/>
+                    <rect key="frame" x="112.5" y="357" width="150" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="How do I get an API key?">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -70,23 +71,25 @@
                         <action selector="howToGetAnApiKeyPressed:" destination="-1" eventType="touchUpInside" id="N4x-Px-ZIn"/>
                     </connections>
                 </button>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lSG-Iv-LOD">
-                    <rect key="frame" x="177" y="617" width="20" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lSG-Iv-LOD">
+                    <rect key="frame" x="177" y="415" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="VdN-Vk-Ze7" firstAttribute="top" secondItem="oga-nj-hlv" secondAttribute="bottom" constant="16" id="7bg-Bd-5yW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eL1-gZ-B2t" secondAttribute="trailing" constant="16" id="8UV-hr-5YM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="z2m-Kp-O6W" secondAttribute="trailing" constant="16" id="AoF-eK-fOa"/>
                 <constraint firstItem="z2m-Kp-O6W" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="BSo-7b-H8s"/>
                 <constraint firstItem="oga-nj-hlv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EB8-iU-xAy"/>
+                <constraint firstItem="lSG-Iv-LOD" firstAttribute="top" secondItem="VdN-Vk-Ze7" secondAttribute="bottom" constant="-34" id="IGE-KW-EwI"/>
                 <constraint firstItem="eL1-gZ-B2t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="INA-Oo-RvH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VdN-Vk-Ze7" secondAttribute="bottom" constant="218" id="IrF-jK-2ot"/>
                 <constraint firstItem="H3X-pe-RRy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="J5L-1z-Uun"/>
-                <constraint firstItem="KAG-1L-ije" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="205" id="ZxT-59-C9x"/>
+                <constraint firstItem="KAG-1L-ije" firstAttribute="top" relation="lessThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="180" id="ZxT-59-C9x"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VdN-Vk-Ze7" secondAttribute="trailing" constant="16" id="fhr-li-Lbv"/>
                 <constraint firstItem="KAG-1L-ije" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="fyl-OP-6iz"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VdN-Vk-Ze7" secondAttribute="bottom" constant="20" id="hbd-KS-NZ9"/>
+                <constraint firstItem="VdN-Vk-Ze7" firstAttribute="leading" secondItem="lSG-Iv-LOD" secondAttribute="trailing" constant="-181" id="gcM-db-zdb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KAG-1L-ije" secondAttribute="trailing" constant="16" id="hjR-nO-6jK"/>
                 <constraint firstItem="oga-nj-hlv" firstAttribute="top" secondItem="z2m-Kp-O6W" secondAttribute="bottom" constant="8" id="lbM-Va-xxU"/>
                 <constraint firstItem="VdN-Vk-Ze7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="ncU-NA-tNi"/>

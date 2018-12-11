@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = UINavigationController(rootViewController: LoginViewController())
         
         self.window = window
-        
+        Fabric.with([Crashlytics.self, Answers.self])
         return true
     }
 
