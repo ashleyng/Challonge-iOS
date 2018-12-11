@@ -116,5 +116,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func howToGetAnApiKeyPressed(_ sender: UIButton) {
+        self.present(GetApiKeyHelpViewController(), animated: true, completion: nil)
     }
 }

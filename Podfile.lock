@@ -3,16 +3,19 @@ PODS:
   - Crashlytics (3.11.1):
     - Fabric (~> 1.8.1)
   - Fabric (1.8.2)
+  - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - ChallongeNetworking (from `../ChallongeNetworking`)
   - Crashlytics
   - Fabric
+  - SnapKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Crashlytics
     - Fabric
+    - SnapKit
 
 EXTERNAL SOURCES:
   ChallongeNetworking:
@@ -22,7 +25,8 @@ SPEC CHECKSUMS:
   ChallongeNetworking: 20e2252db1107be6d624b84be9e4f8ee2a75de4c
   Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
   Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: d6d7182c438d479f1d701a8239749437bac4bb7b
+PODFILE CHECKSUM: 00822e532b75872e0d0f757c84ee8a3efc5543d8
 
 COCOAPODS: 1.5.3

@@ -9,4 +9,5 @@ target 'Challonge' do
   pod 'ChallongeNetworking', :path => '../ChallongeNetworking'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'SnapKit'
 end
