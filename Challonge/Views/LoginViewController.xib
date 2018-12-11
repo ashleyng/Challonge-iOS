@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="apiKeyTextField" destination="z2m-Kp-O6W" id="Qbr-gN-qzd"/>
                 <outlet property="loadingIndicator" destination="lSG-Iv-LOD" id="d5s-vA-yAs"/>
+                <outlet property="loginButton" destination="VdN-Vk-Ze7" id="Kme-KM-qwb"/>
                 <outlet property="loginButtonBottomConstraint" destination="IrF-jK-2ot" id="O9s-DU-kZ0"/>
                 <outlet property="usernameTextField" destination="H3X-pe-RRy" id="I2t-1v-Fbe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

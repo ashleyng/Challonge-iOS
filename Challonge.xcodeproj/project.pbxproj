@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C282444398E21DE6AF7BE9CA /* Pods_Challonge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */; };
+		D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301621BF5306009870B9 /* UIButton+Extension.swift */; };
 		D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */; };
 		D8A0ADA121B2FB0100CF8B35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADA021B2FB0100CF8B35 /* Assets.xcassets */; };
 		D8A0ADA421B2FB0100CF8B35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADA221B2FB0100CF8B35 /* LaunchScreen.storyboard */; };
@@ -32,6 +33,7 @@
 		80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challonge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E08810F5C90A9E00709272B /* Pods-Challonge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challonge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Challonge/Pods-Challonge.release.xcconfig"; sourceTree = "<group>"; };
 		CBF030ABEBB99610171D48EE /* Pods-Challonge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challonge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Challonge/Pods-Challonge.debug.xcconfig"; sourceTree = "<group>"; };
+		D86D301621BF5306009870B9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		D8A0AD9621B2FAFF00CF8B35 /* Challonge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challonge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8A0ADA021B2FB0100CF8B35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,7 +97,7 @@
 		D8A0AD9821B2FAFF00CF8B35 /* Challonge */ = {
 			isa = PBXGroup;
 			children = (
-				D8F7B27521B3592D00FB7F5C /* extension */,
+				D8F7B27521B3592D00FB7F5C /* Extension */,
 				D8F7B26B21B3198B00FB7F5C /* Views */,
 				D8F7B26C21B3199900FB7F5C /* ViewControllers */,
 				D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */,
@@ -134,12 +136,13 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		D8F7B27521B3592D00FB7F5C /* extension */ = {
+		D8F7B27521B3592D00FB7F5C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				D8F7B27621B3594500FB7F5C /* Array+Extension.swift */,
+				D86D301621BF5306009870B9 /* UIButton+Extension.swift */,
 			);
-			path = extension;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		DBA1AB59BA7306E2F750C1F5 /* Pods */ = {
@@ -297,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8F7B27E21B382A900FB7F5C /* SingleMatchViewController.swift in Sources */,
+				D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */,
 				D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */,
 				D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */,
 				D8F7B26F21B319B700FB7F5C /* TournamentTableViewCell.swift in Sources */,

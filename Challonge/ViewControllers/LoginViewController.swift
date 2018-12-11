@@ -16,7 +16,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private var usernameTextField: UITextField!
     @IBOutlet private var apiKeyTextField: UITextField!
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var loginButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var loginButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var loginButton: UIButton!
 
     private let CHALLONGE_USERNAME_KEY = "Challonge_Username_Key"
     private let CHALLONGE_API_KEY = "Challonge_API_Key"
@@ -30,6 +31,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             print("Found saved credentials")
             testCredentialsAndLogin(username: savedUsername, apiKey: savedApiKey)
         }
+
+        loginButton.roundEdges(withRadius: 10)
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
