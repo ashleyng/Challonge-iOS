@@ -11,11 +11,12 @@ import UIKit
 import WebKit
 import SnapKit
 
-class GetApiKeyHelpViewController: UIViewController, WKUIDelegate {
+class GetApiKeyHelpViewController: UIViewController {
 
+    private var webViewContainer: UIView!
     private var webView: WKWebView!
     private var backButton: UIButton = UIButton()
-    private var navContainerView: UIView = UIView()
+    private var navContainerView: UIView = UIView(frame: .zero)
     private var webViewContainerView: UIView = UIView()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -29,32 +30,50 @@ class GetApiKeyHelpViewController: UIViewController, WKUIDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func loadView() {
-        webView.uiDelegate = self
-        self.view = webView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.addSubview(navContainerView)
-//        self.view.addSubview(backButton)
-//        self.view.addSubview(webViewContainerView)
-//
-//        navContainerView.snp.makeConstraints { make in
-//            make.top.left.right.equalTo(view)
-//            make.height.equalTo(48)
-//        }
-//        backButton.snp.makeConstraints { make in
-//            make.left.equalTo(navContainerView).offset(8)
-//            make.centerY.equalTo(navContainerView.center)
-//        }
-//        webViewContainerView.snp.makeConstraints { make in
-//            make.top.equalTo(navContainerView.snp_bottomMargin)
-//            make.left.right.bottom.equalTo(view)
-//        }
-        
+
+        setupNavContainer()
+        setupWebViewContainer()
+        backButton.addTarget(self, action: #selector(backButtonPressed(sender:)), for: .touchUpInside)
+
         let url = URL(string: "https://api.challonge.com/v1")
         let request = URLRequest(url: url!)
         webView.load(request)
+    }
+
+    private func setupNavContainer() {
+        navContainerView.backgroundColor = UIColor.white
+
+        navContainerView.addSubview(backButton)
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(UIColor.blue, for: .normal)
+        backButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(8)
+        }
+
+        self.view.addSubview(navContainerView)
+        navContainerView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(48)
+        }
+    }
+
+    private func setupWebViewContainer() {
+        webViewContainerView = UIView(frame: .zero)
+        webViewContainerView = webView
+
+        self.view.addSubview(webViewContainerView)
+        webViewContainerView.snp.makeConstraints { make in
+            make.top.equalTo(navContainerView.snp.bottom)
+            make.left.right.bottom.equalTo(view)
+        }
+    }
+
+    @objc
+    private func backButtonPressed(sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
 }
