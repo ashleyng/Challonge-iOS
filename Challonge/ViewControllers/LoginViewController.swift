@@ -24,6 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadingIndicator.isHidden = true
         apiKeyTextField.delegate = self
         if let savedUsername = UserDefaults.standard.string(forKey: CHALLONGE_USERNAME_KEY),

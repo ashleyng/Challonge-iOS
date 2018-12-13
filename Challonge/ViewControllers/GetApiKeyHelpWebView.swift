@@ -46,7 +46,7 @@ class GetApiKeyHelpViewController: UIViewController {
         navContainerView.backgroundColor = UIColor.white
 
         navContainerView.addSubview(backButton)
-        backButton.setTitle("Back", for: .normal)
+        backButton.setTitle("Close", for: .normal)
         backButton.setTitleColor(UIColor.blue, for: .normal)
         backButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()

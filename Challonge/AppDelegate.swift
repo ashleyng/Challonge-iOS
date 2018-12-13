@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
-        window.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        window.rootViewController = LoginViewController()
         
         self.window = window
         Fabric.with([Crashlytics.self, Answers.self])
