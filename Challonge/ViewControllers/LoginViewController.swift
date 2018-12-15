@@ -89,7 +89,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             if statusCode >= 200 {
                 UserDefaults.standard.set(username, forKey: self.CHALLONGE_USERNAME_KEY)
-                UserDefaults.standard.set(apiKey, forKey: self.CHALLONGE_USERNAME_KEY)
+                UserDefaults.standard.set(apiKey, forKey: self.CHALLONGE_API_KEY)
+                let library_path = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
+                
+                print("library path is \(library_path)")
                 DispatchQueue.main.async {
                     self.present(TournamentsViewController(challongeNetworking: networking), animated: true, completion: nil)
                 }
