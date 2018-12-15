@@ -54,7 +54,7 @@ class TournamentsViewController: UIViewController {
         navigationItem.hidesBackButton = true
         navigationItem.title = "Tournaments"
         
-        tableView.register(UINib(nibName: "TournamentTableViewCell", bundle: nil), forCellReuseIdentifier: "TournamentCell")
+        tableView.register(UINib(nibName: TournamentTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TournamentTableViewCell.identifier)
         refreshControl.addTarget(self, action: #selector(refreshTournaments(_:)), for: .valueChanged)
 
         tableView.delegate = self
@@ -112,7 +112,7 @@ extension TournamentsViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "TournamentCell", for: indexPath) as? TournamentTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: TournamentTableViewCell.identifier, for: indexPath) as? TournamentTableViewCell {
             cell.configureWith(state.currentTournaments[indexPath.row])
             return cell
         }

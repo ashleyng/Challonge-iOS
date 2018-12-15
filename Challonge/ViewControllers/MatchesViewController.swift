@@ -66,7 +66,7 @@ class MatchesViewController: UIViewController {
         
         navigationItem.title = tournamentName
 
-        tableView.register(UINib(nibName: "MatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MatchCell")
+        tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -142,7 +142,7 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         let matches = state.currentMatches
         let match = matches[indexPath.row]
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "MatchCell", for: indexPath) as? MatchTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: MatchTableViewCell.identifier, for: indexPath) as? MatchTableViewCell {
             cell.configureWith(match, label: matchCellLabel(player1Id: match.player1Id, player2Id: match.player2Id, suggestedPlayOrder: match.suggestedPlayOrder))
             return cell
         }
