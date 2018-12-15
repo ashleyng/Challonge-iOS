@@ -110,14 +110,31 @@
 			path = Challonge;
 			sourceTree = "<group>";
 		};
+		D8AFA4DF21C58DAB009B9A27 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */,
+				D8F7B26D21B319B700FB7F5C /* TournamentTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D8AFA4E021C58EC4009B9A27 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D8F7B27921B3688A00FB7F5C /* MatchTableViewCell.xib */,
+				D8F7B26E21B319B700FB7F5C /* TournamentTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		D8F7B26B21B3198B00FB7F5C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D8AFA4E021C58EC4009B9A27 /* Cells */,
 				D8A0ADAC21B2FB2400CF8B35 /* LoginViewController.xib */,
 				D8F7B27221B352CE00FB7F5C /* MatchesViewController.xib */,
-				D8F7B26E21B319B700FB7F5C /* TournamentTableViewCell.xib */,
 				D8A0ADB421B30F7D00CF8B35 /* TournamentsViewController.xib */,
-				D8F7B27921B3688A00FB7F5C /* MatchTableViewCell.xib */,
 				D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */,
 				D8F7B27D21B382A900FB7F5C /* SingleMatchViewController.xib */,
 			);
@@ -127,11 +144,10 @@
 		D8F7B26C21B3199900FB7F5C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D8AFA4DF21C58DAB009B9A27 /* Cells */,
 				D8A0ADAB21B2FB2400CF8B35 /* LoginViewController.swift */,
 				D8A0ADB321B30F7D00CF8B35 /* TournamentsViewController.swift */,
-				D8F7B26D21B319B700FB7F5C /* TournamentTableViewCell.swift */,
 				D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */,
-				D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */,
 				D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */,
 				D8F7B27C21B382A900FB7F5C /* SingleMatchViewController.swift */,
 				D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */,

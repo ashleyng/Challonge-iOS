@@ -39,7 +39,6 @@ class MatchesViewController: UIViewController {
 
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet private var tournamentNameLabel: UILabel!
     private let refreshControl = UIRefreshControl()
     
     private let networking: ChallongeNetworking
@@ -64,6 +63,8 @@ class MatchesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = tournamentName
 
         tableView.register(UINib(nibName: "MatchTableViewCell", bundle: nil), forCellReuseIdentifier: "MatchCell")
 
@@ -77,7 +78,6 @@ class MatchesViewController: UIViewController {
         }
         refreshControl.addTarget(self, action: #selector(refreshMatches(_:)), for: .valueChanged)
 
-        tournamentNameLabel.text = tournamentName
         updateUI()
         fetchTournament()
     }
@@ -131,10 +131,6 @@ class MatchesViewController: UIViewController {
         }
     }
     
-    @IBAction func backButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
 }
 
 extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -155,7 +151,8 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let match = state.currentMatches[indexPath.row]
-        present(SingleMatchViewController(match: match, networking: networking), animated: true, completion: nil)
+        navigationController?.pushViewController(SingleMatchViewController(match: match, networking: networking), animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     private func matchCellLabel(player1Id: Int?, player2Id: Int?, suggestedPlayOrder: Int) -> String{

@@ -24,6 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
         
         loadingIndicator.isHidden = true
         apiKeyTextField.delegate = self
@@ -94,7 +95,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 print("library path is \(library_path)")
                 DispatchQueue.main.async {
-                    self.present(TournamentsViewController(challongeNetworking: networking), animated: true, completion: nil)
+                    self.navigationController?.pushViewController(TournamentsViewController(challongeNetworking: networking), animated: true)
                 }
             } else if statusCode == 401 {
                 let alert = self.createAlert(title: "Incorrect Credentials", message: "Make sure your username and API are correct and try again.")

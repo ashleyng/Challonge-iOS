@@ -50,6 +50,10 @@ class TournamentsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
+        navigationItem.hidesBackButton = true
+        navigationItem.title = "Tournaments"
+        
         tableView.register(UINib(nibName: "TournamentTableViewCell", bundle: nil), forCellReuseIdentifier: "TournamentCell")
         refreshControl.addTarget(self, action: #selector(refreshTournaments(_:)), for: .valueChanged)
 
@@ -117,6 +121,7 @@ extension TournamentsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tournament = state.currentTournaments[indexPath.row]
-        present(MatchesViewController(challongeNetworking: networking, tournament: tournament), animated: true, completion: nil)
+        navigationController?.pushViewController(MatchesViewController(challongeNetworking: networking, tournament: tournament), animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

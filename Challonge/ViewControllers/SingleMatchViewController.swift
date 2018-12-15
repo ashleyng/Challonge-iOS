@@ -19,6 +19,9 @@ class SingleMatchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Match #\(match.suggestedPlayOrder)"
+        
         loadingIndicator.isHidden = true
     }
 
@@ -62,7 +65,6 @@ class SingleMatchViewController: UIViewController {
 
             let winnerId = player1Score > player2Score ? player1Id : player2Id
             self.networking.setWinnerForMatch(self.match.tournamentId, matchId: self.match.id, winnderId: winnerId, score: "\(player1Score)-\(player2Score)", completion: { match in
-//                print("SCORE SUBMITTED for: \(match.id) \(match.player1Id) \(match.winnerId) \(match.scoresCsv)")
                 DispatchQueue.main.async {
                     self.loadingIndicator.isHidden = true
                     self.loadingIndicator.stopAnimating()
@@ -80,9 +82,5 @@ class SingleMatchViewController: UIViewController {
             })
         }))
         present(alert, animated: true, completion: nil)
-    }
-
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
     }
 }
