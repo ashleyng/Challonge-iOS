@@ -1,5 +1,5 @@
 //
-//  UITableViewCell+Extensions.swift
+//  UIView+Extension.swift
 //  Challonge
 //
 //  Created by Ashley Ng on 12/15/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UITableViewCell {
+extension UIView {
     static var identifier: String {
         return String(describing: self)
     }

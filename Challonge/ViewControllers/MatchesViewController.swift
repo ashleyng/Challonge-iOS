@@ -150,9 +150,16 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         let match = state.currentMatches[indexPath.row]
-        navigationController?.pushViewController(SingleMatchViewController(match: match, networking: networking), animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
+        guard let playerOneId = match.player1Id, let playerTwoId = match.player2Id,
+            let player1 = state.currentParticipants[playerOneId], let player2 = state.currentParticipants[playerTwoId] else {
+            return
+        }
+        
+        navigationController?.pushViewController(SingleMatchViewController(match: match, playerOne: player1, playerTwo: player2, networking: networking), animated: true)
     }
 
     private func matchCellLabel(player1Id: Int?, player2Id: Int?, suggestedPlayOrder: Int) -> String{

@@ -13,26 +13,40 @@ import Crashlytics
 class SingleMatchViewController: UIViewController {
 
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
-
+    @IBOutlet private var playerOneView: ParticipantMatchInfoView!
+    @IBOutlet private var playerTwoView: ParticipantMatchInfoView!
+    @IBOutlet private var inputScoreButton: UIButton!
+    @IBOutlet private var startMatchButton: UIButton!
+    
     private let match: Match
+    private let playerOne: Participant
+    private let playerTwo: Participant
     private let networking: ChallongeNetworking
+    
+    init(match: Match, playerOne: Participant, playerTwo: Participant, networking: ChallongeNetworking) {
+        self.match = match
+        self.playerOne = playerOne
+        self.playerTwo = playerTwo
+        self.networking = networking
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Match #\(match.suggestedPlayOrder)"
         
+        inputScoreButton.roundEdges(withRadius: 10)
+        startMatchButton.roundEdges(withRadius: 10)
+        
+        playerOneView.setup(match: match, participant: playerOne)
+        playerTwoView.setup(match: match, participant: playerTwo)
+        
         loadingIndicator.isHidden = true
-    }
-
-    init(match: Match, networking: ChallongeNetworking) {
-        self.match = match
-        self.networking = networking
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     @IBAction func startMatchPressed(_ sender: UIButton) {

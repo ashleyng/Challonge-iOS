@@ -17,7 +17,9 @@
 		D8A0ADAE21B2FB2400CF8B35 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADAC21B2FB2400CF8B35 /* LoginViewController.xib */; };
 		D8A0ADB521B30F7D00CF8B35 /* TournamentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0ADB321B30F7D00CF8B35 /* TournamentsViewController.swift */; };
 		D8A0ADB621B30F7D00CF8B35 /* TournamentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADB421B30F7D00CF8B35 /* TournamentsViewController.xib */; };
-		D8AFA4E221C5925B009B9A27 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFA4E121C5925B009B9A27 /* UITableViewCell+Extensions.swift */; };
+		D8AFA4E421C5D00E009B9A27 /* ParticipantMatchInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8AFA4E321C5D00E009B9A27 /* ParticipantMatchInfoView.xib */; };
+		D8AFA4E621C5D044009B9A27 /* ParticipantMatchInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFA4E521C5D044009B9A27 /* ParticipantMatchInfoView.swift */; };
+		D8AFA4E821C5D4E7009B9A27 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFA4E721C5D4E7009B9A27 /* UIView+Extension.swift */; };
 		D8F7B26F21B319B700FB7F5C /* TournamentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B26D21B319B700FB7F5C /* TournamentTableViewCell.swift */; };
 		D8F7B27021B319B700FB7F5C /* TournamentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B26E21B319B700FB7F5C /* TournamentTableViewCell.xib */; };
 		D8F7B27321B352CE00FB7F5C /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */; };
@@ -46,7 +48,9 @@
 		D8A0ADAC21B2FB2400CF8B35 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		D8A0ADB321B30F7D00CF8B35 /* TournamentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentsViewController.swift; sourceTree = "<group>"; };
 		D8A0ADB421B30F7D00CF8B35 /* TournamentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentsViewController.xib; sourceTree = "<group>"; };
-		D8AFA4E121C5925B009B9A27 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		D8AFA4E321C5D00E009B9A27 /* ParticipantMatchInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParticipantMatchInfoView.xib; sourceTree = "<group>"; };
+		D8AFA4E521C5D044009B9A27 /* ParticipantMatchInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantMatchInfoView.swift; sourceTree = "<group>"; };
+		D8AFA4E721C5D4E7009B9A27 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D8F7B26D21B319B700FB7F5C /* TournamentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentTableViewCell.swift; sourceTree = "<group>"; };
 		D8F7B26E21B319B700FB7F5C /* TournamentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentTableViewCell.xib; sourceTree = "<group>"; };
 		D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 				D8A0ADA021B2FB0100CF8B35 /* Assets.xcassets */,
 				D8A0ADA221B2FB0100CF8B35 /* LaunchScreen.storyboard */,
 				D8A0ADA521B2FB0100CF8B35 /* Info.plist */,
+				D8AFA4E521C5D044009B9A27 /* ParticipantMatchInfoView.swift */,
 			);
 			path = Challonge;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 				D8A0ADB421B30F7D00CF8B35 /* TournamentsViewController.xib */,
 				D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */,
 				D8F7B27D21B382A900FB7F5C /* SingleMatchViewController.xib */,
+				D8AFA4E321C5D00E009B9A27 /* ParticipantMatchInfoView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,7 +168,7 @@
 			children = (
 				D8F7B27621B3594500FB7F5C /* Array+Extension.swift */,
 				D86D301621BF5306009870B9 /* UIButton+Extension.swift */,
-				D8AFA4E121C5925B009B9A27 /* UITableViewCell+Extensions.swift */,
+				D8AFA4E721C5D4E7009B9A27 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -243,6 +249,7 @@
 				D8F7B27B21B3688A00FB7F5C /* MatchTableViewCell.xib in Resources */,
 				D8A0ADB621B30F7D00CF8B35 /* TournamentsViewController.xib in Resources */,
 				D8F7B27F21B382A900FB7F5C /* SingleMatchViewController.xib in Resources */,
+				D8AFA4E421C5D00E009B9A27 /* ParticipantMatchInfoView.xib in Resources */,
 				D8F7B27021B319B700FB7F5C /* TournamentTableViewCell.xib in Resources */,
 				D8A0ADA121B2FB0100CF8B35 /* Assets.xcassets in Resources */,
 				D8A0ADAE21B2FB2400CF8B35 /* LoginViewController.xib in Resources */,
@@ -325,16 +332,17 @@
 			files = (
 				D8F7B27E21B382A900FB7F5C /* SingleMatchViewController.swift in Sources */,
 				D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */,
-				D8AFA4E221C5925B009B9A27 /* UITableViewCell+Extensions.swift in Sources */,
 				D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */,
 				D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */,
 				D8F7B26F21B319B700FB7F5C /* TournamentTableViewCell.swift in Sources */,
 				D8A0ADAD21B2FB2400CF8B35 /* LoginViewController.swift in Sources */,
 				D8F7B27321B352CE00FB7F5C /* MatchesViewController.swift in Sources */,
+				D8AFA4E821C5D4E7009B9A27 /* UIView+Extension.swift in Sources */,
 				D8F7B27721B3594500FB7F5C /* Array+Extension.swift in Sources */,
 				D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */,
 				D86D301921BF548B009870B9 /* GetApiKeyHelpWebView.swift in Sources */,
 				D8A0ADB521B30F7D00CF8B35 /* TournamentsViewController.swift in Sources */,
+				D8AFA4E621C5D044009B9A27 /* ParticipantMatchInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
