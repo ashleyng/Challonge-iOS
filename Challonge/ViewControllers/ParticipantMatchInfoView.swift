@@ -17,6 +17,7 @@ class ParticipantMatchInfoView: UIView {
     @IBOutlet private var usernameLabel: UILabel!
     @IBOutlet private var scoreLabel: UILabel!
     @IBOutlet private var votesLabel: UILabel!
+    private var participant: Participant?
     
     private var view: UIView!
     
@@ -42,13 +43,33 @@ class ParticipantMatchInfoView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: ParticipantMatchInfoView.identifier, bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
-        
+        avatarImageView.layer.cornerRadius = 10
+        avatarImageView.clipsToBounds = true
         return view
     }
     
     func setup(match: Match, participant: Participant) {
+        self.participant = participant
         participantNameLabel.text = participant.name
-        scoreLabel.text = match.scoresCsv
+        if let score = match.scores?[participant.id] {
+            scoreLabel.text = score
+        }
+        
+        if let votes = match.votes?[participant.id] {
+            votesLabel.text = "\(votes)"
+        }
+        
+        if let icon = participant.icon {
+            avatarImageView.downloaded(from: icon)
+        } else {
+            avatarImageView.downloaded(from: "https://api.adorable.io/avatars/face/eyes9/nose2/mouth11/ED1F16")
+        }
+    }
+    
+    func refresh(with match: Match) {
+        if let participant = participant, let score = match.scores?[participant.id] {
+            scoreLabel.text = score
+        }
     }
 }
 

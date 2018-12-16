@@ -73,21 +73,25 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nve-pd-d3K" userLabel="Score View">
                             <rect key="frame" x="0.0" y="0.0" width="187" height="74"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZc-tm-0xN">
-                                    <rect key="frame" x="72" y="8" width="45" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZc-tm-0xN">
+                                    <rect key="frame" x="71" y="8" width="45" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7f-qA-XT4">
-                                    <rect key="frame" x="85" y="30" width="19" height="36"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7f-qA-XT4">
+                                    <rect key="frame" x="86.5" y="33" width="14" height="36"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="t7f-qA-XT4" firstAttribute="top" secondItem="AZc-tm-0xN" secondAttribute="bottom" constant="4" id="0iL-QP-JCb"/>
+                                <constraint firstItem="AZc-tm-0xN" firstAttribute="centerX" secondItem="nve-pd-d3K" secondAttribute="centerX" id="IlB-O8-pi8"/>
+                                <constraint firstItem="t7f-qA-XT4" firstAttribute="centerX" secondItem="nve-pd-d3K" secondAttribute="centerX" id="bcD-DH-U6L"/>
+                                <constraint firstItem="AZc-tm-0xN" firstAttribute="top" secondItem="nve-pd-d3K" secondAttribute="top" constant="8" id="v30-Lg-2PI"/>
+                            </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBv-T4-7oS" userLabel="Horizontal Divider">
                             <rect key="frame" x="187" y="10" width="1" height="54"/>
@@ -100,21 +104,25 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhz-pm-E96" userLabel="Votes View">
                             <rect key="frame" x="188" y="0.0" width="187" height="74"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Votes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WY1-36-Hrp">
-                                    <rect key="frame" x="72" y="8" width="44" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Votes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WY1-36-Hrp">
+                                    <rect key="frame" x="71.5" y="8" width="44" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TmG-p7-71D">
-                                    <rect key="frame" x="64" y="30" width="60" height="36"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TmG-p7-71D">
+                                    <rect key="frame" x="87" y="33" width="13.5" height="36"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="TmG-p7-71D" firstAttribute="top" secondItem="WY1-36-Hrp" secondAttribute="bottom" constant="4" id="Bxv-bK-4L3"/>
+                                <constraint firstItem="WY1-36-Hrp" firstAttribute="top" secondItem="vhz-pm-E96" secondAttribute="top" constant="8" id="Pff-0R-YqH"/>
+                                <constraint firstItem="TmG-p7-71D" firstAttribute="centerX" secondItem="vhz-pm-E96" secondAttribute="centerX" id="YTm-CZ-nCW"/>
+                                <constraint firstItem="WY1-36-Hrp" firstAttribute="centerX" secondItem="vhz-pm-E96" secondAttribute="centerX" id="blN-KG-RwF"/>
+                            </constraints>
                         </view>
                     </subviews>
                     <constraints>

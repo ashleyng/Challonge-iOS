@@ -25,7 +25,7 @@ class MatchTableViewCell: UITableViewCell {
     
         switch match.state {
         case .complete:
-            matchStatuslabel.textColor = UIColor.green
+            matchStatuslabel.textColor = UIColor.completedGreen
         case .open:
             matchStatuslabel.textColor = UIColor.gray
         case .pending:

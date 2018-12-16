@@ -83,6 +83,8 @@ class SingleMatchViewController: UIViewController {
                     self.loadingIndicator.isHidden = true
                     self.loadingIndicator.stopAnimating()
                     self.view.isUserInteractionEnabled = true
+                    self.playerOneView.refresh(with: match)
+                    self.playerTwoView.refresh(with: match)
                 }
             }, onError: { error in
                 Answers.logCustomEvent(withName: "ErrorSubmittingScore", customAttributes: [

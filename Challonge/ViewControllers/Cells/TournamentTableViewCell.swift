@@ -26,7 +26,7 @@ class TournamentTableViewCell: UITableViewCell {
         case .pending:
             self.statusLabel?.textColor = UIColor.gray
         case .complete:
-            self.statusLabel.textColor = UIColor.green
+            self.statusLabel.textColor = UIColor.completedGreen
         case .underway, .awaiting_review:
             self.statusLabel.textColor = UIColor.red
         }

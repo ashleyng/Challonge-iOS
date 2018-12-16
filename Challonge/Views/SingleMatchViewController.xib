@@ -47,7 +47,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0va-Gn-GtA">
-                    <rect key="frame" x="16" y="543" width="343" height="48"/>
+                    <rect key="frame" x="16" y="535" width="343" height="48"/>
                     <color key="backgroundColor" red="0.22981417309999999" green="0.65102336189999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="mrn-LS-iQX"/>
@@ -88,7 +88,7 @@
                 <constraint firstItem="0fx-b8-Uai" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="HZu-g6-clj"/>
                 <constraint firstItem="0fx-b8-Uai" firstAttribute="top" secondItem="hxb-gM-kvJ" secondAttribute="bottom" constant="8" id="J47-id-5CH"/>
                 <constraint firstItem="S6U-bg-ieV" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Oky-7o-DFC"/>
-                <constraint firstItem="T5z-b7-P8M" firstAttribute="top" secondItem="0va-Gn-GtA" secondAttribute="bottom" constant="8" id="RlZ-WA-R7S"/>
+                <constraint firstItem="T5z-b7-P8M" firstAttribute="top" secondItem="0va-Gn-GtA" secondAttribute="bottom" constant="16" id="RlZ-WA-R7S"/>
                 <constraint firstItem="0va-Gn-GtA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="S3T-aJ-hzS"/>
                 <constraint firstItem="S6U-bg-ieV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TtE-nf-4cU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T5z-b7-P8M" secondAttribute="trailing" constant="16" id="d5N-fa-fHo"/>
