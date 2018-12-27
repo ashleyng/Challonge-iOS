@@ -36,6 +36,9 @@
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3X-pe-RRy">
                     <rect key="frame" x="16" y="229" width="343" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="8nO-zO-IM9"/>
+                    </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -48,6 +51,9 @@
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2m-Kp-O6W">
                     <rect key="frame" x="16" y="319" width="343" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="yvC-KM-ozY"/>
+                    </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -88,10 +94,10 @@
                 <constraint firstItem="oga-nj-hlv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EB8-iU-xAy"/>
                 <constraint firstItem="lSG-Iv-LOD" firstAttribute="top" secondItem="VdN-Vk-Ze7" secondAttribute="bottom" constant="-34" id="IGE-KW-EwI"/>
                 <constraint firstItem="eL1-gZ-B2t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="INA-Oo-RvH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VdN-Vk-Ze7" secondAttribute="bottom" constant="218" id="IrF-jK-2ot"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="VdN-Vk-Ze7" secondAttribute="bottom" priority="999" constant="218" id="IrF-jK-2ot"/>
                 <constraint firstItem="H3X-pe-RRy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="J5L-1z-Uun"/>
                 <constraint firstAttribute="bottom" secondItem="a5v-oo-DLD" secondAttribute="bottom" id="QAs-1A-FZ4"/>
-                <constraint firstItem="KAG-1L-ije" firstAttribute="top" relation="lessThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="180" id="ZxT-59-C9x"/>
+                <constraint firstItem="KAG-1L-ije" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="180" id="ZxT-59-C9x"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VdN-Vk-Ze7" secondAttribute="trailing" constant="16" id="fhr-li-Lbv"/>
                 <constraint firstItem="KAG-1L-ije" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="fyl-OP-6iz"/>
                 <constraint firstItem="VdN-Vk-Ze7" firstAttribute="leading" secondItem="lSG-Iv-LOD" secondAttribute="trailing" constant="-181" id="gcM-db-zdb"/>
