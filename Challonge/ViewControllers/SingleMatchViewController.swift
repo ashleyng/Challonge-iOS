@@ -48,8 +48,21 @@ class SingleMatchViewController: UIViewController {
         
         loadingIndicator.isHidden = true
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        networking.getSingleMatchForTournament(match.tournamentId, matchId: match.id, completion: { [weak self] match in
+            guard let `self` = self else { return }
+            DispatchQueue.main.async {
+                self.playerOneView.refresh(with: match)
+                self.playerTwoView.refresh(with: match)
+            }
+        }, onError: nil)
+    }
 
     @IBAction func startMatchPressed(_ sender: UIButton) {
+        navigationController?.pushViewController(PlayingMatchViewController(match: match, player1: playerOne, player2: playerTwo, networking: networking), animated: true)
     }
 
     @IBAction func inputScorePressed(_ sender: UIButton) {

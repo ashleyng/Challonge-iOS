@@ -7,24 +7,99 @@
 //
 
 import UIKit
+import ChallongeNetworking
+import Crashlytics
 
 class PlayingMatchViewController: UIViewController {
+    
+    @IBOutlet private var player1ScoreLabel: UILabel!
+    @IBOutlet private var player2ScoreLabel: UILabel!
+    @IBOutlet private var pointPlayer1Button: UIButton!
+    @IBOutlet private var pointPlayer2Button: UIButton!
+    @IBOutlet private var undoButton: UIButton!
+    @IBOutlet private var player1Label: UILabel!
+    @IBOutlet private var player2Label: UILabel!
+    
+    private var player1Score: Int = 0 {
+        didSet {
+            player1ScoreLabel.text = "\(player1Score)"
+        }
+    }
+    
+    private var player2Score: Int = 0 {
+        didSet {
+            player2ScoreLabel.text = "\(player2Score)"
+        }
+    }
+    
+    private let networking: ChallongeNetworking
+    private let match: Match
+    private let player1: Participant
+    private let player2: Participant
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    init(match: Match, player1: Participant, player2: Participant, networking: ChallongeNetworking) {
+        self.match = match
+        self.player1 = player1
+        self.player2 = player2
+        self.networking = networking
+        super.init(nibName: nil, bundle: nil)
+    }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let value = UIInterfaceOrientation.landscapeLeft.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        
+        navigationItem.setRightBarButton(UIBarButtonItem(title: "Submit", style: .done, target: self , action: #selector(submitScore(_:))), animated: false)
+        
+        pointPlayer1Button.roundEdges(withRadius: 10)
+        pointPlayer2Button.roundEdges(withRadius: 10)
+        undoButton.roundEdges(withRadius: 10)
+        
+        player1Label.text = player1.name
+        player2Label.text = player2.name
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @objc
+    private func submitScore(_ sender: Any) {
+        let winnerId = player1Score > player2Score ? player1.id : player2.id
+        self.networking.setWinnerForMatch(self.match.tournamentId, matchId: self.match.id, winnderId: winnerId, score: "\(player1Score)-\(player2Score)", completion: { match in
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }, onError: { error in
+            Answers.logCustomEvent(withName: "ErrorSubmittingScore", customAttributes: [
+                "Error": error.localizedDescription
+                ])
+            DispatchQueue.main.async {
+            }
+        })
     }
-    */
-
+    
+    @IBAction func pointPlayerOnePressed(_ sender: Any) {
+        player1Score += 1
+    }
+    
+    @IBAction func pointPlayerTwoPressed(_ sender: Any) {
+        player2Score += 1
+    }
+    
 }

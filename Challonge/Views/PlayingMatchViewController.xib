@@ -12,6 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayingMatchViewController" customModule="Challonge" customModuleProvider="target">
             <connections>
+                <outlet property="player1Label" destination="8pX-h0-cUF" id="6gq-hY-JP7"/>
+                <outlet property="player1ScoreLabel" destination="WBC-Rh-AtV" id="g4n-GW-Tj0"/>
+                <outlet property="player2Label" destination="yy0-Kq-a9h" id="lyd-3J-h4K"/>
+                <outlet property="player2ScoreLabel" destination="dIh-7v-7uC" id="133-gL-DDw"/>
+                <outlet property="pointPlayer1Button" destination="jvL-KS-Kt9" id="MlI-EJ-kVo"/>
+                <outlet property="pointPlayer2Button" destination="58M-vV-jXt" id="9bp-8K-NWX"/>
+                <outlet property="undoButton" destination="Plh-Zf-kF6" id="uNP-P4-izT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,37 +27,50 @@
             <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBC-Rh-AtV">
-                    <rect key="frame" x="20" y="135" width="179.5" height="105.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="88"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvL-KS-Kt9">
-                    <rect key="frame" x="20" y="325" width="179.5" height="30"/>
+                    <rect key="frame" x="20" y="307" width="179.5" height="48"/>
                     <color key="backgroundColor" red="0.22981417309999999" green="0.65102336189999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="pZJ-sQ-ucc"/>
+                    </constraints>
                     <state key="normal" title="Point Player 1">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="pointPlayerOnePressed:" destination="-1" eventType="touchUpInside" id="nZo-ZW-MRO"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="58M-vV-jXt">
-                    <rect key="frame" x="467.5" y="325" width="179.5" height="30"/>
+                    <rect key="frame" x="467.5" y="307" width="179.5" height="48"/>
                     <color key="backgroundColor" red="0.97647058823529409" green="0.26980929358044586" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="E8J-dC-PDu"/>
+                    </constraints>
                     <state key="normal" title="Point Player 2">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="pointPlayerTwoPressed:" destination="-1" eventType="touchUpInside" id="vlG-xY-tdg"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Plh-Zf-kF6">
-                    <rect key="frame" x="279.5" y="325" width="108" height="30"/>
+                    <rect key="frame" x="279.5" y="307" width="108" height="48"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="48" id="UZ3-rO-yyF"/>
                         <constraint firstAttribute="width" constant="108" id="clp-JS-s9M"/>
                     </constraints>
                     <state key="normal" title="Undo">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIh-7v-7uC">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBC-Rh-AtV">
+                    <rect key="frame" x="20" y="135" width="179.5" height="105.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="88"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIh-7v-7uC">
                     <rect key="frame" x="467.5" y="135" width="179.5" height="105.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="88"/>
                     <nil key="textColor"/>
