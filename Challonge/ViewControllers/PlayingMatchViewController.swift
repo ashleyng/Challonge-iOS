@@ -81,17 +81,26 @@ class PlayingMatchViewController: UIViewController {
     @objc
     private func submitScore(_ sender: Any) {
         let winnerId = player1Score > player2Score ? player1.id : player2.id
-        self.networking.setWinnerForMatch(self.match.tournamentId, matchId: self.match.id, winnderId: winnerId, score: "\(player1Score)-\(player2Score)", completion: { match in
-            DispatchQueue.main.async {
-                self.navigationController?.popViewController(animated: true)
-            }
-        }, onError: { error in
-            Answers.logCustomEvent(withName: "ErrorSubmittingScore", customAttributes: [
-                "Error": error.localizedDescription
-                ])
-            DispatchQueue.main.async {
-            }
-        })
+        let alert = createSubmitScoreAlert(winnerId: winnerId)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func createSubmitScoreAlert(winnerId: Int) -> UIAlertController {
+        let alert = UIAlertController(title: "Submit Score", message: "Are you sure you want to submit this score?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { [weak self] _ in
+            guard let `self` = self else { return }
+            self.networking.setWinnerForMatch(self.match.tournamentId, matchId: self.match.id, winnderId: winnerId, score: "\(self.player1Score)-\(self.player2Score)", completion: { match in
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }, onError: { error in
+                Answers.logCustomEvent(withName: "ErrorSubmittingScore", customAttributes: [
+                    "Error": error.localizedDescription
+                    ])
+            })
+        }))
+        return alert
     }
     
     @IBAction func pointPlayerOnePressed(_ sender: Any) {
