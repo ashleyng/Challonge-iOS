@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C282444398E21DE6AF7BE9CA /* Pods_Challonge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */; };
+		D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */; };
 		D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301621BF5306009870B9 /* UIButton+Extension.swift */; };
 		D86D301921BF548B009870B9 /* GetApiKeyHelpWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */; };
 		D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */; };
@@ -39,6 +40,7 @@
 		80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challonge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E08810F5C90A9E00709272B /* Pods-Challonge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challonge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Challonge/Pods-Challonge.release.xcconfig"; sourceTree = "<group>"; };
 		CBF030ABEBB99610171D48EE /* Pods-Challonge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challonge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Challonge/Pods-Challonge.debug.xcconfig"; sourceTree = "<group>"; };
+		D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		D86D301621BF5306009870B9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiKeyHelpWebView.swift; sourceTree = "<group>"; };
 		D8A0AD9621B2FAFF00CF8B35 /* Challonge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challonge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +177,7 @@
 				D8AFA4E721C5D4E7009B9A27 /* UIView+Extension.swift */,
 				D8AFA4EB21C5FF29009B9A27 /* UIImageView+Extension.swift */,
 				D8AFA4ED21C6067C009B9A27 /* UIColor+Extension.swift */,
+				D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */,
 				D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */,
 				D8F7B26F21B319B700FB7F5C /* TournamentTableViewCell.swift in Sources */,
+				D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */,
 				D8A0ADAD21B2FB2400CF8B35 /* LoginViewController.swift in Sources */,
 				D8F7B27321B352CE00FB7F5C /* MatchesViewController.swift in Sources */,
 				D8AFA4E821C5D4E7009B9A27 /* UIView+Extension.swift in Sources */,

@@ -19,17 +19,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private var loginButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet private var loginButton: UIButton!
 
-    private let CHALLONGE_USERNAME_KEY = "Challonge_Username_Key"
-    private let CHALLONGE_API_KEY = "Challonge_API_Key"
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
         
         loadingIndicator.isHidden = true
         apiKeyTextField.delegate = self
-        if let savedUsername = UserDefaults.standard.string(forKey: CHALLONGE_USERNAME_KEY),
-            let savedApiKey = UserDefaults.standard.string(forKey: CHALLONGE_API_KEY) {
+        if let savedUsername = UserDefaults.standard.string(forKey: UserDefaults.CHALLONGE_USERNAME_KEY),
+            let savedApiKey = UserDefaults.standard.string(forKey: UserDefaults.CHALLONGE_API_KEY) {
             print("Found saved credentials")
             testCredentialsAndLogin(username: savedUsername, apiKey: savedApiKey)
         }
@@ -38,7 +34,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        usernameTextField.text = ""
+        apiKeyTextField.text = ""
     }
 
     deinit {
@@ -89,8 +94,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             if statusCode >= 200 {
-                UserDefaults.standard.set(username, forKey: self.CHALLONGE_USERNAME_KEY)
-                UserDefaults.standard.set(apiKey, forKey: self.CHALLONGE_API_KEY)
+                UserDefaults.standard.set(username, forKey: UserDefaults.CHALLONGE_USERNAME_KEY)
+                UserDefaults.standard.set(apiKey, forKey: UserDefaults.CHALLONGE_API_KEY)
                 let library_path = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
                 
                 print("library path is \(library_path)")
