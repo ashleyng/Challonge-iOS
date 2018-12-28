@@ -72,7 +72,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func loginPressed(_ sender: UIButton) {
         guard let username = usernameTextField.text,
-            let apiKey = apiKeyTextField.text else {
+            let apiKey = apiKeyTextField.text,
+            username.count > 0 && apiKey.count > 0 else {
             return
         }
         loadingIndicator.isHidden = false
