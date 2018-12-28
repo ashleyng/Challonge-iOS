@@ -12,7 +12,7 @@ import Crashlytics
 
 fileprivate enum State {
     case loading
-    case populated([Match], [Int: Participant])
+    case populated([Match], [Int: Participant], [Int: Int])
     case empty
     case error(Error)
 
@@ -20,7 +20,7 @@ fileprivate enum State {
         switch self {
         case .loading, .empty, .error:
             return []
-        case .populated(let matches, _):
+        case .populated(let matches, _, _):
             return matches
         }
     }
@@ -29,7 +29,16 @@ fileprivate enum State {
         switch self {
         case .loading, .empty, .error:
             return [:]
-        case .populated(_, let participants):
+        case .populated(_, let participants, _):
+            return participants
+        }
+    }
+    
+    var groupParticipantIds: [Int: Int] {
+        switch self {
+        case .loading, .empty, .error:
+            return [:]
+        case .populated(_, _, let participants):
             return participants
         }
     }
@@ -95,7 +104,8 @@ class MatchesViewController: UIViewController {
     private func fetchTournament() {
         networking.getMatchesForTournament(tournamentId, completion: { matches in
             self.fetchParticipants() { participants in
-                self.state = .populated(matches, participants.toDictionary { $0.id })
+                let participantsDict = participants.toDictionary { $0.id }
+                self.state = .populated(matches, participantsDict, self.mapGroupIds(participants: participantsDict))
             }
 
         }, onError: { error in
@@ -131,6 +141,15 @@ class MatchesViewController: UIViewController {
         }
     }
     
+    private func mapGroupIds(participants: [Int: Participant]) -> [Int: Int] {
+        var dict = [Int: Int]()
+        participants.forEach { participantId, participant in
+            participant.groupPlayerIds.forEach{ groupId in
+                dict[groupId] = participantId
+            }
+        }
+        return dict
+    }
 }
 
 extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -143,7 +162,7 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         let match = matches[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: MatchTableViewCell.identifier, for: indexPath) as? MatchTableViewCell {
-            cell.configureWith(match, label: matchCellLabel(player1Id: match.player1Id, player2Id: match.player2Id, suggestedPlayOrder: match.suggestedPlayOrder))
+            cell.configureWith(match, label: matchCellLabel(player1Id: match.player1Id, player2Id: match.player2Id, suggestedPlayOrder: match.suggestedPlayOrder ?? 1))
             return cell
         }
         return MatchTableViewCell()
@@ -155,7 +174,7 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let match = state.currentMatches[indexPath.row]
         guard let playerOneId = match.player1Id, let playerTwoId = match.player2Id,
-            let player1 = state.currentParticipants[playerOneId], let player2 = state.currentParticipants[playerTwoId] else {
+            let player1 = getParticipan(id: playerOneId), let player2 = getParticipan(id: playerTwoId) else {
             return
         }
         
@@ -166,11 +185,31 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         guard let player1Id = player1Id, let player2Id = player2Id else {
             return "Match \(suggestedPlayOrder)"
         }
-        let participants = state.currentParticipants
-        let player1 = participants[player1Id]?.name ?? "Unknown Player 1"
-        let player2 = participants[player2Id]?.name ?? "Unknown Player 2"
-
+        let player1 = getPlayerName(id: player1Id)
+        let player2 = getPlayerName(id: player2Id)
         return "\(player1) vs. \(player2)"
+    }
+    
+    private func getPlayerName(id: Int) -> String {
+        let participants = state.currentParticipants
+        if let name = participants[id]?.name {
+            return name
+        } else if let groupId = state.groupParticipantIds[id], let name = participants[groupId]?.name {
+            return name
+        } else {
+            return "Unknown Player"
+        }
+    }
+    
+    private func getParticipan(id: Int) -> Participant? {
+        let participants = state.currentParticipants
+        if let participant = participants[id] {
+            return participant
+        } else if let groupId = state.groupParticipantIds[id], let participant = participants[groupId] {
+            return participant
+        } else {
+            return nil
+        }
     }
 }
 

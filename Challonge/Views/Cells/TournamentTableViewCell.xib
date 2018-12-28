@@ -25,7 +25,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Tournament Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIx-RB-Pey">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Tournament Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIx-RB-Pey">
                         <rect key="frame" x="16" y="23.5" width="200" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -34,7 +34,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="dIx-RB-Pey" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="KMI-SI-B5B"/>
+                    <constraint firstItem="dIx-RB-Pey" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="Qoq-bA-NfR"/>
                     <constraint firstItem="1fi-Nk-n86" firstAttribute="leading" secondItem="dIx-RB-Pey" secondAttribute="trailing" constant="12" id="gde-N0-fwU"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="dIx-RB-Pey" secondAttribute="bottom" constant="4" id="iWB-29-WzF"/>
                     <constraint firstItem="1fi-Nk-n86" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="l8f-4P-kjE"/>
                     <constraint firstItem="1fi-Nk-n86" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mEv-eY-PH2"/>
                     <constraint firstItem="dIx-RB-Pey" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uEW-io-TbI"/>
