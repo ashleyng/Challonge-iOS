@@ -41,6 +41,7 @@ class PlayingMatchViewModel {
     private let player1: ParticipantScore
     private let player2: ParticipantScore
     private let challongeNetworking: ChallongeNetworking
+    private var usersFlipped: Bool = false
     private var queue: [Int] = []
     
     init(match: Match, player1: Participant, player2: Participant, challongeNetworking: ChallongeNetworking) {
@@ -50,33 +51,39 @@ class PlayingMatchViewModel {
         self.challongeNetworking = challongeNetworking
     }
     
-    func getPlayerOneName() -> String {
-        return player1.name
+    func getPlayerNames() -> (player1: String, player2: String) {
+        let playerTuple = participantTuple()
+        return (player1: playerTuple.0.name, player2: playerTuple.1.name)
+
     }
     
-    func getPlayerTwoName() -> String {
-        return player2.name
+    func increaseScoreForPlayerOne() {
+        let player = participantTuple().0
+        queue.append(player.id)
+        player.increaseScore()
     }
     
-    func increaseScoreForPlayerOne() -> (player1: Int, player2: Int) {
-        queue.append(player1.id)
-        player1.increaseScore()
-        return (player1: player1.score, player2: player2.score)
+    func increaseScoreForPlayerTwo() {
+        let player = participantTuple().1
+        queue.append(player.id)
+        player.increaseScore()
     }
     
-    func increaseScoreForPlayerTwo() -> (player1: Int, player2: Int) {
-        queue.append(player2.id)
-        player2.increaseScore()
-        return (player1: player1.score, player2: player2.score)
-    }
-    
-    func undoScore() -> (player1: Int, player2: Int) {
+    func undoScore() {
         guard let participantId = queue.popLast() else {
-            return (player1: player1.score, player2: player2.score)
+            return
         }
         let participant = participantId == player1.id ? player1 : player2
         participant.decreaseScore()
-        return (player1: player1.score, player2: player2.score)
+    }
+    
+    func getScore() -> (player1: Int, player2: Int) {
+        let playerTuple = participantTuple()
+        return (player1: playerTuple.0.score, player2: playerTuple.1.score)
+    }
+    
+    func flipUsers() {
+        usersFlipped = !usersFlipped
     }
     
     func submitScore(completion: (() -> Void)?) {
@@ -91,6 +98,14 @@ class PlayingMatchViewModel {
     
     func canUndo() -> Bool {
         return queue.count > 0
+    }
+    
+    private func participantTuple() -> (ParticipantScore, ParticipantScore) {
+        if usersFlipped {
+            return (player2, player1)
+        } else {
+            return (player1, player2)
+        }
     }
     
     private func getWinnerId() -> Int {

@@ -16,6 +16,7 @@ class PlayingMatchViewController: UIViewController {
     @IBOutlet private var pointPlayer1Button: UIButton!
     @IBOutlet private var pointPlayer2Button: UIButton!
     @IBOutlet private var undoButton: UIButton!
+    @IBOutlet private var flipUsersButton: UIButton!
     @IBOutlet private var player1Label: UILabel!
     @IBOutlet private var player2Label: UILabel!
     
@@ -54,10 +55,16 @@ class PlayingMatchViewController: UIViewController {
         pointPlayer1Button.roundEdges(withRadius: 10)
         pointPlayer2Button.roundEdges(withRadius: 10)
         undoButton.roundEdges(withRadius: 10)
+        flipUsersButton.roundEdges(withRadius: 10)
         undoButton.isEnabled = playingViewModel.canUndo()
         
-        player1Label.text = playingViewModel.getPlayerOneName()
-        player2Label.text = playingViewModel.getPlayerTwoName()
+        updatePlayerNames()
+    }
+    
+    private func updatePlayerNames() {
+        let playerNames = playingViewModel.getPlayerNames()
+        player1Label.text = playerNames.player1
+        player2Label.text = playerNames.player2
     }
     
     @objc
@@ -80,21 +87,28 @@ class PlayingMatchViewController: UIViewController {
     }
     
     @IBAction func pointPlayerOnePressed(_ sender: Any) {
-        let score = playingViewModel.increaseScoreForPlayerOne()
-        updateScore(scoreTuple: score)
+        playingViewModel.increaseScoreForPlayerOne()
+        updateScore()
     }
     
     @IBAction func pointPlayerTwoPressed(_ sender: Any) {
-        let score = playingViewModel.increaseScoreForPlayerTwo()
-        updateScore(scoreTuple: score)
+        playingViewModel.increaseScoreForPlayerTwo()
+        updateScore()
     }
     
     @IBAction func undoPressed(_ sender: Any) {
-        let score = playingViewModel.undoScore()
-        updateScore(scoreTuple: score)
+        playingViewModel.undoScore()
+        updateScore()
     }
     
-    private func updateScore(scoreTuple: (player1: Int, player2: Int)) {
+    @IBAction func flipUsersPressed(_ sender: Any) {
+        playingViewModel.flipUsers()
+        updatePlayerNames()
+        updateScore()
+    }
+    
+    private func updateScore() {
+        let scoreTuple = playingViewModel.getScore()
         undoButton.isEnabled = playingViewModel.canUndo()
         player1ScoreLabel.text = "\(scoreTuple.player1)"
         player2ScoreLabel.text = "\(scoreTuple.player2)"
