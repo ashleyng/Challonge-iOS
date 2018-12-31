@@ -11,6 +11,7 @@
 		D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */; };
 		D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301621BF5306009870B9 /* UIButton+Extension.swift */; };
 		D86D301921BF548B009870B9 /* GetApiKeyHelpWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */; };
+		D87EAA6D21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */; };
 		D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */; };
 		D8A0ADA121B2FB0100CF8B35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADA021B2FB0100CF8B35 /* Assets.xcassets */; };
 		D8A0ADA421B2FB0100CF8B35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADA221B2FB0100CF8B35 /* LaunchScreen.storyboard */; };
@@ -43,6 +44,7 @@
 		D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		D86D301621BF5306009870B9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiKeyHelpWebView.swift; sourceTree = "<group>"; };
+		D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingMatchViewModel.swift; sourceTree = "<group>"; };
 		D8A0AD9621B2FAFF00CF8B35 /* Challonge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challonge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8A0ADA021B2FB0100CF8B35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				D8A0ADB321B30F7D00CF8B35 /* TournamentsViewController.swift */,
 				D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */,
 				D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */,
+				D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */,
 				D8F7B27C21B382A900FB7F5C /* SingleMatchViewController.swift */,
 				D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */,
 				D8AFA4E521C5D044009B9A27 /* ParticipantMatchInfoView.swift */,
@@ -348,6 +351,7 @@
 				D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */,
 				D8A0ADAD21B2FB2400CF8B35 /* LoginViewController.swift in Sources */,
 				D8F7B27321B352CE00FB7F5C /* MatchesViewController.swift in Sources */,
+				D87EAA6D21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift in Sources */,
 				D8AFA4E821C5D4E7009B9A27 /* UIView+Extension.swift in Sources */,
 				D8AFA4EE21C6067C009B9A27 /* UIColor+Extension.swift in Sources */,
 				D8F7B27721B3594500FB7F5C /* Array+Extension.swift in Sources */,
@@ -494,6 +498,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TCYT7HZQSV;
 				INFOPLIST_FILE = Challonge/Info.plist;
@@ -504,6 +509,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashleyng.TournyMngr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -515,6 +521,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TCYT7HZQSV;
 				INFOPLIST_FILE = Challonge/Info.plist;
@@ -525,6 +532,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashleyng.TournyMngr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
