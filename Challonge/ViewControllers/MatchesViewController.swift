@@ -65,6 +65,7 @@ class MatchesViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = tournamentName
+        updateUI()
 
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
 
@@ -78,7 +79,7 @@ class MatchesViewController: UIViewController {
         }
         refreshControl.addTarget(self, action: #selector(refreshMatches(_:)), for: .valueChanged)
 
-        updateUI()
+        
         fetchTournament()
     }
 
@@ -95,9 +96,9 @@ class MatchesViewController: UIViewController {
     private func fetchTournament() {
         networking.getMatchesForTournament(tournamentId, completion: { matches in
             self.fetchParticipants() { participants in
-                self.state = .populated(matches, participants.toDictionary { $0.id })
+                let sortedMatches = matches.sorted(by: { $0.suggestedPlayOrder < $1.suggestedPlayOrder })
+                self.state = .populated(sortedMatches, participants.toDictionary { $0.id })
             }
-
         }, onError: { error in
             self.state = .error(error)
         })
@@ -173,5 +174,3 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         return "\(player1) vs. \(player2)"
     }
 }
-
-

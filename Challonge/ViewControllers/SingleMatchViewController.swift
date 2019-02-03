@@ -69,12 +69,14 @@ class SingleMatchViewController: UIViewController {
         let alert = UIAlertController(title: "Input Score", message: nil, preferredStyle: .alert)
 
         alert.addTextField { textField in
-            textField.placeholder = "Player 1 Score"
+            textField.placeholder = "\(self.playerOne.name)'s Score"
         }
 
         alert.addTextField { textField in
-            textField.placeholder = "Player 2 Score"
+            textField.placeholder = "\(self.playerTwo.name)'s Score"
         }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { [weak alert, weak self] _ in
             guard let `self` = self,
