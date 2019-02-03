@@ -31,8 +31,8 @@
 		D8F7B27721B3594500FB7F5C /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27621B3594500FB7F5C /* Array+Extension.swift */; };
 		D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */; };
 		D8F7B27B21B3688A00FB7F5C /* MatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B27921B3688A00FB7F5C /* MatchTableViewCell.xib */; };
-		D8F7B27E21B382A900FB7F5C /* SingleMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27C21B382A900FB7F5C /* SingleMatchViewController.swift */; };
-		D8F7B27F21B382A900FB7F5C /* SingleMatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B27D21B382A900FB7F5C /* SingleMatchViewController.xib */; };
+		D8F7B27E21B382A900FB7F5C /* SingleMatchDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27C21B382A900FB7F5C /* SingleMatchDetailsViewController.swift */; };
+		D8F7B27F21B382A900FB7F5C /* SingleMatchDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B27D21B382A900FB7F5C /* SingleMatchDetailsViewController.xib */; };
 		D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */; };
 		D8F7B28321B3840700FB7F5C /* PlayingMatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */; };
 /* End PBXBuildFile section */
@@ -66,8 +66,8 @@
 		D8F7B27621B3594500FB7F5C /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTableViewCell.swift; sourceTree = "<group>"; };
 		D8F7B27921B3688A00FB7F5C /* MatchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchTableViewCell.xib; sourceTree = "<group>"; };
-		D8F7B27C21B382A900FB7F5C /* SingleMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMatchViewController.swift; sourceTree = "<group>"; };
-		D8F7B27D21B382A900FB7F5C /* SingleMatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleMatchViewController.xib; sourceTree = "<group>"; };
+		D8F7B27C21B382A900FB7F5C /* SingleMatchDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMatchDetailsViewController.swift; sourceTree = "<group>"; };
+		D8F7B27D21B382A900FB7F5C /* SingleMatchDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleMatchDetailsViewController.xib; sourceTree = "<group>"; };
 		D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingMatchViewController.swift; sourceTree = "<group>"; };
 		D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayingMatchViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,7 +150,7 @@
 				D8F7B27221B352CE00FB7F5C /* MatchesViewController.xib */,
 				D8A0ADB421B30F7D00CF8B35 /* TournamentsViewController.xib */,
 				D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */,
-				D8F7B27D21B382A900FB7F5C /* SingleMatchViewController.xib */,
+				D8F7B27D21B382A900FB7F5C /* SingleMatchDetailsViewController.xib */,
 				D8AFA4E321C5D00E009B9A27 /* ParticipantMatchInfoView.xib */,
 			);
 			path = Views;
@@ -165,7 +165,7 @@
 				D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */,
 				D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */,
 				D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */,
-				D8F7B27C21B382A900FB7F5C /* SingleMatchViewController.swift */,
+				D8F7B27C21B382A900FB7F5C /* SingleMatchDetailsViewController.swift */,
 				D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */,
 				D8AFA4E521C5D044009B9A27 /* ParticipantMatchInfoView.swift */,
 			);
@@ -260,7 +260,7 @@
 				D8A0ADA421B2FB0100CF8B35 /* LaunchScreen.storyboard in Resources */,
 				D8F7B27B21B3688A00FB7F5C /* MatchTableViewCell.xib in Resources */,
 				D8A0ADB621B30F7D00CF8B35 /* TournamentsViewController.xib in Resources */,
-				D8F7B27F21B382A900FB7F5C /* SingleMatchViewController.xib in Resources */,
+				D8F7B27F21B382A900FB7F5C /* SingleMatchDetailsViewController.xib in Resources */,
 				D8AFA4E421C5D00E009B9A27 /* ParticipantMatchInfoView.xib in Resources */,
 				D8F7B27021B319B700FB7F5C /* TournamentTableViewCell.xib in Resources */,
 				D8A0ADA121B2FB0100CF8B35 /* Assets.xcassets in Resources */,
@@ -342,7 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8F7B27E21B382A900FB7F5C /* SingleMatchViewController.swift in Sources */,
+				D8F7B27E21B382A900FB7F5C /* SingleMatchDetailsViewController.swift in Sources */,
 				D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */,
 				D8AFA4EC21C5FF29009B9A27 /* UIImageView+Extension.swift in Sources */,
 				D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */,

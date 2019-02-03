@@ -1,5 +1,5 @@
 //
-//  SingleMatchViewController.swift
+//  SingleMatchDetailsViewController.swift
 //  Challonge
 //
 //  Created by Ashley Ng on 12/1/18.
@@ -10,7 +10,7 @@ import UIKit
 import ChallongeNetworking
 import Crashlytics
 
-class SingleMatchViewController: UIViewController {
+class SingleMatchDetailsViewController: UIViewController {
 
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet private var playerOneView: ParticipantMatchInfoView!

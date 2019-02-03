@@ -188,7 +188,7 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         
-        navigationController?.pushViewController(SingleMatchViewController(match: match, playerOne: player1, playerTwo: player2, networking: networking), animated: true)
+        navigationController?.pushViewController(SingleMatchDetailsViewController(match: match, playerOne: player1, playerTwo: player2, networking: networking), animated: true)
     }
 
     private func matchCellLabel(player1Id: Int?, player2Id: Int?, suggestedPlayOrder: Int) -> String{
