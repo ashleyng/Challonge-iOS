@@ -106,7 +106,16 @@ class MatchesViewController: UIViewController {
         networking.getMatchesForTournament(tournamentId, completion: { matches in
             self.fetchParticipants() { participants in
                 let participantsDict = participants.toDictionary { $0.id }
-                let sortedMatches = matches.sorted(by: { $0.suggestedPlayOrder! < $1.suggestedPlayOrder! })
+                let sortedMatches = matches.sorted(by: { left, right in
+                    // TODO need to check these bools
+                    guard let leftSuggestedPlayOrder = left.suggestedPlayOrder else {
+                        return false
+                    }
+                    guard let rightSuggestedPlayOrder = right.suggestedPlayOrder else {
+                        return true
+                    }
+                    return leftSuggestedPlayOrder < rightSuggestedPlayOrder
+                })
                 self.state = .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict))
             }
         }, onError: { error in

@@ -38,7 +38,7 @@ class SingleMatchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Match #\(match.suggestedPlayOrder)"
+        navigationItem.title = "Match Details"
         
         inputScoreButton.roundEdges(withRadius: 10)
         startMatchButton.roundEdges(withRadius: 10)

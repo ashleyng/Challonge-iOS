@@ -67,9 +67,18 @@ class ParticipantMatchInfoView: UIView {
     }
     
     func refresh(with match: Match) {
-        if let participant = participant, let score = match.scores?[participant.id] {
+        if let participant = participant, let score = getGroupStageScores(participantIds: participant.groupPlayerIds, scores: match.scores) {
             scoreLabel.text = score
         }
+    }
+    
+    private func getGroupStageScores(participantIds: [Int], scores: Dictionary<Int, String>?) -> String? {
+        for id in participantIds {
+            if let score = scores?[id] {
+                return score
+            }
+        }
+        return nil
     }
 }
 
