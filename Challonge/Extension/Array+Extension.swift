@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ChallongeNetworking
 
 extension Array {
     public func toDictionary<Key: Hashable>(with selectKey: (Element) -> Key) -> [Key: Element] {

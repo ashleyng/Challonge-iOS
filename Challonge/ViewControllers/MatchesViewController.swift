@@ -87,7 +87,6 @@ class MatchesViewController: UIViewController {
             tableView.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(refreshMatches(_:)), for: .valueChanged)
-
         
         fetchTournament()
     }
@@ -105,7 +104,7 @@ class MatchesViewController: UIViewController {
     private func fetchTournament() {
         networking.getMatchesForTournament(tournamentId, completion: { matches in
             self.fetchParticipants() { participants in
-                let participantsDict = participants.toDictionary { $0.id }
+                let participantsDict = participants.toDictionary { $0.id.main }
                 let sortedMatches = matches.sorted(by: { left, right in
                     // TODO need to check these bools
                     guard let leftSuggestedPlayOrder = left.suggestedPlayOrder else {
@@ -154,7 +153,7 @@ class MatchesViewController: UIViewController {
     private func mapGroupIds(participants: [Int: Participant]) -> [Int: Int] {
         var dict = [Int: Int]()
         participants.forEach { (participantId, participant) in
-            participant.groupPlayerIds.forEach{ groupId in
+            participant.id.all.forEach{ groupId in
                 dict[groupId] = participantId
             }
         }

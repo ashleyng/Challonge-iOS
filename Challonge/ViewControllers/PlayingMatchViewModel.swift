@@ -15,7 +15,7 @@ fileprivate class ParticipantScore {
     public private(set) var score: Int
     
     public var id: Int {
-        return participant.id
+        return participant.id.main
     }
     
     public var name: String {

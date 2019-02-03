@@ -51,11 +51,11 @@ class ParticipantMatchInfoView: UIView {
     func setup(match: Match, participant: Participant) {
         self.participant = participant
         participantNameLabel.text = participant.name
-        if let score = match.scores?[participant.id] {
+        if let score = match.score(for: participant.id) {
             scoreLabel.text = score
         }
         
-        if let votes = match.votes?[participant.id] {
+        if let votes = match.votes?[participant.id.main] {
             votesLabel.text = "\(votes)"
         }
         
@@ -67,18 +67,9 @@ class ParticipantMatchInfoView: UIView {
     }
     
     func refresh(with match: Match) {
-        if let participant = participant, let score = getGroupStageScores(participantIds: participant.groupPlayerIds, scores: match.scores) {
+        if let participant = participant, let score = match.score(for: participant.id) {
             scoreLabel.text = score
         }
-    }
-    
-    private func getGroupStageScores(participantIds: [Int], scores: Dictionary<Int, String>?) -> String? {
-        for id in participantIds {
-            if let score = scores?[id] {
-                return score
-            }
-        }
-        return nil
     }
 }
 
