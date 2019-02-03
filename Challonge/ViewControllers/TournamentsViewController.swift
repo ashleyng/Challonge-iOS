@@ -54,6 +54,8 @@ class TournamentsViewController: UIViewController {
         navigationItem.hidesBackButton = true
         navigationItem.title = "Tournaments"
         
+        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target: self, action:  #selector(logout(_:))), animated: false)
+        
         tableView.register(UINib(nibName: TournamentTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: TournamentTableViewCell.identifier)
         refreshControl.addTarget(self, action: #selector(refreshTournaments(_:)), for: .valueChanged)
 
@@ -74,6 +76,13 @@ class TournamentsViewController: UIViewController {
         fetchTournaments()
     }
 
+    @objc
+    private func logout(_ sender: Any) {
+        UserDefaults.standard.removeObject(forKey: UserDefaults.CHALLONGE_API_KEY)
+        UserDefaults.standard.removeObject(forKey: UserDefaults.CHALLONGE_USERNAME_KEY)
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func fetchTournaments() {
         networking.getAllTournaments(completion: { tournaments in
             self.state = .populated(tournaments)

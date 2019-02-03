@@ -74,6 +74,7 @@ class MatchesViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = tournamentName
+        updateUI()
 
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
 
@@ -87,7 +88,7 @@ class MatchesViewController: UIViewController {
         }
         refreshControl.addTarget(self, action: #selector(refreshMatches(_:)), for: .valueChanged)
 
-        updateUI()
+        
         fetchTournament()
     }
 
@@ -105,9 +106,9 @@ class MatchesViewController: UIViewController {
         networking.getMatchesForTournament(tournamentId, completion: { matches in
             self.fetchParticipants() { participants in
                 let participantsDict = participants.toDictionary { $0.id }
-                self.state = .populated(matches, participantsDict, self.mapGroupIds(participants: participantsDict))
+                let sortedMatches = matches.sorted(by: { $0.suggestedPlayOrder! < $1.suggestedPlayOrder! })
+                self.state = .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict))
             }
-
         }, onError: { error in
             self.state = .error(error)
         })
@@ -143,7 +144,7 @@ class MatchesViewController: UIViewController {
     
     private func mapGroupIds(participants: [Int: Participant]) -> [Int: Int] {
         var dict = [Int: Int]()
-        participants.forEach { participantId, participant in
+        participants.forEach { (participantId, participant) in
             participant.groupPlayerIds.forEach{ groupId in
                 dict[groupId] = participantId
             }
@@ -212,5 +213,3 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
-

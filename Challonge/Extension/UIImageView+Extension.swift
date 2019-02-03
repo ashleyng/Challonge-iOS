@@ -9,7 +9,8 @@
 import UIKit
 
 extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+    // https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
+    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
         contentMode = mode
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
@@ -23,7 +24,7 @@ extension UIImageView {
             }
             }.resume()
     }
-    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) { 
         guard let url = URL(string: link) else { return }
         downloaded(from: url, contentMode: mode)
     }
