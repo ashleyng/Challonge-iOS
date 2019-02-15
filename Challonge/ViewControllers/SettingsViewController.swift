@@ -16,7 +16,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         var options: [Settings] {
             switch self {
             case .app:
-                return [Settings.attribution, Settings.logout]
+                return [Settings.acknowledgement, Settings.logout]
             case .challonge:
                 return [Settings.termsOfService]
             }
@@ -25,7 +25,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     enum Settings: String {
         case logout = "Logout"
-        case attribution = "Attribution"
+        case acknowledgement = "Acknowledgement"
         case termsOfService = "Terms of Service"
     }
     
@@ -68,7 +68,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case .logout:
             cell.textLabel?.text = settingItem.rawValue
             cell.imageView?.image = UIImage(named: "logout")
-        case .attribution:
+        case .acknowledgement:
             cell.textLabel?.text = settingItem.rawValue
         case .termsOfService:
             cell.textLabel?.text = settingItem.rawValue
@@ -85,17 +85,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             UserDefaults.standard.removeObject(forKey: UserDefaults.CHALLONGE_API_KEY)
             UserDefaults.standard.removeObject(forKey: UserDefaults.CHALLONGE_USERNAME_KEY)
             navigationController?.popToRootViewController(animated: true)
-        case .attribution:
-            showAttributionAlert()
+        case .acknowledgement:
+            showAcknowledgementAlert()
         case .termsOfService:
             present(WebViewController(urlString: "https://challonge.com/terms_of_service"), animated: true, completion: nil)
         }
     }
     
-    private func showAttributionAlert() {
-        let alertController = UIAlertController(title: "Attribution", message: "Challonge provides their service under a Creative Commons Sharealike License, and is attributed to Bettercast Limited.", preferredStyle: .alert)
+    private func showAcknowledgementAlert() {
+        let alertController = UIAlertController(title: "Acknowledgement", message: "Challonge provides their service under a Creative Commons Sharealike License, and is attributed to Bettercast Limited.", preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let learnMoreAction = UIAlertAction(title: "Learn More", style: .default, handler: { [weak self] _ in
+            self?.present(WebViewController(urlString: "https://creativecommons.org/licenses/by-sa/4.0/"), animated: true, completion: nil)
+        })
         alertController.addAction(dismissAction)
+        alertController.addAction(learnMoreAction)
         present(alertController, animated: true, completion: nil)
     }
 

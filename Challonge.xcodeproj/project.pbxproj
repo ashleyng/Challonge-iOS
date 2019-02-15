@@ -12,7 +12,7 @@
 		D8080DB322151940007B418E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8080DB122151940007B418E /* SettingsViewController.xib */; };
 		D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */; };
 		D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301621BF5306009870B9 /* UIButton+Extension.swift */; };
-		D86D301921BF548B009870B9 /* GetApiKeyHelpWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */; };
+		D86D301921BF548B009870B9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* WebViewController.swift */; };
 		D87186A62206B6B90021E097 /* Match+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87186A52206B6B90021E097 /* Match+Extension.swift */; };
 		D87EAA6D21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */; };
 		D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */; };
@@ -48,7 +48,7 @@
 		D8080DB122151940007B418E /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		D86D301621BF5306009870B9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
-		D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiKeyHelpWebView.swift; sourceTree = "<group>"; };
+		D86D301821BF548B009870B9 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D87186A52206B6B90021E097 /* Match+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Match+Extension.swift"; sourceTree = "<group>"; };
 		D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingMatchViewModel.swift; sourceTree = "<group>"; };
 		D8A0AD9621B2FAFF00CF8B35 /* Challonge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challonge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,7 +173,7 @@
 				D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */,
 				D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */,
 				D8F7B27C21B382A900FB7F5C /* SingleMatchDetailsViewController.swift */,
-				D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */,
+				D86D301821BF548B009870B9 /* WebViewController.swift */,
 				D8AFA4E521C5D044009B9A27 /* ParticipantMatchInfoView.swift */,
 				D8080DB022151940007B418E /* SettingsViewController.swift */,
 			);
@@ -368,7 +368,7 @@
 				D8F7B27721B3594500FB7F5C /* Array+Extension.swift in Sources */,
 				D87186A62206B6B90021E097 /* Match+Extension.swift in Sources */,
 				D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */,
-				D86D301921BF548B009870B9 /* GetApiKeyHelpWebView.swift in Sources */,
+				D86D301921BF548B009870B9 /* WebViewController.swift in Sources */,
 				D8A0ADB521B30F7D00CF8B35 /* TournamentsViewController.swift in Sources */,
 				D8AFA4E621C5D044009B9A27 /* ParticipantMatchInfoView.swift in Sources */,
 			);
