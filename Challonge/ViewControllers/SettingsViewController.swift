@@ -82,7 +82,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         switch settingItem {
         case .logout:
-            UserDefaults.standard.removeObject(forKey: UserDefaults.CHALLONGE_API_KEY)
+            guard let username = UserDefaults.standard.string(forKey: UserDefaults.CHALLONGE_USERNAME_KEY) else {
+                return
+            }
+            try? KeychainStore.deleteApiKey(withUsername: username)
             UserDefaults.standard.removeObject(forKey: UserDefaults.CHALLONGE_USERNAME_KEY)
             navigationController?.popToRootViewController(animated: true)
         case .acknowledgement:
