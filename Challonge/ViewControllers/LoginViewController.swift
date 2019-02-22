@@ -127,6 +127,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func howToGetAnApiKeyPressed(_ sender: UIButton) {
-        self.present(GetApiKeyHelpViewController(), animated: true, completion: nil)
+        self.present(WebViewController(urlString: "https://api.challonge.com/v1"), animated: true, completion: nil)
     }
 }

@@ -7,7 +7,7 @@ target 'Challonge' do
 
   # Pods for Challonge
   pod 'ChallongeNetworking'
-  # pod 'ChallongeNetworking', :path => '../ChallongeNetworking'
+#  pod 'ChallongeNetworking', :path => '../ChallongeNetworking'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'SnapKit'

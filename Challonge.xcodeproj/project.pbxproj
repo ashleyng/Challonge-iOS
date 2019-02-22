@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C282444398E21DE6AF7BE9CA /* Pods_Challonge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */; };
+		D8080DB222151940007B418E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8080DB022151940007B418E /* SettingsViewController.swift */; };
+		D8080DB322151940007B418E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8080DB122151940007B418E /* SettingsViewController.xib */; };
 		D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */; };
 		D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301621BF5306009870B9 /* UIButton+Extension.swift */; };
-		D86D301921BF548B009870B9 /* GetApiKeyHelpWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */; };
+		D86D301921BF548B009870B9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* WebViewController.swift */; };
 		D87186A62206B6B90021E097 /* Match+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87186A52206B6B90021E097 /* Match+Extension.swift */; };
 		D87EAA6D21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */; };
 		D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */; };
@@ -42,9 +44,11 @@
 		80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challonge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E08810F5C90A9E00709272B /* Pods-Challonge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challonge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Challonge/Pods-Challonge.release.xcconfig"; sourceTree = "<group>"; };
 		CBF030ABEBB99610171D48EE /* Pods-Challonge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challonge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Challonge/Pods-Challonge.debug.xcconfig"; sourceTree = "<group>"; };
+		D8080DB022151940007B418E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D8080DB122151940007B418E /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		D86D301621BF5306009870B9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
-		D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiKeyHelpWebView.swift; sourceTree = "<group>"; };
+		D86D301821BF548B009870B9 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D87186A52206B6B90021E097 /* Match+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Match+Extension.swift"; sourceTree = "<group>"; };
 		D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingMatchViewModel.swift; sourceTree = "<group>"; };
 		D8A0AD9621B2FAFF00CF8B35 /* Challonge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challonge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +158,7 @@
 				D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */,
 				D8F7B27D21B382A900FB7F5C /* SingleMatchDetailsViewController.xib */,
 				D8AFA4E321C5D00E009B9A27 /* ParticipantMatchInfoView.xib */,
+				D8080DB122151940007B418E /* SettingsViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,8 +173,9 @@
 				D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */,
 				D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */,
 				D8F7B27C21B382A900FB7F5C /* SingleMatchDetailsViewController.swift */,
-				D86D301821BF548B009870B9 /* GetApiKeyHelpWebView.swift */,
+				D86D301821BF548B009870B9 /* WebViewController.swift */,
 				D8AFA4E521C5D044009B9A27 /* ParticipantMatchInfoView.swift */,
+				D8080DB022151940007B418E /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -260,6 +266,7 @@
 			files = (
 				D8F7B28321B3840700FB7F5C /* PlayingMatchViewController.xib in Resources */,
 				D8F7B27421B352CE00FB7F5C /* MatchesViewController.xib in Resources */,
+				D8080DB322151940007B418E /* SettingsViewController.xib in Resources */,
 				D8A0ADA421B2FB0100CF8B35 /* LaunchScreen.storyboard in Resources */,
 				D8F7B27B21B3688A00FB7F5C /* MatchTableViewCell.xib in Resources */,
 				D8A0ADB621B30F7D00CF8B35 /* TournamentsViewController.xib in Resources */,
@@ -350,6 +357,7 @@
 				D8AFA4EC21C5FF29009B9A27 /* UIImageView+Extension.swift in Sources */,
 				D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */,
 				D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */,
+				D8080DB222151940007B418E /* SettingsViewController.swift in Sources */,
 				D8F7B26F21B319B700FB7F5C /* TournamentTableViewCell.swift in Sources */,
 				D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */,
 				D8A0ADAD21B2FB2400CF8B35 /* LoginViewController.swift in Sources */,
@@ -360,7 +368,7 @@
 				D8F7B27721B3594500FB7F5C /* Array+Extension.swift in Sources */,
 				D87186A62206B6B90021E097 /* Match+Extension.swift in Sources */,
 				D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */,
-				D86D301921BF548B009870B9 /* GetApiKeyHelpWebView.swift in Sources */,
+				D86D301921BF548B009870B9 /* WebViewController.swift in Sources */,
 				D8A0ADB521B30F7D00CF8B35 /* TournamentsViewController.swift in Sources */,
 				D8AFA4E621C5D044009B9A27 /* ParticipantMatchInfoView.swift in Sources */,
 			);
@@ -504,7 +512,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TCYT7HZQSV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Challonge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -527,7 +535,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TCYT7HZQSV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Challonge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

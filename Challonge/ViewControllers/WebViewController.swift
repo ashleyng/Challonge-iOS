@@ -1,5 +1,5 @@
 //
-//  GetApiKeyHelpWebView.swift
+//  WebViewController.swift
 //  Challonge
 //
 //  Created by Ashley Ng on 12/10/18.
@@ -11,19 +11,21 @@ import UIKit
 import WebKit
 import SnapKit
 
-class GetApiKeyHelpViewController: UIViewController {
+class WebViewController: UIViewController {
 
     private var webViewContainer: UIView!
     private var webView: WKWebView!
     private var backButton: UIButton = UIButton()
     private var navContainerView: UIView = UIView(frame: .zero)
     private var webViewContainerView: UIView = UIView()
+    private let urlString: String
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    init(urlString: String) {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        self.urlString = urlString
         
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -37,7 +39,7 @@ class GetApiKeyHelpViewController: UIViewController {
         setupWebViewContainer()
         backButton.addTarget(self, action: #selector(backButtonPressed(sender:)), for: .touchUpInside)
 
-        let url = URL(string: "https://api.challonge.com/v1")
+        let url = URL(string: urlString)
         let request = URLRequest(url: url!)
         webView.load(request)
     }
