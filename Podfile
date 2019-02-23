@@ -1,7 +1,7 @@
 platform :ios, '11.0'
 
 def shared_pods
-    pod 'ChallongeNetworking'
+    pod 'ChallongeNetworking', '0.4.0'
 #    pod 'ChallongeNetworking', :path => '../ChallongeNetworking'
 end
 
@@ -11,9 +11,9 @@ target 'Challonge' do
 
   # Pods for Challonge
   shared_pods
-  pod 'Fabric'
-  pod 'Crashlytics'
-  pod 'SnapKit'
+  pod 'Fabric', '~> 1.8.2'
+  pod 'Crashlytics', '~> 3.11.1'
+  pod 'SnapKit', '~> 4.2.0'
 end
 
 target 'ChallongeTests' do
