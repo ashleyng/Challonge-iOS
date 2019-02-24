@@ -10,5 +10,4 @@ import Foundation
 
 extension UserDefaults {
     static let CHALLONGE_USERNAME_KEY = "Challonge_Username_Key"
-    static let CHALLONGE_API_KEY = "Challonge_API_Key"
 }

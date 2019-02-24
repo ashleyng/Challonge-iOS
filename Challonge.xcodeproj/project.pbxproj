@@ -10,6 +10,7 @@
 		C282444398E21DE6AF7BE9CA /* Pods_Challonge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */; };
 		D8080DB222151940007B418E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8080DB022151940007B418E /* SettingsViewController.swift */; };
 		D8080DB322151940007B418E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8080DB122151940007B418E /* SettingsViewController.xib */; };
+		D80F75B1221C965B007F4A66 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80F75B0221C965B007F4A66 /* KeychainStore.swift */; };
 		D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */; };
 		D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301621BF5306009870B9 /* UIButton+Extension.swift */; };
 		D86D301921BF548B009870B9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* WebViewController.swift */; };
@@ -46,6 +47,7 @@
 		CBF030ABEBB99610171D48EE /* Pods-Challonge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challonge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Challonge/Pods-Challonge.debug.xcconfig"; sourceTree = "<group>"; };
 		D8080DB022151940007B418E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D8080DB122151940007B418E /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		D80F75B0221C965B007F4A66 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		D86D301621BF5306009870B9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		D86D301821BF548B009870B9 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D80F75B2221C9660007F4A66 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				D80F75B0221C965B007F4A66 /* KeychainStore.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		D82D0FBD221E215700AB42D3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		D8A0AD8D21B2FAFF00CF8B35 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +137,8 @@
 		D8A0AD9821B2FAFF00CF8B35 /* Challonge */ = {
 			isa = PBXGroup;
 			children = (
+				D82D0FBD221E215700AB42D3 /* ViewModel */,
+				D80F75B2221C9660007F4A66 /* Util */,
 				D8F7B27521B3592D00FB7F5C /* Extension */,
 				D8F7B26B21B3198B00FB7F5C /* Views */,
 				D8F7B26C21B3199900FB7F5C /* ViewControllers */,
@@ -171,7 +191,6 @@
 				D8A0ADB321B30F7D00CF8B35 /* TournamentsViewController.swift */,
 				D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */,
 				D8F7B28021B3840700FB7F5C /* PlayingMatchViewController.swift */,
-				D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */,
 				D8F7B27C21B382A900FB7F5C /* SingleMatchDetailsViewController.swift */,
 				D86D301821BF548B009870B9 /* WebViewController.swift */,
 				D8AFA4E521C5D044009B9A27 /* ParticipantMatchInfoView.swift */,
@@ -354,6 +373,7 @@
 			files = (
 				D8F7B27E21B382A900FB7F5C /* SingleMatchDetailsViewController.swift in Sources */,
 				D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */,
+				D80F75B1221C965B007F4A66 /* KeychainStore.swift in Sources */,
 				D8AFA4EC21C5FF29009B9A27 /* UIImageView+Extension.swift in Sources */,
 				D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */,
 				D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */,

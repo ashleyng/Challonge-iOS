@@ -24,8 +24,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         loadingIndicator.isHidden = true
         apiKeyTextField.delegate = self
+
         if let savedUsername = UserDefaults.standard.string(forKey: UserDefaults.CHALLONGE_USERNAME_KEY),
-            let savedApiKey = UserDefaults.standard.string(forKey: UserDefaults.CHALLONGE_API_KEY) {
+            let savedApiKey = try? KeychainStore.fetchKey(forUsername: savedUsername) {
             print("Found saved credentials")
             testCredentialsAndLogin(username: savedUsername, apiKey: savedApiKey)
         }
@@ -94,12 +95,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             guard let `self` = self, let statusCode = statusCode else {
                 return
             }
-            if statusCode >= 200 {
+            if statusCode >= 200 && statusCode < 300 {
                 UserDefaults.standard.set(username, forKey: UserDefaults.CHALLONGE_USERNAME_KEY)
-                UserDefaults.standard.set(apiKey, forKey: UserDefaults.CHALLONGE_API_KEY)
-                let library_path = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
-                
-                print("library path is \(library_path)")
+                try? KeychainStore.saveApiKey(apiKey, forUsername: username)
                 DispatchQueue.main.async {
                     self.navigationController?.pushViewController(TournamentsViewController(challongeNetworking: networking), animated: true)
                 }
