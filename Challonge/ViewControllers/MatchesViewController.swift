@@ -87,8 +87,6 @@ class MatchesViewController: UIViewController {
             tableView.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(refreshMatches(_:)), for: .valueChanged)
-        
-        fetchTournament()
     }
 
     override func viewWillAppear(_ animated: Bool) {
