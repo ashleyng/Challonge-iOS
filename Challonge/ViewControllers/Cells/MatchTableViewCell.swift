@@ -19,17 +19,10 @@ class MatchTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    func configureWith(_ match: Match, label: String) {
-        playersLabel.text = label
-        matchStatuslabel.text = match.state == .complete ? match.scoresCsv : match.state.rawValue
-    
-        switch match.state {
-        case .complete:
-            matchStatuslabel.textColor = UIColor.completedGreen
-        case .open:
-            matchStatuslabel.textColor = UIColor.gray
-        case .pending:
-            matchStatuslabel.textColor = UIColor.red
-        }
+    func configureWith(_ matchViewModel: MatchTableViewCellViewModel) {
+        playersLabel.text = matchViewModel.matchLabel()
+        matchStatuslabel.text = matchViewModel.matchStatusLabelText()
+        
+        matchStatuslabel.textColor = matchViewModel.statusLabelColor()
     }
 }

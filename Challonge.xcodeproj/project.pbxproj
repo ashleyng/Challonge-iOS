@@ -13,6 +13,8 @@
 		D8080DB322151940007B418E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8080DB122151940007B418E /* SettingsViewController.xib */; };
 		D80F75B1221C965B007F4A66 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80F75B0221C965B007F4A66 /* KeychainStore.swift */; };
 		D82D0FDE2220D11500AB42D3 /* PlayingMatchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D0FDD2220D11500AB42D3 /* PlayingMatchViewModelTests.swift */; };
+		D858D08822235F510051B9B4 /* MatchesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D08722235F510051B9B4 /* MatchesPresenter.swift */; };
+		D858D08A222365050051B9B4 /* MatchTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D089222365050051B9B4 /* MatchTableViewCellViewModel.swift */; };
 		D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */; };
 		D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301621BF5306009870B9 /* UIButton+Extension.swift */; };
 		D86D301921BF548B009870B9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* WebViewController.swift */; };
@@ -66,6 +68,8 @@
 		D82D0FDB2220D11500AB42D3 /* ChallongeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChallongeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D82D0FDD2220D11500AB42D3 /* PlayingMatchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingMatchViewModelTests.swift; sourceTree = "<group>"; };
 		D82D0FDF2220D11500AB42D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D858D08722235F510051B9B4 /* MatchesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesPresenter.swift; sourceTree = "<group>"; };
+		D858D089222365050051B9B4 /* MatchTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		D86D301621BF5306009870B9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		D86D301821BF548B009870B9 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -135,12 +139,14 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		D82D0FBD221E215700AB42D3 /* ViewModel */ = {
+		D82D0FBD221E215700AB42D3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */,
+				D858D089222365050051B9B4 /* MatchTableViewCellViewModel.swift */,
+				D858D08722235F510051B9B4 /* MatchesPresenter.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		D82D0FDC2220D11500AB42D3 /* ChallongeTests */ = {
@@ -177,7 +183,7 @@
 			children = (
 				D8F7B26C21B3199900FB7F5C /* ViewControllers */,
 				D8F7B26B21B3198B00FB7F5C /* Views */,
-				D82D0FBD221E215700AB42D3 /* ViewModel */,
+				D82D0FBD221E215700AB42D3 /* ViewModels */,
 				D80F75B2221C9660007F4A66 /* Util */,
 				D8F7B27521B3592D00FB7F5C /* Extension */,
 				D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */,
@@ -477,6 +483,7 @@
 				D80F75B1221C965B007F4A66 /* KeychainStore.swift in Sources */,
 				D8AFA4EC21C5FF29009B9A27 /* UIImageView+Extension.swift in Sources */,
 				D8F7B28221B3840700FB7F5C /* PlayingMatchViewController.swift in Sources */,
+				D858D08A222365050051B9B4 /* MatchTableViewCellViewModel.swift in Sources */,
 				D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */,
 				D8080DB222151940007B418E /* SettingsViewController.swift in Sources */,
 				D8F7B26F21B319B700FB7F5C /* TournamentTableViewCell.swift in Sources */,
@@ -490,6 +497,7 @@
 				D87186A62206B6B90021E097 /* Match+Extension.swift in Sources */,
 				D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */,
 				D86D301921BF548B009870B9 /* WebViewController.swift in Sources */,
+				D858D08822235F510051B9B4 /* MatchesPresenter.swift in Sources */,
 				D8A0ADB521B30F7D00CF8B35 /* TournamentsViewController.swift in Sources */,
 				D8AFA4E621C5D044009B9A27 /* ParticipantMatchInfoView.swift in Sources */,
 			);
@@ -683,7 +691,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = TCYT7HZQSV;
 				INFOPLIST_FILE = Challonge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -706,7 +714,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = TCYT7HZQSV;
 				INFOPLIST_FILE = Challonge/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

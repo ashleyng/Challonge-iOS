@@ -10,7 +10,7 @@ import UIKit
 import ChallongeNetworking
 import Crashlytics
 
-fileprivate enum State {
+enum MatchesViewState {
     case loading
     case populated([Match], [Int: Participant], [Int: Int])
     case empty
@@ -44,16 +44,16 @@ fileprivate enum State {
     }
 }
 
-class MatchesViewController: UIViewController {
+class MatchesViewController: UIViewController, MatchesViewInteractor {
 
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
     private let refreshControl = UIRefreshControl()
     
     private let networking: ChallongeNetworking
+    private var presenter: MatchesViewPresenter!
     private let tournamentName: String
-    private let tournamentId: Int
-    private var state = State.loading {
+    private var state = MatchesViewState.loading {
         didSet {
             updateUI()
         }
@@ -62,8 +62,9 @@ class MatchesViewController: UIViewController {
     init(challongeNetworking: ChallongeNetworking, tournament: Tournament) {
         networking = challongeNetworking
         tournamentName = tournament.name
-        tournamentId = tournament.id
+        
         super.init(nibName: nil, bundle: nil)
+        presenter = MatchesViewPresenter(networking: networking, interactor: self, tournament: tournament)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,7 +75,6 @@ class MatchesViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = tournamentName
-        updateUI()
 
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
 
@@ -91,41 +91,18 @@ class MatchesViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchTournament()
+        presenter.loadMatch()
     }
 
     @objc
     private func refreshMatches(_ sender: Any) {
-        fetchTournament()
-    }
-
-    private func fetchTournament() {
-        networking.getMatchesForTournament(tournamentId, completion: { matches in
-            self.fetchParticipants() { participants in
-                let participantsDict = participants.toDictionary { $0.id.main }
-                let sortedMatches = matches.sorted(by: { left, right in
-                    // TODO need to check these bools
-                    guard let leftSuggestedPlayOrder = left.suggestedPlayOrder else {
-                        return false
-                    }
-                    guard let rightSuggestedPlayOrder = right.suggestedPlayOrder else {
-                        return true
-                    }
-                    return leftSuggestedPlayOrder < rightSuggestedPlayOrder
-                })
-                self.state = .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict))
-            }
-        }, onError: { error in
-            self.state = .error(error)
-        })
-    }
-
-    private func fetchParticipants(completion: @escaping ([Participant]) -> Void) {
-        networking.getParticipantsForTournament(tournamentId, completion: { (participants: [Participant]) in
-            completion(participants)
-        }, onError: { _ in })
+        presenter.loadMatch()
     }
     
+    func updateState(to state: MatchesViewState) {
+        self.state = state
+    }
+
     private func updateUI() {
         DispatchQueue.main.async {
             switch self.state {
@@ -135,7 +112,6 @@ class MatchesViewController: UIViewController {
                 self.refreshControl.endRefreshing()
                 self.loadingIndicator.stopAnimating()
             case .error(let error):
-                print("Error: \(error.localizedDescription)")
                 Answers.logCustomEvent(withName: "ErrorFetchingMatches", customAttributes: [
                     "Error": error.localizedDescription
                 ])
@@ -146,16 +122,6 @@ class MatchesViewController: UIViewController {
             }
             self.tableView.reloadData()
         }
-    }
-    
-    private func mapGroupIds(participants: [Int: Participant]) -> [Int: Int] {
-        var dict = [Int: Int]()
-        participants.forEach { (participantId, participant) in
-            participant.id.all.forEach{ groupId in
-                dict[groupId] = participantId
-            }
-        }
-        return dict
     }
 }
 
@@ -169,7 +135,7 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         let match = matches[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: MatchTableViewCell.identifier, for: indexPath) as? MatchTableViewCell {
-            cell.configureWith(match, label: matchCellLabel(player1Id: match.player1Id, player2Id: match.player2Id, suggestedPlayOrder: match.suggestedPlayOrder ?? 1))
+            cell.configureWith(MatchTableViewCellViewModel(match: match, participants: state.currentParticipants, groupParticipantIds: state.groupParticipantIds))
             return cell
         }
         return MatchTableViewCell()
@@ -181,34 +147,14 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let match = state.currentMatches[indexPath.row]
         guard let playerOneId = match.player1Id, let playerTwoId = match.player2Id,
-            let player1 = getParticipan(id: playerOneId), let player2 = getParticipan(id: playerTwoId) else {
+            let player1 = getParticipant(id: playerOneId), let player2 = getParticipant(id: playerTwoId) else {
             return
         }
         
         navigationController?.pushViewController(SingleMatchDetailsViewController(match: match, playerOne: player1, playerTwo: player2, networking: networking), animated: true)
     }
-
-    private func matchCellLabel(player1Id: Int?, player2Id: Int?, suggestedPlayOrder: Int) -> String{
-        guard let player1Id = player1Id, let player2Id = player2Id else {
-            return "Match \(suggestedPlayOrder)"
-        }
-        let player1 = getPlayerName(id: player1Id)
-        let player2 = getPlayerName(id: player2Id)
-        return "\(player1) vs. \(player2)"
-    }
     
-    private func getPlayerName(id: Int) -> String {
-        let participants = state.currentParticipants
-        if let name = participants[id]?.name {
-            return name
-        } else if let groupId = state.groupParticipantIds[id], let name = participants[groupId]?.name {
-            return name
-        } else {
-            return "Unknown Player"
-        }
-    }
-    
-    private func getParticipan(id: Int) -> Participant? {
+    private func getParticipant(id: Int) -> Participant? {
         let participants = state.currentParticipants
         if let participant = participants[id] {
             return participant
