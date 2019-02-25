@@ -15,6 +15,7 @@
 		D82D0FDE2220D11500AB42D3 /* PlayingMatchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D0FDD2220D11500AB42D3 /* PlayingMatchViewModelTests.swift */; };
 		D858D08822235F510051B9B4 /* MatchesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D08722235F510051B9B4 /* MatchesPresenter.swift */; };
 		D858D08A222365050051B9B4 /* MatchTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D089222365050051B9B4 /* MatchTableViewCellViewModel.swift */; };
+		D858D08D22236C870051B9B4 /* MatchTableViewCellModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858D08C22236C870051B9B4 /* MatchTableViewCellModelTest.swift */; };
 		D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */; };
 		D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301621BF5306009870B9 /* UIButton+Extension.swift */; };
 		D86D301921BF548B009870B9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* WebViewController.swift */; };
@@ -70,6 +71,7 @@
 		D82D0FDF2220D11500AB42D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D858D08722235F510051B9B4 /* MatchesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesPresenter.swift; sourceTree = "<group>"; };
 		D858D089222365050051B9B4 /* MatchTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		D858D08C22236C870051B9B4 /* MatchTableViewCellModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTableViewCellModelTest.swift; sourceTree = "<group>"; };
 		D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		D86D301621BF5306009870B9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		D86D301821BF548B009870B9 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				D82D0FDD2220D11500AB42D3 /* PlayingMatchViewModelTests.swift */,
+				D858D08C22236C870051B9B4 /* MatchTableViewCellModelTest.swift */,
 				D82D0FDF2220D11500AB42D3 /* Info.plist */,
 			);
 			path = ChallongeTests;
@@ -471,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D82D0FDE2220D11500AB42D3 /* PlayingMatchViewModelTests.swift in Sources */,
+				D858D08D22236C870051B9B4 /* MatchTableViewCellModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
