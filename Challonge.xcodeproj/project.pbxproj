@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05BAB05C428E80F0086FE4F1 /* libPods-ChallongeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D7714166A110D17C4F5BF5 /* libPods-ChallongeTests.a */; };
 		C282444398E21DE6AF7BE9CA /* Pods_Challonge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */; };
 		D8080DB222151940007B418E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8080DB022151940007B418E /* SettingsViewController.swift */; };
 		D8080DB322151940007B418E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8080DB122151940007B418E /* SettingsViewController.xib */; };
 		D80F75B1221C965B007F4A66 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80F75B0221C965B007F4A66 /* KeychainStore.swift */; };
+		D82D0FDE2220D11500AB42D3 /* PlayingMatchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D0FDD2220D11500AB42D3 /* PlayingMatchViewModelTests.swift */; };
 		D86ACC0921D5F63F00F0E9E3 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */; };
 		D86D301721BF5306009870B9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301621BF5306009870B9 /* UIButton+Extension.swift */; };
 		D86D301921BF548B009870B9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* WebViewController.swift */; };
@@ -41,13 +43,29 @@
 		D8F7B28321B3840700FB7F5C /* PlayingMatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B28121B3840700FB7F5C /* PlayingMatchViewController.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D82D0FE02220D11500AB42D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8A0AD8E21B2FAFF00CF8B35 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8A0AD9521B2FAFF00CF8B35;
+			remoteInfo = Challonge;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		52D7714166A110D17C4F5BF5 /* libPods-ChallongeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChallongeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Challonge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BF9C9298E4CBFAE07803658 /* Pods-ChallongeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallongeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChallongeTests/Pods-ChallongeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E08810F5C90A9E00709272B /* Pods-Challonge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challonge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Challonge/Pods-Challonge.release.xcconfig"; sourceTree = "<group>"; };
+		C38A34EB79005703BF29A0EE /* Pods-ChallongeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallongeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChallongeTests/Pods-ChallongeTests.release.xcconfig"; sourceTree = "<group>"; };
 		CBF030ABEBB99610171D48EE /* Pods-Challonge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Challonge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Challonge/Pods-Challonge.debug.xcconfig"; sourceTree = "<group>"; };
 		D8080DB022151940007B418E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D8080DB122151940007B418E /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		D80F75B0221C965B007F4A66 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		D82D0FDB2220D11500AB42D3 /* ChallongeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChallongeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D82D0FDD2220D11500AB42D3 /* PlayingMatchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingMatchViewModelTests.swift; sourceTree = "<group>"; };
+		D82D0FDF2220D11500AB42D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D86ACC0821D5F63F00F0E9E3 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		D86D301621BF5306009870B9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		D86D301821BF548B009870B9 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +99,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D82D0FD82220D11500AB42D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05BAB05C428E80F0086FE4F1 /* libPods-ChallongeTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D8A0AD9321B2FAFF00CF8B35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -96,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				80196A2E5328EF824BDFA8E5 /* Pods_Challonge.framework */,
+				52D7714166A110D17C4F5BF5 /* libPods-ChallongeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,10 +143,20 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D82D0FDC2220D11500AB42D3 /* ChallongeTests */ = {
+			isa = PBXGroup;
+			children = (
+				D82D0FDD2220D11500AB42D3 /* PlayingMatchViewModelTests.swift */,
+				D82D0FDF2220D11500AB42D3 /* Info.plist */,
+			);
+			path = ChallongeTests;
+			sourceTree = "<group>";
+		};
 		D8A0AD8D21B2FAFF00CF8B35 = {
 			isa = PBXGroup;
 			children = (
 				D8A0AD9821B2FAFF00CF8B35 /* Challonge */,
+				D82D0FDC2220D11500AB42D3 /* ChallongeTests */,
 				D8A0AD9721B2FAFF00CF8B35 /* Products */,
 				DBA1AB59BA7306E2F750C1F5 /* Pods */,
 				4F7025E05A3B9966B2B46148 /* Frameworks */,
@@ -130,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				D8A0AD9621B2FAFF00CF8B35 /* Challonge.app */,
+				D82D0FDB2220D11500AB42D3 /* ChallongeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,11 +175,11 @@
 		D8A0AD9821B2FAFF00CF8B35 /* Challonge */ = {
 			isa = PBXGroup;
 			children = (
+				D8F7B26C21B3199900FB7F5C /* ViewControllers */,
+				D8F7B26B21B3198B00FB7F5C /* Views */,
 				D82D0FBD221E215700AB42D3 /* ViewModel */,
 				D80F75B2221C9660007F4A66 /* Util */,
 				D8F7B27521B3592D00FB7F5C /* Extension */,
-				D8F7B26B21B3198B00FB7F5C /* Views */,
-				D8F7B26C21B3199900FB7F5C /* ViewControllers */,
 				D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */,
 				D8A0ADA021B2FB0100CF8B35 /* Assets.xcassets */,
 				D8A0ADA221B2FB0100CF8B35 /* LaunchScreen.storyboard */,
@@ -218,6 +256,8 @@
 			children = (
 				CBF030ABEBB99610171D48EE /* Pods-Challonge.debug.xcconfig */,
 				8E08810F5C90A9E00709272B /* Pods-Challonge.release.xcconfig */,
+				8BF9C9298E4CBFAE07803658 /* Pods-ChallongeTests.debug.xcconfig */,
+				C38A34EB79005703BF29A0EE /* Pods-ChallongeTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -225,6 +265,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D82D0FDA2220D11500AB42D3 /* ChallongeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D82D0FE22220D11500AB42D3 /* Build configuration list for PBXNativeTarget "ChallongeTests" */;
+			buildPhases = (
+				E87A9354443AC94CEB878AF1 /* [CP] Check Pods Manifest.lock */,
+				D82D0FD72220D11500AB42D3 /* Sources */,
+				D82D0FD82220D11500AB42D3 /* Frameworks */,
+				D82D0FD92220D11500AB42D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D82D0FE12220D11500AB42D3 /* PBXTargetDependency */,
+			);
+			name = ChallongeTests;
+			productName = ChallongeTests;
+			productReference = D82D0FDB2220D11500AB42D3 /* ChallongeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D8A0AD9521B2FAFF00CF8B35 /* Challonge */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D8A0ADA821B2FB0100CF8B35 /* Build configuration list for PBXNativeTarget "Challonge" */;
@@ -255,6 +314,10 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = AshleyNg;
 				TargetAttributes = {
+					D82D0FDA2220D11500AB42D3 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = D8A0AD9521B2FAFF00CF8B35;
+					};
 					D8A0AD9521B2FAFF00CF8B35 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -274,11 +337,19 @@
 			projectRoot = "";
 			targets = (
 				D8A0AD9521B2FAFF00CF8B35 /* Challonge */,
+				D82D0FDA2220D11500AB42D3 /* ChallongeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D82D0FD92220D11500AB42D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D8A0AD9421B2FAFF00CF8B35 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,7 +402,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Challonge/Pods-Challonge-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ChallongeNetworking/ChallongeNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/ChallongeNetworking-framework/ChallongeNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -364,9 +435,39 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 5a90672cbf85cccc28cef7c2c1a320aec946c385 4160f25e0b5e7d2b4f96f75e3ec5aa452178a6b30d4e8983b9d3faf05887fdff\n";
 		};
+		E87A9354443AC94CEB878AF1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChallongeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D82D0FD72220D11500AB42D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D82D0FDE2220D11500AB42D3 /* PlayingMatchViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D8A0AD9221B2FAFF00CF8B35 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -396,6 +497,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D82D0FE12220D11500AB42D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8A0AD9521B2FAFF00CF8B35 /* Challonge */;
+			targetProxy = D82D0FE02220D11500AB42D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		D8A0ADA221B2FB0100CF8B35 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -408,6 +517,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D82D0FE32220D11500AB42D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BF9C9298E4CBFAE07803658 /* Pods-ChallongeTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TCYT7HZQSV;
+				INFOPLIST_FILE = ChallongeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashleyng.ChallongeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Challonge.app/Challonge";
+			};
+			name = Debug;
+		};
+		D82D0FE42220D11500AB42D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C38A34EB79005703BF29A0EE /* Pods-ChallongeTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TCYT7HZQSV;
+				INFOPLIST_FILE = ChallongeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashleyng.ChallongeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Challonge.app/Challonge";
+			};
+			name = Release;
+		};
 		D8A0ADA621B2FB0100CF8B35 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -573,6 +724,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D82D0FE22220D11500AB42D3 /* Build configuration list for PBXNativeTarget "ChallongeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D82D0FE32220D11500AB42D3 /* Debug */,
+				D82D0FE42220D11500AB42D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D8A0AD9121B2FAFF00CF8B35 /* Build configuration list for PBXProject "Challonge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
