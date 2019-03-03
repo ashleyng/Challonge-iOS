@@ -9,6 +9,7 @@
 import UIKit
 import ChallongeNetworking
 import Crashlytics
+import SnapKit
 
 enum MatchesViewState {
     case loading
@@ -46,10 +47,12 @@ enum MatchesViewState {
 
 class MatchesViewController: UIViewController, MatchesViewInteractor {
 
+    @IBOutlet private var matchMenuView: UIView!
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
     private let refreshControl = UIRefreshControl()
     
+    private let filterMenu: MatchFilterMenu
     private let networking: ChallongeNetworking
     private var presenter: MatchesViewPresenter!
     private let tournamentName: String
@@ -62,6 +65,7 @@ class MatchesViewController: UIViewController, MatchesViewInteractor {
     init(challongeNetworking: ChallongeNetworking, tournament: Tournament) {
         networking = challongeNetworking
         tournamentName = tournament.name
+        filterMenu = MatchFilterMenu()
         
         super.init(nibName: nil, bundle: nil)
         presenter = MatchesViewPresenter(networking: networking, interactor: self, tournament: tournament)
@@ -74,8 +78,11 @@ class MatchesViewController: UIViewController, MatchesViewInteractor {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        matchMenuView.addSubview(filterMenu)
+        filterMenu.snp.makeConstraints { make in
+            make.top.bottom.right.left.equalTo(matchMenuView)
+        }
         navigationItem.title = tournamentName
-
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
 
         tableView.delegate = self
