@@ -13,11 +13,13 @@ import SnapKit
 class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     enum MenuState: Int {
+        case all
         case winner
         case loser
         
         var title: String {
             switch self {
+            case .all: return "All"
             case .winner: return "Winner"
             case .loser: return "Loser"
             }
@@ -40,8 +42,10 @@ class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.top.bottom.right.left.equalTo(self)
+            make.top.bottom.right.left.equalToSuperview()
         }
+        //TODO: make this configurable?
+        collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,11 +53,12 @@ class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2 // TODO: currently support winner/loser bracket, need to be able to handle group stages
+        return 3 // TODO: currently support winner/loser bracket, need to be able to handle group stages
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 2, height: frame.height)
+        // TODO: don't hard code width value
+        return CGSize(width: frame.width / 3, height: frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -70,7 +75,10 @@ class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         }
         let menuValue = MenuState(rawValue: indexPath.row)
         var title = ""
+        // TODO make this better?
         switch menuValue {
+        case .all?:
+            title = menuValue!.title
         case .winner?:
             title = menuValue!.title
         case .loser?:
