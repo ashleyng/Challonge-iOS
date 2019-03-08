@@ -69,7 +69,7 @@ class MatchTableViewCellModelTest: XCTestCase {
     private func match(with state: Match.State) -> Match {
         let scoreCsv = state == .complete ? "5-3" : nil
         let winnerId = state == .complete ? 12 : nil
-        return Match(id: 1234, player1Id: 12, player2Id: 23, state: state, tournamentId: 4567, winnerId: winnerId, scoresCsv: scoreCsv, suggestedPlayOrder: 3, player1Votes: nil, player2Votes: nil)
+        return Match(id: 1234, player1Id: 12, player2Id: 23, state: state, tournamentId: 4567, winnerId: winnerId, scoresCsv: scoreCsv, suggestedPlayOrder: 3, player1Votes: nil, player2Votes: nil, groupId: nil, round: 1)
     }
 
 }
