@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol MatchFilterMenuDelegate: class {
+    func filterDidChange(newFilter: MatchFilterMenu.MenuState)
+}
+
 class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     enum MenuState: Int {
@@ -25,6 +29,10 @@ class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDeleg
             }
         }
     }
+    
+    private let menuStates = [MenuState.all, MenuState.winner, MenuState.loser]
+    
+    weak var delegate: MatchFilterMenuDelegate?
     
     private lazy var collectionView: UICollectionView =  {
        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -52,12 +60,11 @@ class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3 // TODO: currently support winner/loser bracket, need to be able to handle group stages
+        return menuStates.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // TODO: don't hard code width value
-        return CGSize(width: frame.width / 3, height: frame.height)
+        return CGSize(width: frame.width / CGFloat(menuStates.count), height: frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -65,7 +72,8 @@ class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected index: \(indexPath.row)")
+        let filter = menuStates[indexPath.row]
+        delegate?.filterDidChange(newFilter: filter)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

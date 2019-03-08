@@ -11,41 +11,8 @@ import ChallongeNetworking
 import Crashlytics
 import SnapKit
 
-enum MatchesViewState {
-    case loading
-    case populated([Match], [Int: Participant], [Int: Int], MatchFilterMenu.MenuState?)
-    case empty
-    case error(Error)
 
-    var currentMatches: [Match] {
-        switch self {
-        case .loading, .empty, .error:
-            return []
-        case .populated(let matches, _, _, _):
-            return matches
-        }
-    }
-
-    var currentParticipants: [Int: Participant] {
-        switch self {
-        case .loading, .empty, .error:
-            return [:]
-        case .populated(_, let participants, _, _):
-            return participants
-        }
-    }
-    
-    var groupParticipantIds: [Int: Int] {
-        switch self {
-        case .loading, .empty, .error:
-            return [:]
-        case .populated(_, _, let participants, _):
-            return participants
-        }
-    }
-}
-
-class MatchesViewController: UIViewController, MatchesViewInteractor {
+class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilterMenuDelegate {
 
     @IBOutlet private var matchMenuView: UIView!
     @IBOutlet private var tableView: UITableView!
@@ -56,11 +23,6 @@ class MatchesViewController: UIViewController, MatchesViewInteractor {
     private let networking: ChallongeNetworking
     private var presenter: MatchesViewPresenter!
     private let tournamentName: String
-    private var state = MatchesViewState.loading {
-        didSet {
-            updateUI()
-        }
-    }
     
     init(challongeNetworking: ChallongeNetworking, tournament: Tournament) {
         networking = challongeNetworking
@@ -68,6 +30,7 @@ class MatchesViewController: UIViewController, MatchesViewInteractor {
         filterMenu = MatchFilterMenu()
         
         super.init(nibName: nil, bundle: nil)
+        filterMenu.delegate = self
         presenter = MatchesViewPresenter(networking: networking, interactor: self, tournament: tournament)
     }
     
@@ -106,13 +69,9 @@ class MatchesViewController: UIViewController, MatchesViewInteractor {
         presenter.loadMatch()
     }
     
-    func updateState(to state: MatchesViewState) {
-        self.state = state
-    }
-
-    private func updateUI() {
+    func updateState(to state: MatchesTableViewState) {
         DispatchQueue.main.async {
-            switch self.state {
+            switch state {
             case .empty, .populated:
                 self.tableView.isHidden = false
                 self.loadingIndicator.isHidden = true
@@ -121,7 +80,7 @@ class MatchesViewController: UIViewController, MatchesViewInteractor {
             case .error(let error):
                 Answers.logCustomEvent(withName: "ErrorFetchingMatches", customAttributes: [
                     "Error": error.localizedDescription
-                ])
+                    ])
             case .loading:
                 self.tableView.isHidden = true
                 self.loadingIndicator.isHidden = false
@@ -130,19 +89,22 @@ class MatchesViewController: UIViewController, MatchesViewInteractor {
             self.tableView.reloadData()
         }
     }
+    
+    func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
+        presenter.filterDidChange(newFilter: newFilter)
+    }
 }
 
 extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return state.currentMatches.count
+        return presenter.matchesCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let matches = state.currentMatches
-        let match = matches[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: MatchTableViewCell.identifier, for: indexPath) as? MatchTableViewCell {
-            cell.configureWith(MatchTableViewCellViewModel(match: match, participants: state.currentParticipants, groupParticipantIds: state.groupParticipantIds))
+            let viewModel = presenter.viewModelFor(index: indexPath.row)
+            cell.configureWith(viewModel)
             return cell
         }
         return MatchTableViewCell()
@@ -152,25 +114,11 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         defer {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-        let match = state.currentMatches[indexPath.row]
-        guard let playerOneId = match.player1Id, let playerTwoId = match.player2Id,
-            let player1 = getParticipant(id: playerOneId), let player2 = getParticipant(id: playerTwoId) else {
+        guard let matchVM = presenter.matchesViewModelAt(index: indexPath.row) else {
             unsupportedTournamentType()
             return
         }
-        
-        navigationController?.pushViewController(SingleMatchDetailsViewController(match: match, playerOne: player1, playerTwo: player2, networking: networking), animated: true)
-    }
-    
-    private func getParticipant(id: Int) -> Participant? {
-        let participants = state.currentParticipants
-        if let participant = participants[id] {
-            return participant
-        } else if let groupId = state.groupParticipantIds[id], let participant = participants[groupId] {
-            return participant
-        } else {
-            return nil
-        }
+        navigationController?.pushViewController(SingleMatchDetailsViewController(match: matchVM.match, playerOne: matchVM.playerOne, playerTwo: matchVM.playerTwo, networking: networking), animated: true)
     }
 
     private func unsupportedTournamentType() {
