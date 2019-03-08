@@ -26,7 +26,6 @@ class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDeleg
         }
     }
     
-    private let CELL_REUSE_ID = "CellId"
     private lazy var collectionView: UICollectionView =  {
        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         cv.delegate = self
@@ -38,7 +37,7 @@ class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        collectionView.register(MatchFilterMenuCell.self, forCellWithReuseIdentifier: CELL_REUSE_ID)
+        collectionView.register(MatchFilterMenuCell.self, forCellWithReuseIdentifier: MatchFilterMenuCell.identifier)
         
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -70,7 +69,7 @@ class MatchFilterMenu: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_REUSE_ID, for: indexPath) as? MatchFilterMenuCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MatchFilterMenuCell.identifier, for: indexPath) as? MatchFilterMenuCell else {
             return UICollectionViewCell()
         }
         let menuValue = MenuState(rawValue: indexPath.row)

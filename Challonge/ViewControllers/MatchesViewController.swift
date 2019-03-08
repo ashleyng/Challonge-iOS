@@ -13,7 +13,7 @@ import SnapKit
 
 enum MatchesViewState {
     case loading
-    case populated([Match], [Int: Participant], [Int: Int])
+    case populated([Match], [Int: Participant], [Int: Int], MatchFilterMenu.MenuState?)
     case empty
     case error(Error)
 
@@ -21,7 +21,7 @@ enum MatchesViewState {
         switch self {
         case .loading, .empty, .error:
             return []
-        case .populated(let matches, _, _):
+        case .populated(let matches, _, _, _):
             return matches
         }
     }
@@ -30,7 +30,7 @@ enum MatchesViewState {
         switch self {
         case .loading, .empty, .error:
             return [:]
-        case .populated(_, let participants, _):
+        case .populated(_, let participants, _, _):
             return participants
         }
     }
@@ -39,7 +39,7 @@ enum MatchesViewState {
         switch self {
         case .loading, .empty, .error:
             return [:]
-        case .populated(_, _, let participants):
+        case .populated(_, _, let participants, _):
             return participants
         }
     }

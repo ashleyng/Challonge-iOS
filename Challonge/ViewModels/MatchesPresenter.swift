@@ -41,7 +41,7 @@ struct MatchesViewPresenter {
                     return leftSuggestedPlayOrder < rightSuggestedPlayOrder
                 })
                 // TODO: memleak?
-                self.interactor?.updateState(to: .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict)))
+                self.interactor?.updateState(to: .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict), nil))
             }
         }, onError: { error in
             // TODO: memleak?
