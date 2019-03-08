@@ -15,7 +15,7 @@ class PlayingMatchViewModelTests: XCTestCase {
     var viewModel: PlayingMatchViewModel!
 
     override func setUp() {
-        let match = Match(id: 1234, player1Id: 23, player2Id: 24, state: .open, tournamentId: 4567, winnerId: nil, scoresCsv: nil, suggestedPlayOrder: nil, player1Votes: nil, player2Votes: nil)
+        let match = Match(id: 1234, player1Id: 23, player2Id: 24, state: .open, tournamentId: 4567, winnerId: nil, scoresCsv: nil, suggestedPlayOrder: nil, player1Votes: nil, player2Votes: nil, groupId: nil, round: 1)
         let player1 = Participant(name: "Participant One", tournamentId: 4567, icon: nil, id: Participant.Id(main: 23, group: []))
         let player2 = Participant(name: "Participant Two", tournamentId: 4567, icon: nil, id: Participant.Id(main: 24, group: []))
         

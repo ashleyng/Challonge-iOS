@@ -155,6 +155,7 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         let match = state.currentMatches[indexPath.row]
         guard let playerOneId = match.player1Id, let playerTwoId = match.player2Id,
             let player1 = getParticipant(id: playerOneId), let player2 = getParticipant(id: playerTwoId) else {
+            unsupportedTournamentType()
             return
         }
         
@@ -170,5 +171,12 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return nil
         }
+    }
+
+    private func unsupportedTournamentType() {
+        let alertController = UIAlertController(title: nil, message: "We currently don't support viewing this match, but don't fret, we're are always working on improving user experience and adding new features.", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
