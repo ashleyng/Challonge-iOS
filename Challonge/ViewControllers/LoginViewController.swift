@@ -63,7 +63,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
 
-        loginButtonBottomConstraint.constant = keyboardFrame.size.height + 20
+        loginButtonBottomConstraint.constant = keyboardFrame.size.height + 64
     }
 
     @objc

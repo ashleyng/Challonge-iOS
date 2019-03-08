@@ -1,7 +1,7 @@
 platform :ios, '11.0'
 
 def shared_pods
-    pod 'ChallongeNetworking', '0.4.0'
+    pod 'ChallongeNetworking', '0.5.0'
 #    pod 'ChallongeNetworking', :path => '../ChallongeNetworking'
 end
 
