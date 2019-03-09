@@ -12,6 +12,8 @@ import Crashlytics
 
 protocol MatchesViewInteractor: class {
     func updateState(to state: MatchesTableViewState)
+    func addFilterMenu()
+    func removeFilterMenu()
 }
 
 // TODO: Not actually a ViewModel. Fix me.
@@ -40,6 +42,14 @@ class MatchesViewPresenter {
         self.networking = networking
     }
     
+    func viewDidLoad() {
+        if tournament.tournamentType == .doubleElimination {
+            self.interactor?.addFilterMenu()
+        } else {
+            self.interactor?.removeFilterMenu()
+        }
+    }
+    
     func loadMatch() {
         self.interactor?.updateState(to: .loading)
         networking.getMatchesForTournament(tournament.id, completion: { matches in
@@ -66,20 +76,6 @@ class MatchesViewPresenter {
         })
     }
     
-    func matchesCount() -> Int {
-        return state.filteredMatches.count
-    }
-    
-    func isDoubleElimination() -> Bool {
-        return tournament.tournamentType == .doubleElimination
-    }
-    
-    func viewModelFor(index: Int) -> MatchTableViewCellViewModel {
-        let match = state.filteredMatches[index]
-        let mappedMatches = state.mappedMatch
-        return MatchTableViewCellViewModel(match: match, mappedMatches: mappedMatches, participants: state.currentParticipants, groupParticipantIds: state.groupParticipantIds)
-    }
-    
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
         Answers.logCustomEvent(withName: "User changed filter", customAttributes: [
             "newFilter": newFilter.rawValue,
@@ -89,6 +85,7 @@ class MatchesViewPresenter {
         state = .populated(state.allMatches, state.currentParticipants, state.groupParticipantIds, newFilter)
     }
     
+    // NOT MVP
     func matchesViewModelAt(index: Int) -> SingleMatchViewModel? {
         let match = state.filteredMatches[index]
     
@@ -129,3 +126,91 @@ class MatchesViewPresenter {
         return dict
     }
 }
+
+enum MatchesTableViewState {
+    case loading
+    case populated([Match], [Int: Participant], [Int: Int], MatchFilterMenu.MenuState?)
+    case empty
+    case error(Error)
+}
+
+extension MatchesTableViewState {
+    func viewModels() -> [MatchTableViewCellViewModel] {
+        switch self {
+        case .populated:
+            return filteredMatches.map { match in
+                return MatchTableViewCellViewModel(match: match, mappedMatches: mappedMatch, participants: currentParticipants, groupParticipantIds: groupParticipantIds)
+            }
+        default:
+            return []
+        }
+        
+    }
+}
+
+fileprivate extension MatchesTableViewState {
+    var allMatches: [Match] {
+        switch self {
+        case .loading, .empty, .error:
+            return []
+        case .populated(let matches, _, _, _):
+            return matches
+        }
+    }
+    
+    var mappedMatch: [Int: Match] {
+        switch self {
+        case .loading, .empty, .error:
+            return [:]
+        case .populated(let matches, _, _, _):
+            return matches.toDictionary(with: { $0.id })
+        }
+    }
+    
+    var filteredMatches: [Match] {
+        switch self {
+        case .loading, .empty, .error:
+            return []
+        case .populated(let matches, _, _, let filter):
+            return matches.filter { match in
+                switch filter {
+                case .all?:
+                    return true
+                case .winner?:
+                    return match.round > 0
+                case .loser?:
+                    return match.round < 0
+                default: return true
+                }
+            }
+        }
+    }
+    
+    var currentParticipants: [Int: Participant] {
+        switch self {
+        case .loading, .empty, .error:
+            return [:]
+        case .populated(_, let participants, _, _):
+            return participants
+        }
+    }
+    
+    var groupParticipantIds: [Int: Int] {
+        switch self {
+        case .loading, .empty, .error:
+            return [:]
+        case .populated(_, _, let participants, _):
+            return participants
+        }
+    }
+    
+    var currentFilter: MatchFilterMenu.MenuState? {
+        switch self {
+        case .loading, .empty, .error:
+            return nil
+        case .populated(_, _, _, let filter):
+            return filter
+        }
+    }
+}
+

@@ -10,7 +10,6 @@ import Foundation
 import ChallongeNetworking
 
 
-
 struct MatchTableViewCellViewModel {
     
     enum CellState {

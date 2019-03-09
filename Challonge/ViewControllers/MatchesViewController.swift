@@ -22,6 +22,7 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     private let networking: ChallongeNetworking
     private var presenter: MatchesViewPresenter!
     private let tournamentName: String
+    private var cellViewModels: [MatchTableViewCellViewModel] = []
     
     init(challongeNetworking: ChallongeNetworking, tournament: Tournament) {
         networking = challongeNetworking
@@ -40,7 +41,7 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupMenu()
+        presenter.viewDidLoad()
         
         navigationItem.title = tournamentName
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
@@ -80,37 +81,39 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
                 self.loadingIndicator.isHidden = false
                 self.loadingIndicator.startAnimating()
             }
+            self.cellViewModels = state.viewModels()
             self.tableView.reloadData()
         }
     }
     
+    
+    // MARK: MatchesViewInteractor
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
         presenter.filterDidChange(newFilter: newFilter)
     }
     
-    private func setupMenu() {
-        // TODO: I DON'T LIKE THIS
-        if presenter.isDoubleElimination() {
-            matchMenuView.addSubview(filterMenu)
-            filterMenu.snp.makeConstraints { make in
-                make.top.right.left.equalToSuperview()
-                make.bottom.equalToSuperview().offset(-1) // -1 for divider
-            }
-            tableView.snp.makeConstraints { make in
-                make.top.equalTo(matchMenuView.snp.bottom)
-            }
-        } else {
-            matchMenuView.isHidden = true
-            tableView.snp.makeConstraints { make in
-                make.top.equalToSuperview()
-            }
+    func addFilterMenu() {
+        matchMenuView.addSubview(filterMenu)
+        filterMenu.snp.makeConstraints { make in
+            make.top.right.left.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-1) // -1 for divider
+        }
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(matchMenuView.snp.bottom)
+        }
+    }
+    
+    func removeFilterMenu() {
+        matchMenuView.isHidden = true
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
         }
     }
 }
 
 extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.matchesCount()
+        return cellViewModels.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -120,7 +123,7 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: MatchTableViewCell.identifier, for: indexPath) as? MatchTableViewCell {
-            let viewModel = presenter.viewModelFor(index: indexPath.row)
+            let viewModel = cellViewModels[indexPath.row]
             cell.configureWith(viewModel)
             return cell
         }
