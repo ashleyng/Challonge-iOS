@@ -1,5 +1,5 @@
 //
-//  MatchTableViewCellViewModel.swift
+//  MatchViewModel.swift
 //  Challonge
 //
 //  Created by Ashley Ng on 2/24/19.
@@ -10,7 +10,7 @@ import Foundation
 import ChallongeNetworking
 
 
-struct MatchTableViewCellViewModel {
+struct MatchViewModel {
     
     enum CellState {
         case noScore
@@ -26,10 +26,10 @@ struct MatchTableViewCellViewModel {
     
     init(match: Match, mappedMatches: [Int: Match], participants: [Int: Participant], groupParticipantIds: [Int: Int]) {
         self.match = match
-        self.player1 = MatchTableViewCellViewModel.getPlayer(with: match.player1Id, participants: participants, groupParticipantIds: groupParticipantIds)
-        self.player2 = MatchTableViewCellViewModel.getPlayer(with: match.player2Id, participants: participants, groupParticipantIds: groupParticipantIds)
-        preReqsPlayer1String = MatchTableViewCellViewModel.constructPlayer1PreReqString(mappedMatch: mappedMatches, match: match)
-        preReqsPlayer2String = MatchTableViewCellViewModel.constructPlayer2PreReqString(mappedMatch: mappedMatches, match: match)
+        self.player1 = MatchViewModel.getPlayer(with: match.player1Id, participants: participants, groupParticipantIds: groupParticipantIds)
+        self.player2 = MatchViewModel.getPlayer(with: match.player2Id, participants: participants, groupParticipantIds: groupParticipantIds)
+        preReqsPlayer1String = MatchViewModel.constructPlayer1PreReqString(mappedMatch: mappedMatches, match: match)
+        preReqsPlayer2String = MatchViewModel.constructPlayer2PreReqString(mappedMatch: mappedMatches, match: match)
         state = match.state == .complete ? CellState.hasScore : CellState.noScore
     }
     

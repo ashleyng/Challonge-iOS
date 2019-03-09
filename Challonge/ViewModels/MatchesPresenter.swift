@@ -135,11 +135,11 @@ enum MatchesTableViewState {
 }
 
 extension MatchesTableViewState {
-    func viewModels() -> [MatchTableViewCellViewModel] {
+    func viewModels() -> [MatchViewModel] {
         switch self {
         case .populated:
             return filteredMatches.map { match in
-                return MatchTableViewCellViewModel(match: match, mappedMatches: mappedMatch, participants: currentParticipants, groupParticipantIds: groupParticipantIds)
+                return MatchViewModel(match: match, mappedMatches: mappedMatch, participants: currentParticipants, groupParticipantIds: groupParticipantIds)
             }
         default:
             return []

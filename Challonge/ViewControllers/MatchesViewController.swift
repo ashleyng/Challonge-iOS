@@ -22,7 +22,7 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     private let networking: ChallongeNetworking
     private var presenter: MatchesViewPresenter!
     private let tournamentName: String
-    private var cellViewModels: [MatchTableViewCellViewModel] = []
+    private var cellViewModels: [MatchViewModel] = []
     
     init(challongeNetworking: ChallongeNetworking, tournament: Tournament) {
         networking = challongeNetworking

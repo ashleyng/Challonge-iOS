@@ -25,7 +25,7 @@ class MatchTableViewCell: UITableViewCell {
         setupMatchLabel()
     }
 
-    func configureWith(_ matchViewModel: MatchTableViewCellViewModel) {
+    func configureWith(_ matchViewModel: MatchViewModel) {
         setupTextLabels(with: matchViewModel)
         setupVisibleStatusLabels(with: matchViewModel.state)
     }
@@ -45,7 +45,7 @@ class MatchTableViewCell: UITableViewCell {
         self.matchLabel.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
-    private func setupTextLabels(with viewModel: MatchTableViewCellViewModel) {
+    private func setupTextLabels(with viewModel: MatchViewModel) {
         matchLabel.text = viewModel.matchLabel()
         player1Name.text = viewModel.playerOneName()
         player2Name.text = viewModel.playerTwoName()
@@ -59,7 +59,7 @@ class MatchTableViewCell: UITableViewCell {
         player2Status.textColor = viewModel.statusLabelColor()
     }
     
-    private func setupVisibleStatusLabels(with state: MatchTableViewCellViewModel.CellState) {
+    private func setupVisibleStatusLabels(with state: MatchViewModel.CellState) {
         
         switch state {
             case .noScore:
