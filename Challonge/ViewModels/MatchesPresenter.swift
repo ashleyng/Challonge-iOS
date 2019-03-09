@@ -23,7 +23,7 @@ struct SingleMatchViewModel {
 
 class MatchesViewPresenter {
     
-    private let tournamentId: Int
+    private let tournament: Tournament
     private let networking: ChallongeNetworking
     private weak var interactor: MatchesViewInteractor?
     private var state = MatchesTableViewState.loading {
@@ -33,14 +33,15 @@ class MatchesViewPresenter {
     }
     
     init(networking: ChallongeNetworking, interactor: MatchesViewInteractor, tournament: Tournament) {
-        self.tournamentId = tournament.id
+        self.tournament = tournament
+        
         self.interactor = interactor
         self.networking = networking
     }
     
     func loadMatch() {
         self.interactor?.updateState(to: .loading)
-        networking.getMatchesForTournament(tournamentId, completion: { matches in
+        networking.getMatchesForTournament(tournament.id, completion: { matches in
             self.fetchParticipants() { participants in
                 let participantsDict = participants.toDictionary { $0.id.main }
                 let sortedMatches = matches.sorted(by: { left, right in
@@ -63,6 +64,10 @@ class MatchesViewPresenter {
     
     func matchesCount() -> Int {
         return state.filteredMatches.count
+    }
+    
+    func isDoubleElimination() -> Bool {
+        return tournament.tournamentType == .doubleElimination
     }
     
     func viewModelFor(index: Int) -> MatchTableViewCellViewModel {
@@ -97,7 +102,7 @@ class MatchesViewPresenter {
     }
     
     private func fetchParticipants(completion: @escaping ([Participant]) -> Void) {
-        networking.getParticipantsForTournament(tournamentId, completion: { (participants: [Participant]) in
+        networking.getParticipantsForTournament(tournament.id, completion: { (participants: [Participant]) in
             completion(participants)
         }, onError: { _ in })
     }

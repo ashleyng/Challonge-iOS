@@ -41,11 +41,8 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        matchMenuView.addSubview(filterMenu)
-        filterMenu.snp.makeConstraints { make in
-            make.top.right.left.equalTo(matchMenuView)
-            make.bottom.equalToSuperview().offset(-1) // -1 for divider
-        }
+        setupMenu()
+        
         navigationItem.title = tournamentName
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
 
@@ -93,6 +90,25 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
         presenter.filterDidChange(newFilter: newFilter)
+    }
+    
+    private func setupMenu() {
+        // TODO: I DON'T LIKE THIS
+        if presenter.isDoubleElimination() {
+            matchMenuView.addSubview(filterMenu)
+            filterMenu.snp.makeConstraints { make in
+                make.top.right.left.equalTo(matchMenuView)
+                make.bottom.equalToSuperview().offset(-1) // -1 for divider
+            }
+            tableView.snp.makeConstraints { make in
+                make.top.equalTo(matchMenuView)
+            }
+        } else {
+            matchMenuView.isHidden = true
+            tableView.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+            }
+        }
     }
 }
 
