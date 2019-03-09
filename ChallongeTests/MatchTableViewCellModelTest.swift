@@ -11,7 +11,7 @@ import ChallongeNetworking
 @testable import Challonge
 
 class MatchTableViewCellModelTest: XCTestCase {
-    var viewModel: MatchTableViewCellViewModel!
+    var viewModel: MatchViewModel!
     let participants = [
         12: Participant(name: "Player One", tournamentId: 4567, icon: nil, id: Participant.Id(main: 12, group: [])),
         23: Participant(name: "Player Two", tournamentId: 4567, icon: nil, id: Participant.Id(main: 23, group: []))
@@ -19,7 +19,7 @@ class MatchTableViewCellModelTest: XCTestCase {
 
     override func setUp() {
         let completeMatch = match(with: .complete)
-        self.viewModel = MatchTableViewCellViewModel(match: completeMatch, mappedMatches: [completeMatch.id: completeMatch], participants: participants, groupParticipantIds: [:])
+        self.viewModel = MatchViewModel(match: completeMatch, mappedMatches: [completeMatch.id: completeMatch], participants: participants)
     }
 
     func testMatchLabel() {
@@ -41,7 +41,7 @@ class MatchTableViewCellModelTest: XCTestCase {
     func testOpenMatchStatusLabel() {
         // TODO: Find a better way to do this.
         let openMatch = match(with: .open)
-        self.viewModel = MatchTableViewCellViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants, groupParticipantIds: [:])
+        self.viewModel = MatchViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants)
         
         let expectedLabel = "open"
         let actualLabel = viewModel.matchStatus()
@@ -51,7 +51,7 @@ class MatchTableViewCellModelTest: XCTestCase {
     func testOpenMatchPlayerStatusLabel() {
         // TODO: Find a better way to do this.
         let openMatch = match(with: .open)
-        self.viewModel = MatchTableViewCellViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants, groupParticipantIds: [:])
+        self.viewModel = MatchViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants)
         
         let expectedLabel = "open"
         let actualPlayerOneStatus = viewModel.playerOneStatus()
@@ -70,7 +70,7 @@ class MatchTableViewCellModelTest: XCTestCase {
     func testOpenLabelColor() {
         // TODO: Find a better way to do this.
         let openMatch = match(with: .open)
-        self.viewModel = MatchTableViewCellViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants, groupParticipantIds: [:])
+        self.viewModel = MatchViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants)
         
         let expectedColor = UIColor.gray
         let actualColor = viewModel.statusLabelColor()
@@ -80,7 +80,7 @@ class MatchTableViewCellModelTest: XCTestCase {
     func testPendingLabelColor() {
         // TODO: Find a better way to do this.
         let pendingMatch =  match(with: .pending)
-        self.viewModel = MatchTableViewCellViewModel(match: pendingMatch, mappedMatches: [pendingMatch.id: pendingMatch], participants: participants, groupParticipantIds: [:])
+        self.viewModel = MatchViewModel(match: pendingMatch, mappedMatches: [pendingMatch.id: pendingMatch], participants: participants)
         
         let expectedColor = UIColor.red
         let actualColor = viewModel.statusLabelColor()

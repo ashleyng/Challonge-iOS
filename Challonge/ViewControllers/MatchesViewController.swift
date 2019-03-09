@@ -71,7 +71,10 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     func updateState(to state: MatchesTableViewState) {
         DispatchQueue.main.async {
             switch state {
-            case .empty, .populated, .error:
+            case .populated(let viewModels):
+                self.cellViewModels = viewModels
+                fallthrough
+            case .empty, .error:
                 self.tableView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 self.refreshControl.endRefreshing()
@@ -81,7 +84,6 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
                 self.loadingIndicator.isHidden = false
                 self.loadingIndicator.startAnimating()
             }
-            self.cellViewModels = state.viewModels()
             self.tableView.reloadData()
         }
     }

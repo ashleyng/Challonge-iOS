@@ -18,16 +18,21 @@ struct MatchViewModel {
     }
     
     private let match: Match
-    private let player1: Participant?
-    private let player2: Participant?
+    private var player1: Participant? = nil
+    private var player2: Participant? = nil
     private let preReqsPlayer1String: String?
     private let preReqsPlayer2String: String?
     private(set) var state: CellState = .noScore
     
-    init(match: Match, mappedMatches: [Int: Match], participants: [Int: Participant], groupParticipantIds: [Int: Int]) {
+    init(match: Match, mappedMatches: [Int: Match], participants: [Int: Participant]) {
         self.match = match
-        self.player1 = MatchViewModel.getPlayer(with: match.player1Id, participants: participants, groupParticipantIds: groupParticipantIds)
-        self.player2 = MatchViewModel.getPlayer(with: match.player2Id, participants: participants, groupParticipantIds: groupParticipantIds)
+        if let player1Id = match.player1Id {
+            self.player1 = participants[player1Id]
+        }
+        
+        if let player2Id = match.player2Id {
+            self.player2 = participants[player2Id]
+        }
         preReqsPlayer1String = MatchViewModel.constructPlayer1PreReqString(mappedMatch: mappedMatches, match: match)
         preReqsPlayer2String = MatchViewModel.constructPlayer2PreReqString(mappedMatch: mappedMatches, match: match)
         state = match.state == .complete ? CellState.hasScore : CellState.noScore
