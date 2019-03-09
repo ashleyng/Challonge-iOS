@@ -17,12 +17,11 @@ class MatchTableViewCell: UITableViewCell {
     @IBOutlet private var player2Name: UILabel!
     @IBOutlet private var player2Status: UILabel!
     @IBOutlet private var singleStatus: UILabel!
-    
-    private var customBorder: UIView = UIView()
+    @IBOutlet private var outerView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupCustomBorder()
+        setupBorder()
         setupMatchLabel()
     }
 
@@ -31,17 +30,11 @@ class MatchTableViewCell: UITableViewCell {
         setupVisibleStatusLabels(with: matchViewModel.state)
     }
     
-    private func setupCustomBorder() {
-        addSubview(customBorder)
+    private func setupBorder() {
         
-        customBorder.snp.makeConstraints { make in
-            make.bottom.right.left.equalToSuperview()
-            make.top.equalToSuperview().offset(8)
-        }
-        
-        customBorder.layer.borderWidth = 1
-        customBorder.layer.cornerRadius = 5
-        customBorder.layer.borderColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1).cgColor
+        outerView.layer.borderWidth = 1
+        outerView.layer.cornerRadius = 5
+        outerView.layer.borderColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1).cgColor
     }
     
     private func setupMatchLabel() {

@@ -83,7 +83,7 @@ class MatchesViewPresenter {
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
         Answers.logCustomEvent(withName: "User changed filter", customAttributes: [
             "newFilter": newFilter.rawValue,
-            "oldFilter": state.currentFilter ?? ""
+            "oldFilter": state.currentFilter?.rawValue ?? ""
         ])
 
         state = .populated(state.allMatches, state.currentParticipants, state.groupParticipantIds, newFilter)
