@@ -79,7 +79,6 @@ class MatchesViewPresenter {
         self.interactor?.updateState(to: .loading)
         networking.getMatchesForTournament(tournament.id, completion: { matches in
             self.fetchParticipants() { participants in
-                
                 let sortedMatches = matches.sorted(by: { left, right in
                     // TODO need to check these bools
                     guard let leftSuggestedPlayOrder = left.suggestedPlayOrder else {
@@ -91,8 +90,9 @@ class MatchesViewPresenter {
                     return leftSuggestedPlayOrder < rightSuggestedPlayOrder
                 })
                 self.matches = sortedMatches
+                self.participants = self.participantsToDictionary(participants: participants)
                 let viewModels = self.filteredMatches.map { match in
-                    return MatchViewModel(match: match, mappedMatches: matches.toDictionary(with: { $0.id }), participants: self.participantsToDictionary(participants: participants))
+                    return MatchViewModel(match: match, mappedMatches: matches.toDictionary(with: { $0.id }), participants: self.participants)
                 }
                 self.state = .populated(viewModels)
             }
