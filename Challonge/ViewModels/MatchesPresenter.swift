@@ -76,12 +76,13 @@ class MatchesViewPresenter {
     
     func viewModelFor(index: Int) -> MatchTableViewCellViewModel {
         let match = state.filteredMatches[index]
-        return MatchTableViewCellViewModel(match: match, participants: state.currentParticipants, groupParticipantIds: state.groupParticipantIds)
+        let mappedMatches = state.mappedMatch
+        return MatchTableViewCellViewModel(match: match, mappedMatches: mappedMatches, participants: state.currentParticipants, groupParticipantIds: state.groupParticipantIds)
     }
     
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
         Answers.logCustomEvent(withName: "User changed filter", customAttributes: [
-            "newFilter": newFilter,
+            "newFilter": newFilter.rawValue,
             "oldFilter": state.currentFilter ?? ""
         ])
 
@@ -90,9 +91,11 @@ class MatchesViewPresenter {
     
     func matchesViewModelAt(index: Int) -> SingleMatchViewModel? {
         let match = state.filteredMatches[index]
+    
         guard let playerOne = participantFor(id: match.player1Id), let playerTwo = participantFor(id: match.player2Id) else {
             return nil
         }
+        
         return SingleMatchViewModel(match: match, playerOne: playerOne, playerTwo: playerTwo)
     }
     

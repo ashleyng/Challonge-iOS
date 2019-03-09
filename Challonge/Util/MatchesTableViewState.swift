@@ -24,6 +24,15 @@ enum MatchesTableViewState {
         }
     }
     
+    var mappedMatch: [Int: Match] {
+        switch self {
+        case .loading, .empty, .error:
+            return [:]
+        case .populated(let matches, _, _, _):
+            return matches.toDictionary(with: { $0.id })
+        }
+    }
+    
     var filteredMatches: [Match] {
         switch self {
         case .loading, .empty, .error:

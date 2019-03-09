@@ -9,6 +9,8 @@
 import Foundation
 import ChallongeNetworking
 
+
+
 struct MatchTableViewCellViewModel {
     
     enum CellState {
@@ -19,12 +21,16 @@ struct MatchTableViewCellViewModel {
     private let match: Match
     private let player1: Participant?
     private let player2: Participant?
+    private let preReqsPlayer1String: String?
+    private let preReqsPlayer2String: String?
     private(set) var state: CellState = .noScore
     
-    init(match: Match, participants: [Int: Participant], groupParticipantIds: [Int: Int]) {
+    init(match: Match, mappedMatches: [Int: Match], participants: [Int: Participant], groupParticipantIds: [Int: Int]) {
         self.match = match
         self.player1 = MatchTableViewCellViewModel.getPlayer(with: match.player1Id, participants: participants, groupParticipantIds: groupParticipantIds)
         self.player2 = MatchTableViewCellViewModel.getPlayer(with: match.player2Id, participants: participants, groupParticipantIds: groupParticipantIds)
+        preReqsPlayer1String = MatchTableViewCellViewModel.constructPlayer1PreReqString(mappedMatch: mappedMatches, match: match)
+        preReqsPlayer2String = MatchTableViewCellViewModel.constructPlayer2PreReqString(mappedMatch: mappedMatches, match: match)
         state = match.state == .complete ? CellState.hasScore : CellState.noScore
     }
     
@@ -40,11 +46,21 @@ struct MatchTableViewCellViewModel {
     }
     
     func playerOneName() -> String {
-        return player1?.name ?? "Unknown Player"
+        if let name = player1?.name {
+            return name
+        } else if let preReqMatch = preReqsPlayer1String {
+            return preReqMatch
+        }
+        return "Unknown Player"
     }
     
     func playerTwoName() -> String {
-        return player2?.name ?? "Unknown Player"
+        if let name = player2?.name {
+            return name
+        } else if let preReqMatch = preReqsPlayer2String {
+            return preReqMatch
+        }
+        return "Unknown Player"
     }
     
     func playerOneStatus() -> String {
@@ -81,6 +97,22 @@ struct MatchTableViewCellViewModel {
         case .pending:
             return UIColor.red
         }
+    }
+    
+    private static func constructPlayer1PreReqString(mappedMatch: [Int: Match], match: Match) -> String? {
+        if let player1Match = match.preReqInfo.player1MatchId, let matchString = mappedMatch[player1Match]?.suggestedPlayOrder {
+            let player1String = match.preReqInfo.player1MatchIsLoser ? "Loser from Match " : "Winner from Match "
+            return player1String.appending(String(matchString))
+        }
+        return nil
+    }
+    
+    private static func constructPlayer2PreReqString(mappedMatch: [Int: Match], match: Match) -> String? {
+        if let player2Match = match.preReqInfo.player2MatchId, let matchString = mappedMatch[player2Match]?.suggestedPlayOrder {
+            let player2String = match.preReqInfo.player2MatchIsLoser ? "Loser from Match " : "Winner from Match "
+            return player2String.appending(String(matchString))
+        }
+        return nil
     }
     
     private static func getPlayer(with id: Int?, participants: [Int: Participant], groupParticipantIds: [Int: Int]) -> Participant? {
