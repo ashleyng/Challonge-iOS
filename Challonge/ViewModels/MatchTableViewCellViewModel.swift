@@ -10,35 +10,66 @@ import Foundation
 import ChallongeNetworking
 
 struct MatchTableViewCellViewModel {
+    
+    enum CellState {
+        case noScore
+        case hasScore
+    }
+    
     private let match: Match
     private let player1: Participant?
     private let player2: Participant?
+    private(set) var state: CellState = .noScore
     
     init(match: Match, participants: [Int: Participant], groupParticipantIds: [Int: Int]) {
         self.match = match
         self.player1 = MatchTableViewCellViewModel.getPlayer(with: match.player1Id, participants: participants, groupParticipantIds: groupParticipantIds)
         self.player2 = MatchTableViewCellViewModel.getPlayer(with: match.player2Id, participants: participants, groupParticipantIds: groupParticipantIds)
+        state = match.state == .complete ? CellState.hasScore : CellState.noScore
     }
     
     func matchLabel() -> String {
-        let player1 = self.player1
-        let player2 = self.player2
-        
-        if player1 == nil && player2 == nil {
-            if let matchNumber = match.suggestedPlayOrder {
-                return "Match \(matchNumber)"
-            }
-            return "Unknown Match#"
+        if let matchNumber = match.suggestedPlayOrder {
+            return "Match \(matchNumber)"
         }
-
-        let player1Name = player1?.name ?? "Unknown Player"
-        let player2Name = player2?.name ?? "Unknown Player"
-        return "\(player1Name) vs. \(player2Name)"
+        return "Unknown Match"
     }
     
-    // TODO: Fix this optional string. seems weird to be optional
-    func matchStatusLabelText() -> String? {
-        return match.state == .complete ? match.scoresCsv : match.state.rawValue
+    func matchStatus() -> String {
+        return match.state.rawValue
+    }
+    
+    func playerOneName() -> String {
+        return player1?.name ?? "Unknown Player"
+    }
+    
+    func playerTwoName() -> String {
+        return player2?.name ?? "Unknown Player"
+    }
+    
+    func playerOneStatus() -> String {
+        switch match.state {
+        case .complete:
+            guard let score = match.playerOneScore else {
+                fallthrough
+            }
+            return "\(score)"
+        case .open, .pending:
+            return match.state.rawValue
+        }
+    }
+    
+    // TODO: Fix duplicate code
+    func playerTwoStatus() -> String {
+        switch match.state {
+        case .complete:
+            guard let score = match.playerTwoScore else {
+                fallthrough
+            }
+            return "\(score)"
+        case .open, .pending:
+            return match.state.rawValue
+        }
     }
     
     func statusLabelColor() -> UIColor {

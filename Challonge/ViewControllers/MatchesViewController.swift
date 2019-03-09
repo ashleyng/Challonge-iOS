@@ -44,6 +44,7 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
         
         navigationItem.title = tournamentName
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
+        tableView.separatorStyle = .none
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -92,11 +93,11 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
         if presenter.isDoubleElimination() {
             matchMenuView.addSubview(filterMenu)
             filterMenu.snp.makeConstraints { make in
-                make.top.right.left.equalTo(matchMenuView)
+                make.top.right.left.equalToSuperview()
                 make.bottom.equalToSuperview().offset(-1) // -1 for divider
             }
             tableView.snp.makeConstraints { make in
-                make.top.equalTo(matchMenuView)
+                make.top.equalTo(matchMenuView.snp.bottom)
             }
         } else {
             matchMenuView.isHidden = true
@@ -110,6 +111,10 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
 extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.matchesCount()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 96
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
