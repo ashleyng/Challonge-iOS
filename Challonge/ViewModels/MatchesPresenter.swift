@@ -8,6 +8,7 @@
 
 import Foundation
 import ChallongeNetworking
+import Crashlytics
 
 protocol MatchesViewInteractor: class {
     func updateState(to state: MatchesTableViewState)
@@ -58,6 +59,9 @@ class MatchesViewPresenter {
                 self.state = .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict), filter)
             }
         }, onError: { error in
+            Answers.logCustomEvent(withName: "ErrorFetchingMatches", customAttributes: [
+                "Error": error.localizedDescription
+            ])
             self.state = .error(error)
         })
     }
@@ -76,6 +80,11 @@ class MatchesViewPresenter {
     }
     
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
+        Answers.logCustomEvent(withName: "User changed filter", customAttributes: [
+            "newFilter": newFilter,
+            "oldFilter": state.currentFilter
+        ])
+
         state = .populated(state.allMatches, state.currentParticipants, state.groupParticipantIds, newFilter)
     }
     

@@ -8,7 +8,6 @@
 
 import UIKit
 import ChallongeNetworking
-import Crashlytics
 import SnapKit
 
 
@@ -70,15 +69,11 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     func updateState(to state: MatchesTableViewState) {
         DispatchQueue.main.async {
             switch state {
-            case .empty, .populated:
+            case .empty, .populated, .error:
                 self.tableView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 self.refreshControl.endRefreshing()
                 self.loadingIndicator.stopAnimating()
-            case .error(let error):
-                Answers.logCustomEvent(withName: "ErrorFetchingMatches", customAttributes: [
-                    "Error": error.localizedDescription
-                    ])
             case .loading:
                 self.tableView.isHidden = true
                 self.loadingIndicator.isHidden = false
