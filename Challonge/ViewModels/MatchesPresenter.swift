@@ -53,11 +53,10 @@ class MatchesViewPresenter {
                     }
                     return leftSuggestedPlayOrder < rightSuggestedPlayOrder
                 })
-                // TODO: memleak?
-                self.state = .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict), nil)
+                let filter = self.state.currentFilter ?? .all
+                self.state = .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict), filter)
             }
         }, onError: { error in
-            // TODO: memleak?
             self.state = .error(error)
         })
     }
@@ -72,7 +71,6 @@ class MatchesViewPresenter {
     }
     
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
-        print("Delegate filterDidChange(newFilter:)")
         state = .populated(state.allMatches, state.currentParticipants, state.groupParticipantIds, newFilter)
     }
     

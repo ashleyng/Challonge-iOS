@@ -21,15 +21,18 @@ struct MatchTableViewCellViewModel {
     }
     
     func matchLabel() -> String {
-        guard let player1 = self.player1, let player2 = self.player2 else {
+        let player1 = self.player1
+        let player2 = self.player2
+        
+        if player1 == nil && player2 == nil {
             if let matchNumber = match.suggestedPlayOrder {
                 return "Match \(matchNumber)"
             }
             return "Unknown Match#"
         }
-        // TODO: Add back in "Unknown Player" Text
-        let player1Name = player1.name
-        let player2Name = player2.name
+
+        let player1Name = player1?.name ?? "Unknown Player"
+        let player2Name = player2?.name ?? "Unknown Player"
         return "\(player1Name) vs. \(player2Name)"
     }
     

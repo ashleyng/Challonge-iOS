@@ -43,7 +43,8 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
         
         matchMenuView.addSubview(filterMenu)
         filterMenu.snp.makeConstraints { make in
-            make.top.bottom.right.left.equalTo(matchMenuView)
+            make.top.right.left.equalTo(matchMenuView)
+            make.bottom.equalToSuperview().offset(-1) // -1 for divider
         }
         navigationItem.title = tournamentName
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)

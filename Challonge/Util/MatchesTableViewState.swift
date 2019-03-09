@@ -60,4 +60,13 @@ enum MatchesTableViewState {
             return participants
         }
     }
+    
+    var currentFilter: MatchFilterMenu.MenuState? {
+        switch self {
+        case .loading, .empty, .error:
+            return nil
+        case .populated(_, _, _, let filter):
+            return filter
+        }
+    }
 }
