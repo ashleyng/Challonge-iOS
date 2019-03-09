@@ -111,6 +111,17 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
             make.top.equalToSuperview()
         }
     }
+    
+    func presentSingleMatch(_ match: Match, playerOne: Participant, playerTwo: Participant) {
+        navigationController?.pushViewController(SingleMatchDetailsViewController(match: match, playerOne: playerOne, playerTwo: playerTwo, networking: networking), animated: true)
+    }
+    
+    func showUnsupportedAlert() {
+        let alertController = UIAlertController(title: nil, message: "We currently don't support viewing this match, but don't fret, we're are always working on improving user experience and adding new features.", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -136,17 +147,6 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         defer {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-        guard let matchVM = presenter.matchesViewModelAt(index: indexPath.row) else {
-            unsupportedTournamentType()
-            return
-        }
-        navigationController?.pushViewController(SingleMatchDetailsViewController(match: matchVM.match, playerOne: matchVM.playerOne, playerTwo: matchVM.playerTwo, networking: networking), animated: true)
-    }
-
-    private func unsupportedTournamentType() {
-        let alertController = UIAlertController(title: nil, message: "We currently don't support viewing this match, but don't fret, we're are always working on improving user experience and adding new features.", preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(dismissAction)
-        present(alertController, animated: true, completion: nil)
+        presenter.tappedCellAt(index: indexPath.row)
     }
 }

@@ -14,6 +14,8 @@ protocol MatchesViewInteractor: class {
     func updateState(to state: MatchesTableViewState)
     func addFilterMenu()
     func removeFilterMenu()
+    func presentSingleMatch(_ match: Match, playerOne: Participant, playerTwo: Participant)
+    func showUnsupportedAlert()
 }
 
 // TODO: Not actually a ViewModel. Fix me.
@@ -107,7 +109,7 @@ class MatchesViewPresenter {
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
         Answers.logCustomEvent(withName: "User changed filter", customAttributes: [
             "newFilter": newFilter.rawValue,
-            "oldFilter": filter
+            "oldFilter": filter.rawValue
         ])
         filter = newFilter
         let viewModels = filteredMatches.map { match in
@@ -115,16 +117,15 @@ class MatchesViewPresenter {
         }
         state = .populated(viewModels)
     }
-    
-    // NOT MVP
-    func matchesViewModelAt(index: Int) -> SingleMatchViewModel? {
+
+    func tappedCellAt(index: Int) {
         let match = filteredMatches[index]
     
         guard let playerOne = participantFor(id: match.player1Id), let playerTwo = participantFor(id: match.player2Id) else {
-            return nil
+            self.interactor?.showUnsupportedAlert()
+            return
         }
-        
-        return SingleMatchViewModel(match: match, playerOne: playerOne, playerTwo: playerTwo)
+        self.interactor?.presentSingleMatch(match, playerOne: playerOne, playerTwo: playerTwo)
     }
     
     private func participantFor(id: Int?) -> Participant? {
