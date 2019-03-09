@@ -18,28 +18,47 @@ class MatchTableViewCellModelTest: XCTestCase {
     ]
 
     override func setUp() {
-        self.viewModel = MatchTableViewCellViewModel(match: match(with: .complete), participants: participants, groupParticipantIds: [:])
+        let completeMatch = match(with: .complete)
+        self.viewModel = MatchTableViewCellViewModel(match: completeMatch, mappedMatches: [completeMatch.id: completeMatch], participants: participants, groupParticipantIds: [:])
     }
 
     func testMatchLabel() {
-        let expectedMatchLabel = "Player One vs. Player Two"
+        let expectedMatchLabel = "Match 3"
         let actualMatchLabel = viewModel.matchLabel()
         XCTAssertEqual(expectedMatchLabel, actualMatchLabel)
     }
     
-    func testCompletedMatchStatusLabel() {
-        let expectedLabel = "5-3"
-        let actualLabel = viewModel.matchStatusLabelText()
-        XCTAssertEqual(expectedLabel, actualLabel)
+    func testCompletedMatchScoreLabels() {
+        let expectedPlayerOneScore = "5"
+        let expectedPlayerTwoScore = "3"
+        let actualPlayerOneScore = viewModel.playerOneStatus()
+        let actualPlayerTwoScore = viewModel.playerTwoStatus()
+        
+        XCTAssertEqual(expectedPlayerOneScore, actualPlayerOneScore)
+        XCTAssertEqual(expectedPlayerTwoScore, actualPlayerTwoScore)
     }
     
     func testOpenMatchStatusLabel() {
         // TODO: Find a better way to do this.
-        self.viewModel = MatchTableViewCellViewModel(match: match(with: .open), participants: participants, groupParticipantIds: [:])
+        let openMatch = match(with: .open)
+        self.viewModel = MatchTableViewCellViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants, groupParticipantIds: [:])
         
         let expectedLabel = "open"
-        let actualLabel = viewModel.matchStatusLabelText()
+        let actualLabel = viewModel.matchStatus()
         XCTAssertEqual(expectedLabel, actualLabel)
+    }
+    
+    func testOpenMatchPlayerStatusLabel() {
+        // TODO: Find a better way to do this.
+        let openMatch = match(with: .open)
+        self.viewModel = MatchTableViewCellViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants, groupParticipantIds: [:])
+        
+        let expectedLabel = "open"
+        let actualPlayerOneStatus = viewModel.playerOneStatus()
+        let actualPlayerTwoStatus = viewModel.playerTwoStatus()
+        
+        XCTAssertEqual(expectedLabel, actualPlayerOneStatus)
+        XCTAssertEqual(expectedLabel, actualPlayerTwoStatus)
     }
     
     func testCompletedLabelColor() {
@@ -50,7 +69,8 @@ class MatchTableViewCellModelTest: XCTestCase {
     
     func testOpenLabelColor() {
         // TODO: Find a better way to do this.
-        self.viewModel = MatchTableViewCellViewModel(match: match(with: .open), participants: participants, groupParticipantIds: [:])
+        let openMatch = match(with: .open)
+        self.viewModel = MatchTableViewCellViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants, groupParticipantIds: [:])
         
         let expectedColor = UIColor.gray
         let actualColor = viewModel.statusLabelColor()
@@ -59,7 +79,8 @@ class MatchTableViewCellModelTest: XCTestCase {
     
     func testPendingLabelColor() {
         // TODO: Find a better way to do this.
-        self.viewModel = MatchTableViewCellViewModel(match: match(with: .pending), participants: participants, groupParticipantIds: [:])
+        let pendingMatch =  match(with: .pending)
+        self.viewModel = MatchTableViewCellViewModel(match: pendingMatch, mappedMatches: [pendingMatch.id: pendingMatch], participants: participants, groupParticipantIds: [:])
         
         let expectedColor = UIColor.red
         let actualColor = viewModel.statusLabelColor()
@@ -69,7 +90,8 @@ class MatchTableViewCellModelTest: XCTestCase {
     private func match(with state: Match.State) -> Match {
         let scoreCsv = state == .complete ? "5-3" : nil
         let winnerId = state == .complete ? 12 : nil
-        return Match(id: 1234, player1Id: 12, player2Id: 23, state: state, tournamentId: 4567, winnerId: winnerId, scoresCsv: scoreCsv, suggestedPlayOrder: 3, player1Votes: nil, player2Votes: nil, groupId: nil, round: 1)
+        let preReq = Match.PreReqInformation(player1MatchId: nil, player2MatchId: nil, player1MatchIsLoser: false, player2MatchIsLoser: false)
+        return Match(id: 1234, player1Id: 12, player2Id: 23, state: state, tournamentId: 4567, winnerId: winnerId, scoresCsv: scoreCsv, suggestedPlayOrder: 3, player1Votes: nil, player2Votes: nil, groupId: nil, round: 1, preReqInfo: preReq)
     }
 
 }

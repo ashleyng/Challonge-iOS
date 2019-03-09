@@ -1,8 +1,9 @@
 platform :ios, '11.0'
 
 def shared_pods
-    pod 'ChallongeNetworking', '0.5.0'
-#    pod 'ChallongeNetworking', :path => '../ChallongeNetworking'
+    # pod 'ChallongeNetworking', '0.5.0'
+    pod 'ChallongeNetworking', :git => 'git@github.com:ashleyng/ChallongeNetworking.git', :branch => 'MatchPreReqs'
+#   pod 'ChallongeNetworking', :path => '../ChallongeNetworking'
 end
 
 target 'Challonge' do
