@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let keys = ChallongeKeys()
         let instabugKey = isRunningLive() ? keys.instabugLive : keys.instabugBeta
         Instabug.start(withToken: instabugKey, invocationEvents: [.none])
+        BugReporting.enabledAttachmentTypes = [.extraScreenShot, .galleryImage, .screenRecording]
         return true
     }
     
