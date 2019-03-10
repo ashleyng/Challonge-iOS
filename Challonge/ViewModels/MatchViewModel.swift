@@ -39,10 +39,10 @@ struct MatchViewModel {
             self.player2 = participants[player2Id]
         }
         preReqsPlayer1String = preReqMatchString(preReq: match.preReqInfo,
-                                                 match: mappedMatches.optionalKeyedValueOrDefaultValue(key: match.preReqInfo.player2MatchId),
+                                                 match: mappedMatches.keyedValueOrDefault(key: match.preReqInfo.player2MatchId),
                                                  player: .playerOne)
         preReqsPlayer2String = preReqMatchString(preReq: match.preReqInfo,
-                                                 match: mappedMatches.optionalKeyedValueOrDefaultValue(key: match.preReqInfo.player2MatchId),
+                                                 match: mappedMatches.keyedValueOrDefault(key: match.preReqInfo.player2MatchId),
                                                  player: .playerTwo)
         state = match.state == .complete ? CellState.hasScore : CellState.noScore
     }
@@ -58,46 +58,30 @@ struct MatchViewModel {
         return match.state.rawValue
     }
     
-    func playerOneName() -> String {
-        if let name = player1?.name {
+    func nameFor(player: Player) -> String {
+        let participant: (Participant?, String?) = {
+            switch player {
+            case .playerOne: return (player1, preReqsPlayer1String)
+            case .playerTwo: return (player2, preReqsPlayer2String)
+            }
+        }()
+        
+        if let name = participant.0?.name {
             return name
-        } else if let preReqMatch = preReqsPlayer1String {
+        } else if let preReqMatch = participant.1 {
             return preReqMatch
         }
         return "Unknown Player"
     }
     
-    func playerTwoName() -> String {
-        if let name = player2?.name {
-            return name
-        } else if let preReqMatch = preReqsPlayer2String {
-            return preReqMatch
+    func statusFor(player: Player) -> String? {
+        switch player{
+        case .playerOne:
+            return match.playerOneScore
+        case .playerTwo:
+            return match.playerTwoScore
         }
-        return "Unknown Player"
-    }
-    
-    func playerOneStatus() -> String {
-        switch match.state {
-        case .complete:
-            guard let score = match.playerOneScore else {
-                fallthrough
-            }
-            return "\(score)"
-        case .open, .pending:
-            return match.state.rawValue
-        }
-    }
-    
-    func playerTwoStatus() -> String {
-        switch match.state {
-        case .complete:
-            guard let score = match.playerTwoScore else {
-                fallthrough
-            }
-            return "\(score)"
-        case .open, .pending:
-            return match.state.rawValue
-        }
+        
     }
     
     func statusLabelColor() -> UIColor {

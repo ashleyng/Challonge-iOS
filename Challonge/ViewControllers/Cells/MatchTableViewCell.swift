@@ -47,14 +47,14 @@ class MatchTableViewCell: UITableViewCell {
     
     private func setupTextLabels(with viewModel: MatchViewModel) {
         matchLabel.text = viewModel.matchLabel()
-        player1Name.text = viewModel.playerOneName()
-        player2Name.text = viewModel.playerTwoName()
+        player1Name.text = viewModel.nameFor(player: .playerOne)
+        player2Name.text = viewModel.nameFor(player: .playerTwo)
         
         singleStatus.text = viewModel.matchStatus()
         singleStatus.textColor = viewModel.statusLabelColor()
         
-        player1Status.text = viewModel.playerOneStatus()
-        player2Status.text = viewModel.playerTwoStatus()
+        player1Status.text = viewModel.statusFor(player: .playerOne)
+        player2Status.text = viewModel.statusFor(player: .playerTwo)
         player1Status.textColor = viewModel.statusLabelColor()
         player2Status.textColor = viewModel.statusLabelColor()
     }

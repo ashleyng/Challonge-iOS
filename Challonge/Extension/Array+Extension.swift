@@ -20,7 +20,7 @@ extension Array {
 }
 
 extension Dictionary {
-    func optionalKeyedValueOrDefaultValue(key: Key?) -> Value? {
+    func keyedValueOrDefault(key: Key?) -> Value? {
         guard let key = key else {
             return nil
         }

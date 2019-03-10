@@ -31,8 +31,8 @@ class MatchTableViewCellModelTest: XCTestCase {
     func testCompletedMatchScoreLabels() {
         let expectedPlayerOneScore = "5"
         let expectedPlayerTwoScore = "3"
-        let actualPlayerOneScore = viewModel.playerOneStatus()
-        let actualPlayerTwoScore = viewModel.playerTwoStatus()
+        let actualPlayerOneScore = viewModel.statusFor(player: .playerOne)
+        let actualPlayerTwoScore = viewModel.statusFor(player: .playerTwo)
         
         XCTAssertEqual(expectedPlayerOneScore, actualPlayerOneScore)
         XCTAssertEqual(expectedPlayerTwoScore, actualPlayerTwoScore)
@@ -53,9 +53,9 @@ class MatchTableViewCellModelTest: XCTestCase {
         let openMatch = match(with: .open)
         self.viewModel = MatchViewModel(match: openMatch, mappedMatches: [openMatch.id: openMatch], participants: participants)
         
-        let expectedLabel = "open"
-        let actualPlayerOneStatus = viewModel.playerOneStatus()
-        let actualPlayerTwoStatus = viewModel.playerTwoStatus()
+        let expectedLabel: String? = nil
+        let actualPlayerOneStatus = viewModel.statusFor(player: .playerOne)
+        let actualPlayerTwoStatus = viewModel.statusFor(player: .playerTwo)
         
         XCTAssertEqual(expectedLabel, actualPlayerOneStatus)
         XCTAssertEqual(expectedLabel, actualPlayerTwoStatus)
@@ -85,6 +85,17 @@ class MatchTableViewCellModelTest: XCTestCase {
         let expectedColor = UIColor.red
         let actualColor = viewModel.statusLabelColor()
         XCTAssertEqual(expectedColor, actualColor)
+    }
+    
+    func testPlayerNameLabel() {
+        let completedMatch = match(with: .complete)
+        self.viewModel = MatchViewModel(match: completedMatch, mappedMatches: [completedMatch.id: completedMatch], participants: participants)
+        
+        let expectedPlayerOne = "Player One"
+        let expectedPlayerTwo = "Player Two"
+        
+        XCTAssertEqual(self.viewModel.nameFor(player: .playerOne), expectedPlayerOne)
+        XCTAssertEqual(self.viewModel.nameFor(player: .playerTwo), expectedPlayerTwo)
     }
     
     private func match(with state: Match.State) -> Match {
