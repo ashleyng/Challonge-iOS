@@ -112,7 +112,7 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
         }
     }
     
-    func presentSingleMatch(_ match: Match, playerOne: Participant, playerTwo: Participant) {
+    func presentMatchDetailsVC(_ match: Match, playerOne: Participant, playerTwo: Participant) {
         navigationController?.pushViewController(SingleMatchDetailsViewController(match: match, playerOne: playerOne, playerTwo: playerTwo, networking: networking), animated: true)
     }
     

@@ -14,15 +14,8 @@ protocol MatchesViewInteractor: class {
     func updateState(to state: MatchesTableViewState)
     func addFilterMenu()
     func removeFilterMenu()
-    func presentSingleMatch(_ match: Match, playerOne: Participant, playerTwo: Participant)
+    func presentMatchDetailsVC(_ match: Match, playerOne: Participant, playerTwo: Participant)
     func showUnsupportedAlert()
-}
-
-// TODO: Not actually a ViewModel. Fix me.
-struct SingleMatchViewModel {
-    let match: Match
-    let playerOne: Participant
-    let playerTwo: Participant
 }
 
 enum MatchesTableViewState {
@@ -125,7 +118,7 @@ class MatchesViewPresenter {
             self.interactor?.showUnsupportedAlert()
             return
         }
-        self.interactor?.presentSingleMatch(match, playerOne: playerOne, playerTwo: playerTwo)
+        self.interactor?.presentMatchDetailsVC(match, playerOne: playerOne, playerTwo: playerTwo)
     }
     
     private func participantFor(id: Int?) -> Participant? {
