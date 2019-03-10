@@ -1,38 +1,29 @@
 PODS:
-  - ChallongeNetworking (0.5.0)
+  - ChallongeNetworking (0.6.0)
   - Crashlytics (3.11.1):
     - Fabric (~> 1.8.1)
   - Fabric (1.8.2)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
-  - "ChallongeNetworking (from `git@github.com:ashleyng/ChallongeNetworking.git`, branch `MatchPreReqs`)"
+  - ChallongeNetworking (= 0.6.0)
   - Crashlytics (~> 3.11.1)
   - Fabric (~> 1.8.2)
   - SnapKit (~> 4.2.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ChallongeNetworking
     - Crashlytics
     - Fabric
     - SnapKit
 
-EXTERNAL SOURCES:
-  ChallongeNetworking:
-    :branch: MatchPreReqs
-    :git: "git@github.com:ashleyng/ChallongeNetworking.git"
-
-CHECKOUT OPTIONS:
-  ChallongeNetworking:
-    :commit: 0f29079540383cf1340240f78c1d78fdd1ed9aed
-    :git: "git@github.com:ashleyng/ChallongeNetworking.git"
-
 SPEC CHECKSUMS:
-  ChallongeNetworking: f9475466ebcc2ea8b25a568305a8bdd3cd163298
+  ChallongeNetworking: 7815551f59885c95ba6698cb6001289845a16ef6
   Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
   Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: f3d314ed6cb8e95d31aebb2ebee65f08ea333520
+PODFILE CHECKSUM: b59f558248f0a515cd052a01f5e53dc92fcf5334
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1
