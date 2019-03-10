@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import Instabug
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = window
         Fabric.with([Crashlytics.self, Answers.self])
+        Instabug.start(withToken: "", invocationEvents: [.none])
         return true
     }
 }

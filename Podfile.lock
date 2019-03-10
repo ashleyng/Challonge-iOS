@@ -3,12 +3,14 @@ PODS:
   - Crashlytics (3.11.1):
     - Fabric (~> 1.8.1)
   - Fabric (1.8.2)
+  - Instabug (8.1)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - ChallongeNetworking (= 0.5.0)
   - Crashlytics (~> 3.11.1)
   - Fabric (~> 1.8.2)
+  - Instabug (~> 8.1)
   - SnapKit (~> 4.2.0)
 
 SPEC REPOS:
@@ -16,14 +18,16 @@ SPEC REPOS:
     - ChallongeNetworking
     - Crashlytics
     - Fabric
+    - Instabug
     - SnapKit
 
 SPEC CHECKSUMS:
   ChallongeNetworking: f9475466ebcc2ea8b25a568305a8bdd3cd163298
   Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
   Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
+  Instabug: 592a4deabae96082ea20d1afac0ec7c34ef650fb
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 668ad5f1838451f3ce79ec8d99e296388d49f7f6
+PODFILE CHECKSUM: afc03fa69b0756c6b73818530d8a5593b79906fc
 
 COCOAPODS: 1.5.3

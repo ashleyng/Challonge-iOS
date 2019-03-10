@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Instabug
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     enum SettingsGroup: String, CaseIterable {
@@ -16,7 +17,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         var options: [Settings] {
             switch self {
             case .app:
-                return [Settings.acknowledgement, Settings.logout]
+                return [Settings.acknowledgement, Settings.feedbackReport, Settings.logout]
             case .challonge:
                 return [Settings.termsOfService]
             }
@@ -27,6 +28,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case logout = "Logout"
         case acknowledgement = "Acknowledgement"
         case termsOfService = "Terms of Service"
+        case feedbackReport = "Give Feedback"
     }
     
     let settingsGroupItems: [SettingsGroup] = [
@@ -72,6 +74,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             cell.textLabel?.text = settingItem.rawValue
         case .termsOfService:
             cell.textLabel?.text = settingItem.rawValue
+        case .feedbackReport:
+            cell.textLabel?.text = settingItem.rawValue
         }
         return cell
     }
@@ -92,6 +96,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             showAcknowledgementAlert()
         case .termsOfService:
             present(WebViewController(urlString: "https://challonge.com/terms_of_service"), animated: true, completion: nil)
+        case .feedbackReport:
+            Instabug.show()
         }
     }
     
