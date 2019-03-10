@@ -18,3 +18,12 @@ extension Array {
         return dict
     }
 }
+
+extension Dictionary {
+    func optionalKeyedValueOrDefaultValue(key: Key?) -> Value? {
+        guard let key = key else {
+            return nil
+        }
+        return self[key]
+    }
+}

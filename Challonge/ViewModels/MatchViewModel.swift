@@ -17,11 +17,16 @@ struct MatchViewModel {
         case hasScore
     }
     
+    enum Player {
+        case playerOne
+        case playerTwo
+    }
+    
     private let match: Match
     private var player1: Participant? = nil
     private var player2: Participant? = nil
-    private let preReqsPlayer1String: String?
-    private let preReqsPlayer2String: String?
+    private var preReqsPlayer1String: String?
+    private var preReqsPlayer2String: String?
     private(set) var state: CellState = .noScore
     
     init(match: Match, mappedMatches: [Int: Match], participants: [Int: Participant]) {
@@ -33,8 +38,12 @@ struct MatchViewModel {
         if let player2Id = match.player2Id {
             self.player2 = participants[player2Id]
         }
-        preReqsPlayer1String = MatchViewModel.constructPlayer1PreReqString(mappedMatch: mappedMatches, match: match)
-        preReqsPlayer2String = MatchViewModel.constructPlayer2PreReqString(mappedMatch: mappedMatches, match: match)
+        preReqsPlayer1String = preReqMatchString(preReq: match.preReqInfo,
+                                                 match: mappedMatches.optionalKeyedValueOrDefaultValue(key: match.preReqInfo.player2MatchId),
+                                                 player: .playerOne)
+        preReqsPlayer2String = preReqMatchString(preReq: match.preReqInfo,
+                                                 match: mappedMatches.optionalKeyedValueOrDefaultValue(key: match.preReqInfo.player2MatchId),
+                                                 player: .playerTwo)
         state = match.state == .complete ? CellState.hasScore : CellState.noScore
     }
     
@@ -79,7 +88,6 @@ struct MatchViewModel {
         }
     }
     
-    // TODO: Fix duplicate code
     func playerTwoStatus() -> String {
         switch match.state {
         case .complete:
@@ -103,33 +111,21 @@ struct MatchViewModel {
         }
     }
     
-    private static func constructPlayer1PreReqString(mappedMatch: [Int: Match], match: Match) -> String? {
-        if let player1Match = match.preReqInfo.player1MatchId, let matchString = mappedMatch[player1Match]?.suggestedPlayOrder {
-            let player1String = match.preReqInfo.player1MatchIsLoser ? "Loser from Match " : "Winner from Match "
-            return player1String.appending(String(matchString))
-        }
-        return nil
-    }
-    
-    private static func constructPlayer2PreReqString(mappedMatch: [Int: Match], match: Match) -> String? {
-        if let player2Match = match.preReqInfo.player2MatchId, let matchString = mappedMatch[player2Match]?.suggestedPlayOrder {
-            let player2String = match.preReqInfo.player2MatchIsLoser ? "Loser from Match " : "Winner from Match "
-            return player2String.appending(String(matchString))
-        }
-        return nil
-    }
-    
-    private static func getPlayer(with id: Int?, participants: [Int: Participant], groupParticipantIds: [Int: Int]) -> Participant? {
-        guard let id = id else {
+    private func preReqMatchString(preReq: Match.PreReqInformation, match: Match?, player: Player) -> String? {
+        guard let matchString = match?.suggestedPlayOrder else {
             return nil
         }
-        
-        if let participant = participants[id] {
-            return participant
-        } else if let groupId = groupParticipantIds[id], let groupIdParticipant = participants[groupId] {
-            return groupIdParticipant
-        } else {
-            return nil
-        }
+        let isLoser: Bool = {
+            switch player {
+                case .playerOne: return preReq.player1MatchIsLoser
+                case .playerTwo: return preReq.player2MatchIsLoser
+            }
+        }()
+        let playerString = isLoserMatchString(isLoser: isLoser)
+        return playerString.appending("\(matchString)")
+    }
+    
+    private func isLoserMatchString(isLoser: Bool) -> String {
+        return isLoser ? "Loser from Match " : "Winner from Match "
     }
 }
