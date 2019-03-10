@@ -11,6 +11,20 @@ To get started you will need to have a [challonge account](challonge.com) and an
 ```sh
 git clone git@github.com:ashleyng/Challonge-iOS.git
 cd Challonge-iOS
-pod install
+bundle install
+bundle exec pod install
 open Challonge.xcworkspace
+```
+
+During installation you'll be asked for Instabug keys by `cocoapods-keys`, you can use any random value for debugging. The real values are only required for App Store submissions.
+```sh
+ bundle exec pod install 
+
+ CocoaPods-Keys has detected a keys mismatch for your setup.
+ What is the key for InstabugLive
+ > <Random Value>
+
+Saved InstabugLive to Challonge.
+ What is the key for InstabugBeta
+ > <Random Value>
 ```
