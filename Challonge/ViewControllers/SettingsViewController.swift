@@ -91,6 +91,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
             try? KeychainStore.deleteApiKey(withUsername: username)
             UserDefaults.standard.removeObject(forKey: UserDefaults.CHALLONGE_USERNAME_KEY)
+            Instabug.logOut()
             navigationController?.popToRootViewController(animated: true)
         case .acknowledgement:
             showAcknowledgementAlert()
