@@ -128,6 +128,9 @@ class MatchesViewPresenter {
         return participants[id]
     }
     
+    /// Challonge participants can have different Ids if there are group stages.
+    /// This maps the group Ids to the correct participant and puts it all in
+    /// a single dictionary
     private func participantsToDictionary(participants: [Participant]) -> [Int: Participant] {
         var participantsDict = participants.toDictionary { $0.id.main }
         participantsDict.values.forEach { participant in

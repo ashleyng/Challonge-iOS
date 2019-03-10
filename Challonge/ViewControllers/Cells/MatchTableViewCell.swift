@@ -19,6 +19,12 @@ class MatchTableViewCell: UITableViewCell {
     @IBOutlet private var singleStatus: UILabel!
     @IBOutlet private var outerView: UIView!
     
+    private enum Constants {
+        static let borderRadius: CGFloat = 5
+        static let borderColor: UIColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1)
+        static let borderWidth: CGFloat = 1
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupBorder()
@@ -31,17 +37,16 @@ class MatchTableViewCell: UITableViewCell {
     }
     
     private func setupBorder() {
-        
-        outerView.layer.borderWidth = 1
-        outerView.layer.cornerRadius = 5
-        outerView.layer.borderColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1).cgColor
+        outerView.layer.borderWidth = Constants.borderWidth
+        outerView.layer.cornerRadius = Constants.borderRadius
+        outerView.layer.borderColor = Constants.borderColor.cgColor
     }
     
     private func setupMatchLabel() {
-        self.matchLabel.backgroundColor = UIColor(red: 124/255, green: 124/255, blue: 124/255, alpha: 1)
+        self.matchLabel.backgroundColor = Constants.borderColor
         self.matchLabel.textColor = .white
         self.matchLabel.clipsToBounds = true
-        self.matchLabel.layer.cornerRadius = 5
+        self.matchLabel.layer.cornerRadius = Constants.borderRadius
         self.matchLabel.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
@@ -60,7 +65,6 @@ class MatchTableViewCell: UITableViewCell {
     }
     
     private func setupVisibleStatusLabels(with state: MatchViewModel.CellState) {
-        
         switch state {
             case .noScore:
                 singleStatus.isHidden = false

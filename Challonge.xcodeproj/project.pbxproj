@@ -39,7 +39,7 @@
 		D8F7B27021B319B700FB7F5C /* TournamentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B26E21B319B700FB7F5C /* TournamentTableViewCell.xib */; };
 		D8F7B27321B352CE00FB7F5C /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */; };
 		D8F7B27421B352CE00FB7F5C /* MatchesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B27221B352CE00FB7F5C /* MatchesViewController.xib */; };
-		D8F7B27721B3594500FB7F5C /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27621B3594500FB7F5C /* Array+Extension.swift */; };
+		D8F7B27721B3594500FB7F5C /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27621B3594500FB7F5C /* Collection+Extension.swift */; };
 		D8F7B27A21B3688A00FB7F5C /* MatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */; };
 		D8F7B27B21B3688A00FB7F5C /* MatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B27921B3688A00FB7F5C /* MatchTableViewCell.xib */; };
 		D8F7B27E21B382A900FB7F5C /* SingleMatchDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27C21B382A900FB7F5C /* SingleMatchDetailsViewController.swift */; };
@@ -99,7 +99,7 @@
 		D8F7B26E21B319B700FB7F5C /* TournamentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentTableViewCell.xib; sourceTree = "<group>"; };
 		D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		D8F7B27221B352CE00FB7F5C /* MatchesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchesViewController.xib; sourceTree = "<group>"; };
-		D8F7B27621B3594500FB7F5C /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		D8F7B27621B3594500FB7F5C /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTableViewCell.swift; sourceTree = "<group>"; };
 		D8F7B27921B3688A00FB7F5C /* MatchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchTableViewCell.xib; sourceTree = "<group>"; };
 		D8F7B27C21B382A900FB7F5C /* SingleMatchDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleMatchDetailsViewController.swift; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 		D8F7B27521B3592D00FB7F5C /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D8F7B27621B3594500FB7F5C /* Array+Extension.swift */,
+				D8F7B27621B3594500FB7F5C /* Collection+Extension.swift */,
 				D86D301621BF5306009870B9 /* UIButton+Extension.swift */,
 				D8AFA4E721C5D4E7009B9A27 /* UIView+Extension.swift */,
 				D8AFA4EB21C5FF29009B9A27 /* UIImageView+Extension.swift */,
@@ -503,7 +503,7 @@
 				D87EAA6D21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift in Sources */,
 				D8AFA4E821C5D4E7009B9A27 /* UIView+Extension.swift in Sources */,
 				D8AFA4EE21C6067C009B9A27 /* UIColor+Extension.swift in Sources */,
-				D8F7B27721B3594500FB7F5C /* Array+Extension.swift in Sources */,
+				D8F7B27721B3594500FB7F5C /* Collection+Extension.swift in Sources */,
 				D87186A62206B6B90021E097 /* Match+Extension.swift in Sources */,
 				D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */,
 				D8D9A439222C702B0081A15C /* MatchFilterMenu.swift in Sources */,

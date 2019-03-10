@@ -1,5 +1,5 @@
 //
-//  Array+Extension.swift
+//  Collection+Extension.swift
 //  Challonge
 //
 //  Created by Ashley Ng on 12/1/18.

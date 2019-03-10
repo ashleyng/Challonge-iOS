@@ -55,7 +55,7 @@ class ParticipantMatchInfoView: UIView {
             scoreLabel.text = score
         }
         
-        if let votes = match.score(for: participant.id) {
+        if let votes = match.vote(for: participant.id) {
             votesLabel.text = "\(votes)"
         }
         
