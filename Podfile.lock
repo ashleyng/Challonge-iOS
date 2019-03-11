@@ -3,12 +3,26 @@ PODS:
   - Crashlytics (3.11.1):
     - Fabric (~> 1.8.1)
   - Fabric (1.8.2)
+  - OHHTTPStubs/Core (6.1.0)
+  - OHHTTPStubs/Default (6.1.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (6.1.0)
+  - OHHTTPStubs/Swift (6.1.0):
+    - OHHTTPStubs/Default
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - ChallongeNetworking (= 0.6.0)
   - Crashlytics (~> 3.11.1)
   - Fabric (~> 1.8.2)
+  - OHHTTPStubs/Swift
   - SnapKit (~> 4.2.0)
 
 SPEC REPOS:
@@ -16,14 +30,16 @@ SPEC REPOS:
     - ChallongeNetworking
     - Crashlytics
     - Fabric
+    - OHHTTPStubs
     - SnapKit
 
 SPEC CHECKSUMS:
   ChallongeNetworking: 7815551f59885c95ba6698cb6001289845a16ef6
   Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
   Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
+  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: b59f558248f0a515cd052a01f5e53dc92fcf5334
+PODFILE CHECKSUM: 43e24ecfcfabba011755a268d10faa9ba51d3740
 
 COCOAPODS: 1.6.1

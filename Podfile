@@ -19,4 +19,5 @@ end
 
 target 'ChallongeTests' do
     shared_pods
+    pod 'OHHTTPStubs/Swift'
 end
