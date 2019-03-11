@@ -1,5 +1,13 @@
 platform :ios, '11.0'
 
+plugin 'cocoapods-keys', {
+  :project => "Challonge",
+  :keys => [
+    "InstabugLive",
+    "InstabugBeta"
+  ]
+}
+
 def shared_pods
     pod 'ChallongeNetworking', '0.5.0'
 #    pod 'ChallongeNetworking', :path => '../ChallongeNetworking'
@@ -14,6 +22,7 @@ target 'Challonge' do
   pod 'Fabric', '~> 1.8.2'
   pod 'Crashlytics', '~> 3.11.1'
   pod 'SnapKit', '~> 4.2.0'
+  pod 'Instabug', '~> 8.1'
 end
 
 target 'ChallongeTests' do
