@@ -10,14 +10,27 @@ import Foundation
 import ChallongeNetworking
 
 protocol MatchesViewInteractor: class {
-    func updateState(to state: MatchesViewState)
+    func updateState(to state: MatchesTableViewState)
+}
+
+// TODO: Not actually a ViewModel. Fix me.
+struct SingleMatchViewModel {
+    let match: Match
+    let playerOne: Participant
+    let playerTwo: Participant
 }
 
 
-struct MatchesViewPresenter {
+class MatchesViewPresenter {
+    
     private let tournamentId: Int
     private let networking: ChallongeNetworking
     private weak var interactor: MatchesViewInteractor?
+    private var state = MatchesTableViewState.loading {
+        didSet {
+            interactor?.updateState(to: state)
+        }
+    }
     
     init(networking: ChallongeNetworking, interactor: MatchesViewInteractor, tournament: Tournament) {
         self.tournamentId = tournament.id
@@ -40,13 +53,47 @@ struct MatchesViewPresenter {
                     }
                     return leftSuggestedPlayOrder < rightSuggestedPlayOrder
                 })
-                // TODO: memleak?
-                self.interactor?.updateState(to: .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict)))
+                let filter = self.state.currentFilter ?? .all
+                self.state = .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict), filter)
             }
         }, onError: { error in
-            // TODO: memleak?
-            self.interactor?.updateState(to: .error(error))
+            self.state = .error(error)
         })
+    }
+    
+    func matchesCount() -> Int {
+        return state.filteredMatches.count
+    }
+    
+    func viewModelFor(index: Int) -> MatchTableViewCellViewModel {
+        let match = state.filteredMatches[index]
+        return MatchTableViewCellViewModel(match: match, participants: state.currentParticipants, groupParticipantIds: state.groupParticipantIds)
+    }
+    
+    func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
+        state = .populated(state.allMatches, state.currentParticipants, state.groupParticipantIds, newFilter)
+    }
+    
+    func matchesViewModelAt(index: Int) -> SingleMatchViewModel? {
+        let match = state.filteredMatches[index]
+        guard let playerOne = participantFor(id: match.player1Id), let playerTwo = participantFor(id: match.player2Id) else {
+            return nil
+        }
+        return SingleMatchViewModel(match: match, playerOne: playerOne, playerTwo: playerTwo)
+    }
+    
+    private func participantFor(id: Int?) -> Participant? {
+        guard let id = id else {
+            return nil
+        }
+        
+        if let participant = state.currentParticipants[id] {
+            return participant
+        } else if let groupId = state.groupParticipantIds[id], let participant = state.currentParticipants[groupId] {
+            return participant
+        } else {
+            return nil
+        }
     }
     
     private func fetchParticipants(completion: @escaping ([Participant]) -> Void) {

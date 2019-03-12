@@ -21,6 +21,7 @@
 		D86D301921BF548B009870B9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86D301821BF548B009870B9 /* WebViewController.swift */; };
 		D87186A62206B6B90021E097 /* Match+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87186A52206B6B90021E097 /* Match+Extension.swift */; };
 		D87EAA6D21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */; };
+		D896943D22332E990043C887 /* MatchesTableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D896943C22332E990043C887 /* MatchesTableViewState.swift */; };
 		D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */; };
 		D8A0ADA121B2FB0100CF8B35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADA021B2FB0100CF8B35 /* Assets.xcassets */; };
 		D8A0ADA421B2FB0100CF8B35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8A0ADA221B2FB0100CF8B35 /* LaunchScreen.storyboard */; };
@@ -33,6 +34,8 @@
 		D8AFA4E821C5D4E7009B9A27 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFA4E721C5D4E7009B9A27 /* UIView+Extension.swift */; };
 		D8AFA4EC21C5FF29009B9A27 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFA4EB21C5FF29009B9A27 /* UIImageView+Extension.swift */; };
 		D8AFA4EE21C6067C009B9A27 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AFA4ED21C6067C009B9A27 /* UIColor+Extension.swift */; };
+		D8D9A439222C702B0081A15C /* MatchFilterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9A438222C702B0081A15C /* MatchFilterMenu.swift */; };
+		D8D9A43B222C77540081A15C /* MatchFilterMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D9A43A222C77540081A15C /* MatchFilterMenuCell.swift */; };
 		D8F7B26F21B319B700FB7F5C /* TournamentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B26D21B319B700FB7F5C /* TournamentTableViewCell.swift */; };
 		D8F7B27021B319B700FB7F5C /* TournamentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8F7B26E21B319B700FB7F5C /* TournamentTableViewCell.xib */; };
 		D8F7B27321B352CE00FB7F5C /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */; };
@@ -77,6 +80,7 @@
 		D86D301821BF548B009870B9 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		D87186A52206B6B90021E097 /* Match+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Match+Extension.swift"; sourceTree = "<group>"; };
 		D87EAA6C21DA8A8A00DEAFE0 /* PlayingMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingMatchViewModel.swift; sourceTree = "<group>"; };
+		D896943C22332E990043C887 /* MatchesTableViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesTableViewState.swift; sourceTree = "<group>"; };
 		D8A0AD9621B2FAFF00CF8B35 /* Challonge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challonge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A0AD9921B2FAFF00CF8B35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8A0ADA021B2FB0100CF8B35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 		D8AFA4E721C5D4E7009B9A27 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D8AFA4EB21C5FF29009B9A27 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		D8AFA4ED21C6067C009B9A27 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		D8D9A438222C702B0081A15C /* MatchFilterMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchFilterMenu.swift; sourceTree = "<group>"; };
+		D8D9A43A222C77540081A15C /* MatchFilterMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchFilterMenuCell.swift; sourceTree = "<group>"; };
 		D8F7B26D21B319B700FB7F5C /* TournamentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentTableViewCell.swift; sourceTree = "<group>"; };
 		D8F7B26E21B319B700FB7F5C /* TournamentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentTableViewCell.xib; sourceTree = "<group>"; };
 		D8F7B27121B352CE00FB7F5C /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				D80F75B0221C965B007F4A66 /* KeychainStore.swift */,
+				D896943C22332E990043C887 /* MatchesTableViewState.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -202,6 +209,7 @@
 			children = (
 				D8F7B27821B3688A00FB7F5C /* MatchTableViewCell.swift */,
 				D8F7B26D21B319B700FB7F5C /* TournamentTableViewCell.swift */,
+				D8D9A43A222C77540081A15C /* MatchFilterMenuCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -242,6 +250,7 @@
 				D86D301821BF548B009870B9 /* WebViewController.swift */,
 				D8AFA4E521C5D044009B9A27 /* ParticipantMatchInfoView.swift */,
 				D8080DB022151940007B418E /* SettingsViewController.swift */,
+				D8D9A438222C702B0081A15C /* MatchFilterMenu.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -504,9 +513,12 @@
 				D8AFA4E821C5D4E7009B9A27 /* UIView+Extension.swift in Sources */,
 				D8AFA4EE21C6067C009B9A27 /* UIColor+Extension.swift in Sources */,
 				D8F7B27721B3594500FB7F5C /* Array+Extension.swift in Sources */,
+				D896943D22332E990043C887 /* MatchesTableViewState.swift in Sources */,
 				D87186A62206B6B90021E097 /* Match+Extension.swift in Sources */,
 				D8A0AD9A21B2FAFF00CF8B35 /* AppDelegate.swift in Sources */,
+				D8D9A439222C702B0081A15C /* MatchFilterMenu.swift in Sources */,
 				D86D301921BF548B009870B9 /* WebViewController.swift in Sources */,
+				D8D9A43B222C77540081A15C /* MatchFilterMenuCell.swift in Sources */,
 				D858D08822235F510051B9B4 /* MatchesPresenter.swift in Sources */,
 				D8A0ADB521B30F7D00CF8B35 /* TournamentsViewController.swift in Sources */,
 				D8AFA4E621C5D044009B9A27 /* ParticipantMatchInfoView.swift in Sources */,

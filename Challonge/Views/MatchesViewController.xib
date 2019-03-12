@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MatchesViewController" customModule="Challonge" customModuleProvider="target">
             <connections>
                 <outlet property="loadingIndicator" destination="GhM-jb-xrW" id="Fke-Bi-gx2"/>
+                <outlet property="matchMenuView" destination="KIx-nT-o95" id="KRp-Ao-Yay"/>
                 <outlet property="tableView" destination="rA8-VO-AlM" id="ZoF-xS-o1b"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,19 +24,43 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rA8-VO-AlM">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GhM-jb-xrW">
                     <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
                 </activityIndicatorView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIx-nT-o95" userLabel="Menu Placeholder">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SqQ-Dc-yrZ" userLabel="Divider">
+                            <rect key="frame" x="0.0" y="43" width="375" height="1"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="Hds-R9-vBg"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="ugs-D2-njK"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="AIR-8u-yNW"/>
+                        <constraint firstItem="SqQ-Dc-yrZ" firstAttribute="leading" secondItem="KIx-nT-o95" secondAttribute="leading" id="C7F-7e-0pj"/>
+                        <constraint firstItem="a3k-1g-Oh1" firstAttribute="bottom" secondItem="SqQ-Dc-yrZ" secondAttribute="bottom" id="ZyJ-dZ-kLK"/>
+                        <constraint firstAttribute="trailing" secondItem="SqQ-Dc-yrZ" secondAttribute="trailing" id="mWN-dF-Mcy"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="a3k-1g-Oh1"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="rA8-VO-AlM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Ca5-OR-5GV"/>
+                <constraint firstItem="KIx-nT-o95" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="IgI-q2-r9M"/>
+                <constraint firstItem="KIx-nT-o95" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="JpA-cH-Uym"/>
                 <constraint firstItem="rA8-VO-AlM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KWP-fh-AmQ"/>
+                <constraint firstItem="KIx-nT-o95" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="f5v-gj-U85"/>
                 <constraint firstItem="rA8-VO-AlM" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="nV4-nY-eNw"/>
-                <constraint firstItem="rA8-VO-AlM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nnc-qX-NCU"/>
+                <constraint firstItem="rA8-VO-AlM" firstAttribute="top" secondItem="KIx-nT-o95" secondAttribute="bottom" id="nnc-qX-NCU"/>
                 <constraint firstItem="GhM-jb-xrW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pQH-Wb-Qgd"/>
                 <constraint firstItem="GhM-jb-xrW" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="yH8-74-ezt"/>
             </constraints>
