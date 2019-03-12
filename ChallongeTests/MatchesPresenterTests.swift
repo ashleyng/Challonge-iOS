@@ -37,7 +37,7 @@ class MatchesPresenterTests: XCTestCase {
     
         presenter = MatchesViewPresenter(networking: networking, interactor: mockInteractor, tournament: setupTournament(withType: .singleElimination))
         presenter.loadMatch()
-        sleep(5) // This is dumb. TODO: Fix this
+        sleep(3) // This is dumb. TODO: Fix this
     }
     
     func testTappedCell() {
@@ -67,7 +67,7 @@ class MatchesPresenterTests: XCTestCase {
     func testAddFilterMenu() {
         presenter = MatchesViewPresenter(networking: networking, interactor: mockInteractor, tournament: setupTournament(withType: .doubleElimination))
         presenter.loadMatch()
-        sleep(5) // This is dumb. TODO: Fix this
+        sleep(3) // This is dumb. TODO: Fix this
         
         presenter.viewDidLoad()
         

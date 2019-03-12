@@ -29,6 +29,7 @@ class MatchTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setupBorder()
         setupMatchLabel()
+        selectionStyle = .none
     }
 
     func configureWith(_ matchViewModel: MatchViewModel) {

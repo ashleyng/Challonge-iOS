@@ -46,7 +46,6 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
         navigationItem.title = tournamentName
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
         tableView.separatorStyle = .none
-
         tableView.delegate = self
         tableView.dataSource = self
         
