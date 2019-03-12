@@ -1,5 +1,5 @@
 //
-//  Array+Extension.swift
+//  Collection+Extension.swift
 //  Challonge
 //
 //  Created by Ashley Ng on 12/1/18.
@@ -16,5 +16,14 @@ extension Array {
             dict[selectKey(element)] = element
         }
         return dict
+    }
+}
+
+extension Dictionary {
+    func keyedValueOrDefault(key: Key?) -> Value? {
+        guard let key = key else {
+            return nil
+        }
+        return self[key]
     }
 }

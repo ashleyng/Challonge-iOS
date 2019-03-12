@@ -8,7 +8,6 @@
 
 import UIKit
 import ChallongeNetworking
-import Crashlytics
 import SnapKit
 
 
@@ -23,6 +22,7 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     private let networking: ChallongeNetworking
     private var presenter: MatchesViewPresenter!
     private let tournamentName: String
+    private var cellViewModels: [MatchViewModel] = []
     
     init(challongeNetworking: ChallongeNetworking, tournament: Tournament) {
         networking = challongeNetworking
@@ -41,14 +41,11 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        matchMenuView.addSubview(filterMenu)
-        filterMenu.snp.makeConstraints { make in
-            make.top.right.left.equalTo(matchMenuView)
-            make.bottom.equalToSuperview().offset(-1) // -1 for divider
-        }
+        presenter.viewDidLoad()
+        
         navigationItem.title = tournamentName
         tableView.register(UINib(nibName: MatchTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: MatchTableViewCell.identifier)
-
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -73,15 +70,14 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
     func updateState(to state: MatchesTableViewState) {
         DispatchQueue.main.async {
             switch state {
-            case .empty, .populated:
+            case .populated(let viewModels):
+                self.cellViewModels = viewModels
+                fallthrough
+            case .empty, .error:
                 self.tableView.isHidden = false
                 self.loadingIndicator.isHidden = true
                 self.refreshControl.endRefreshing()
                 self.loadingIndicator.stopAnimating()
-            case .error(let error):
-                Answers.logCustomEvent(withName: "ErrorFetchingMatches", customAttributes: [
-                    "Error": error.localizedDescription
-                    ])
             case .loading:
                 self.tableView.isHidden = true
                 self.loadingIndicator.isHidden = false
@@ -91,20 +87,55 @@ class MatchesViewController: UIViewController, MatchesViewInteractor, MatchFilte
         }
     }
     
+    
+    // MARK: MatchesViewInteractor
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
         presenter.filterDidChange(newFilter: newFilter)
+    }
+    
+    func addFilterMenu() {
+        matchMenuView.addSubview(filterMenu)
+        filterMenu.snp.makeConstraints { make in
+            make.top.right.left.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-1) // -1 for divider
+        }
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(matchMenuView.snp.bottom)
+        }
+    }
+    
+    func removeFilterMenu() {
+        matchMenuView.isHidden = true
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+        }
+    }
+    
+    func presentMatchDetailsVC(_ match: Match, playerOne: Participant, playerTwo: Participant) {
+        navigationController?.pushViewController(SingleMatchDetailsViewController(match: match, playerOne: playerOne, playerTwo: playerTwo, networking: networking), animated: true)
+    }
+    
+    func showUnsupportedAlert() {
+        let alertController = UIAlertController(title: nil, message: "We currently don't support viewing this match, but don't fret, we're are always working on improving user experience and adding new features.", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 
 extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.matchesCount()
+        return cellViewModels.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 96
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: MatchTableViewCell.identifier, for: indexPath) as? MatchTableViewCell {
-            let viewModel = presenter.viewModelFor(index: indexPath.row)
+            let viewModel = cellViewModels[indexPath.row]
             cell.configureWith(viewModel)
             return cell
         }
@@ -115,17 +146,6 @@ extension MatchesViewController: UITableViewDelegate, UITableViewDataSource {
         defer {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-        guard let matchVM = presenter.matchesViewModelAt(index: indexPath.row) else {
-            unsupportedTournamentType()
-            return
-        }
-        navigationController?.pushViewController(SingleMatchDetailsViewController(match: matchVM.match, playerOne: matchVM.playerOne, playerTwo: matchVM.playerTwo, networking: networking), animated: true)
-    }
-
-    private func unsupportedTournamentType() {
-        let alertController = UIAlertController(title: nil, message: "We currently don't support viewing this match, but don't fret, we're are always working on improving user experience and adding new features.", preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(dismissAction)
-        present(alertController, animated: true, completion: nil)
+        presenter.tappedCellAt(index: indexPath.row)
     }
 }

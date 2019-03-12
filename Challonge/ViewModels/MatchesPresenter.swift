@@ -8,23 +8,46 @@
 
 import Foundation
 import ChallongeNetworking
+import Crashlytics
 
 protocol MatchesViewInteractor: class {
     func updateState(to state: MatchesTableViewState)
+    func addFilterMenu()
+    func removeFilterMenu()
+    func presentMatchDetailsVC(_ match: Match, playerOne: Participant, playerTwo: Participant)
+    func showUnsupportedAlert()
 }
 
-// TODO: Not actually a ViewModel. Fix me.
-struct SingleMatchViewModel {
-    let match: Match
-    let playerOne: Participant
-    let playerTwo: Participant
+enum MatchesTableViewState {
+    case loading
+    case populated([MatchViewModel])
+    case empty
+    case error(Error)
 }
 
 
 class MatchesViewPresenter {
     
-    private let tournamentId: Int
+    private let tournament: Tournament
     private let networking: ChallongeNetworking
+    
+    private var filter: MatchFilterMenu.MenuState = .all
+    private var matches: [Match] = []
+    private var participants: [Int: Participant] = [:]
+    
+    private var filteredMatches: [Match] {
+        return matches.filter { match in
+            switch filter {
+            case .all:
+                return true
+            case .winner:
+                return match.round > 0
+            case .loser:
+                return match.round < 0
+            }
+        }
+    }
+    
     private weak var interactor: MatchesViewInteractor?
     private var state = MatchesTableViewState.loading {
         didSet {
@@ -33,16 +56,24 @@ class MatchesViewPresenter {
     }
     
     init(networking: ChallongeNetworking, interactor: MatchesViewInteractor, tournament: Tournament) {
-        self.tournamentId = tournament.id
+        self.tournament = tournament
+        
         self.interactor = interactor
         self.networking = networking
     }
     
+    func viewDidLoad() {
+        if tournament.tournamentType == .doubleElimination {
+            self.interactor?.addFilterMenu()
+        } else {
+            self.interactor?.removeFilterMenu()
+        }
+    }
+    
     func loadMatch() {
         self.interactor?.updateState(to: .loading)
-        networking.getMatchesForTournament(tournamentId, completion: { matches in
+        networking.getMatchesForTournament(tournament.id, completion: { matches in
             self.fetchParticipants() { participants in
-                let participantsDict = participants.toDictionary { $0.id.main }
                 let sortedMatches = matches.sorted(by: { left, right in
                     // TODO need to check these bools
                     guard let leftSuggestedPlayOrder = left.suggestedPlayOrder else {
@@ -53,62 +84,66 @@ class MatchesViewPresenter {
                     }
                     return leftSuggestedPlayOrder < rightSuggestedPlayOrder
                 })
-                let filter = self.state.currentFilter ?? .all
-                self.state = .populated(sortedMatches, participantsDict, self.mapGroupIds(participants: participantsDict), filter)
+                self.matches = sortedMatches
+                self.participants = self.participantsToDictionary(participants: participants)
+                let viewModels = self.filteredMatches.map { match in
+                    return MatchViewModel(match: match, mappedMatches: matches.toDictionary(with: { $0.id }), participants: self.participants)
+                }
+                self.state = .populated(viewModels)
             }
         }, onError: { error in
+            Answers.logCustomEvent(withName: "ErrorFetchingMatches", customAttributes: [
+                "Error": error.localizedDescription
+            ])
             self.state = .error(error)
         })
     }
     
-    func matchesCount() -> Int {
-        return state.filteredMatches.count
-    }
-    
-    func viewModelFor(index: Int) -> MatchTableViewCellViewModel {
-        let match = state.filteredMatches[index]
-        return MatchTableViewCellViewModel(match: match, participants: state.currentParticipants, groupParticipantIds: state.groupParticipantIds)
-    }
-    
     func filterDidChange(newFilter: MatchFilterMenu.MenuState) {
-        state = .populated(state.allMatches, state.currentParticipants, state.groupParticipantIds, newFilter)
-    }
-    
-    func matchesViewModelAt(index: Int) -> SingleMatchViewModel? {
-        let match = state.filteredMatches[index]
-        guard let playerOne = participantFor(id: match.player1Id), let playerTwo = participantFor(id: match.player2Id) else {
-            return nil
+        Answers.logCustomEvent(withName: "User changed filter", customAttributes: [
+            "newFilter": newFilter.rawValue,
+            "oldFilter": filter.rawValue
+        ])
+        filter = newFilter
+        let viewModels = filteredMatches.map { match in
+            return MatchViewModel(match: match, mappedMatches: matches.toDictionary(with: { $0.id }), participants: participants)
         }
-        return SingleMatchViewModel(match: match, playerOne: playerOne, playerTwo: playerTwo)
+        state = .populated(viewModels)
+    }
+
+    func tappedCellAt(index: Int) {
+        let match = filteredMatches[index]
+    
+        guard let playerOne = participantFor(id: match.player1Id), let playerTwo = participantFor(id: match.player2Id) else {
+            self.interactor?.showUnsupportedAlert()
+            return
+        }
+        self.interactor?.presentMatchDetailsVC(match, playerOne: playerOne, playerTwo: playerTwo)
     }
     
     private func participantFor(id: Int?) -> Participant? {
         guard let id = id else {
             return nil
         }
-        
-        if let participant = state.currentParticipants[id] {
-            return participant
-        } else if let groupId = state.groupParticipantIds[id], let participant = state.currentParticipants[groupId] {
-            return participant
-        } else {
-            return nil
+        return participants[id]
+    }
+    
+    /// Challonge participants can have different Ids if there are group stages.
+    /// This maps the group Ids to the correct participant and puts it all in
+    /// a single dictionary
+    private func participantsToDictionary(participants: [Participant]) -> [Int: Participant] {
+        var participantsDict = participants.toDictionary { $0.id.main }
+        participantsDict.values.forEach { participant in
+            participant.id.all.forEach{ groupId in
+                participantsDict[groupId] = participant
+            }
         }
+        return participantsDict
     }
     
     private func fetchParticipants(completion: @escaping ([Participant]) -> Void) {
-        networking.getParticipantsForTournament(tournamentId, completion: { (participants: [Participant]) in
+        networking.getParticipantsForTournament(tournament.id, completion: { (participants: [Participant]) in
             completion(participants)
         }, onError: { _ in })
-    }
-    
-    private func mapGroupIds(participants: [Int: Participant]) -> [Int: Int] {
-        var dict = [Int: Int]()
-        participants.forEach { (participantId, participant) in
-            participant.id.all.forEach{ groupId in
-                dict[groupId] = participantId
-            }
-        }
-        return dict
     }
 }
