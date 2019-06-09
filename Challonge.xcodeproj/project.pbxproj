@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -325,7 +325,8 @@
 				D8A0AD9321B2FAFF00CF8B35 /* Frameworks */,
 				D8A0AD9421B2FAFF00CF8B35 /* Resources */,
 				BC56F6A1640EE0CB06AC280F /* [CP] Embed Pods Frameworks */,
-				D8A5786121BC4A41006A25E6 /* ShellScript */,
+				D8F0465622AD92EE008CF980 /* Swiftlint */,
+				D8A5786121BC4A41006A25E6 /* fabric */,
 			);
 			buildRules = (
 			);
@@ -433,31 +434,18 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Challonge/Pods-Challonge-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ChallongeNetworking-framework/ChallongeNetworking.framework",
-				"${PODS_ROOT}/Instabug/Instabug.framework",
-				"${PODS_ROOT}/Instabug/Instabug.framework.dSYM",
-				"${BUILT_PRODUCTS_DIR}/Keys-framework/Keys.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Challonge/Pods-Challonge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChallongeNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instabug.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/Instabug.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keys.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Challonge/Pods-Challonge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Challonge/Pods-Challonge-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D8A5786121BC4A41006A25E6 /* ShellScript */ = {
+		D8A5786121BC4A41006A25E6 /* fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -467,6 +455,7 @@
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
+			name = fabric;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -474,6 +463,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 5a90672cbf85cccc28cef7c2c1a320aec946c385 4160f25e0b5e7d2b4f96f75e3ec5aa452178a6b30d4e8983b9d3faf05887fdff\n";
+		};
+		D8F0465622AD92EE008CF980 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		E87A9354443AC94CEB878AF1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

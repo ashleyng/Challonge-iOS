@@ -24,6 +24,7 @@ target 'Challonge' do
   pod 'Crashlytics', '~> 3.11.1'
   pod 'SnapKit', '~> 4.2.0'
   pod 'Instabug', '~> 8.1'
+  pod 'SwiftLint'
 end
 
 target 'ChallongeTests' do

@@ -19,6 +19,7 @@ PODS:
   - OHHTTPStubs/Swift (6.1.0):
     - OHHTTPStubs/Default
   - SnapKit (4.2.0)
+  - SwiftLint (0.33.0)
 
 DEPENDENCIES:
   - ChallongeNetworking (= 0.6.0)
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - Keys (from `Pods/CocoaPodsKeys`)
   - OHHTTPStubs/Swift
   - SnapKit (~> 4.2.0)
+  - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -37,6 +39,7 @@ SPEC REPOS:
     - Instabug
     - OHHTTPStubs
     - SnapKit
+    - SwiftLint
 
 EXTERNAL SOURCES:
   Keys:
@@ -50,7 +53,8 @@ SPEC CHECKSUMS:
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
 
-PODFILE CHECKSUM: 13d4b9a1d7ae11a73419c1d5e15988900688eb1b
+PODFILE CHECKSUM: 07349b526d018e33210f6b1a0e9046f0a054757c
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.1
